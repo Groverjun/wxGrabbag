@@ -36,3 +36,7 @@ node .\wuWxapkg.js .\app\_-86450044_13.wxapkg
 ### 本项目来自qwerty472123大神 
 
 地址：[https://github.com/qwerty472123/wxappUnpacker](https://github.com/qwerty472123/wxappUnpacker)
+
+### README中的图片来自 
+
+地址：[https://blog.csdn.net/qq_34035425/article/details/84892774](https://blog.csdn.net/qq_34035425/article/details/84892774)
