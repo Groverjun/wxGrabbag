@@ -1,0 +1,17 @@
+input {
+    width: 80%;
+    margin: 0 auto 30rpx;
+}
+
+.save-btn {
+    background: transparent;
+    font-size: 34rpx;
+}
+
+.save-btn::after {
+    border: none;
+}
+
+.btn {
+    background: #ccc;
+}

@@ -1,0 +1,157 @@
+<view class="container">
+    <view class="bgf pdt2 mb2 relative">
+        <swiper>
+            <swiper-item wx:for="{{list}}">
+                <view class="bds pd4 mg2 br10">
+                    <view catchtap="goEdit" class="ovh" data-id="{{item.teamId}}">
+                        <image class="small-head left mr2" src="{{item.teamIcon?imgHead+item.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+                        <view class="left">
+                            <view class="fontb font36">{{item.teamName?item.teamName:'企业团队名称未填写'}}</view>
+                            <view class="col9 mt1">{{item.tradeTypeName?item.tradeTypeName:'行业信息未填写'}}</view>
+                            <image src="../../../images/vip.png" style="position: relative;left: 50%;top: -19px; width: 34px;height: 16px;" wx:if="{{item.endTime}}"></image>
+                        </view>
+                    </view>
+                    <block wx:if="{{list[0].teamId}}">
+                        <view class="center mt2 line70 font30 col9" wx:if="{{item.isCurrent}}">
+                            <image class="icon small_icon mr2" src="../../../images/ic_notice.png" style="width:6%"></image>
+                            <text style="display:inline-block;width:80%;" wx:if="{{!item.teamSign}}">欲望以提升热忱,毅力以磨平高山</text>
+                            <text style="display:inline-block;width:80%;" wx:if="{{item.teamSign}}">{{item.teamSign}}</text>
+                            <view catchtap="goEditSign" class="right tright" data-id="{{item.teamId}}" style="width:10%" wx:if="{{item.isMy}}">
+                                <image class="edit_icon right mt1" src="../../../images/ic_edit.png"></image>
+                            </view>
+                        </view>
+                        <button catchtap="switchTeam" class="btn add-btn" data-id="{{item.teamId}}" data-index="{{index}}" wx:else>切换为当前企业团队</button>
+                    </block>
+                    <button catchtap="goCreatTime" class="btn add-btn" wx:else>创建我的企业团队</button>
+                </view>
+            </swiper-item>
+            <swiper-item wx:if="{{userTeamId==null}}">
+                <view class="bds pd4 mg2 br10">
+                    <view class="ovh">
+                        <image class="small-head left mr2" src="../../../images/ic_company_head.png"></image>
+                        <view class="left">
+                            <view class="fontb font36">企业团队名称未填写</view>
+                            <view class="col9 mt1">行业信息未填写</view>
+                        </view>
+                    </view>
+                    <button catchtap="goCreatTime" class="btn add-btn">创建我的企业团队</button>
+                </view>
+            </swiper-item>
+        </swiper>
+        <view class="flex-wrp mb2 line30 mt2 pdb2 col8">
+            <view bindtap="goCompanyPage" class="flex-item center" data-type="1">
+                <image class="icon55" src="../../../images/icon-company.png"></image>
+                <view class="mt">公司</view>
+            </view>
+            <view bindtap="goCompanyPage" class="flex-item center" data-type="2">
+                <image class="icon55" src="../../../images/icon-product.png"></image>
+                <view class="mt">产品</view>
+            </view>
+            <view bindtap="goCompanyPage" class="flex-item center" data-type="4">
+                <image class="icon55" src="../../../images/icon-dynamic.png"></image>
+                <view class="mt">动态</view>
+            </view>
+            <view bindtap="goCompanyPage" class="flex-item center" data-type="3">
+                <image class="icon55" src="../../../images/icon-network.png"></image>
+                <view class="mt">官网</view>
+            </view>
+        </view>
+        <view class="flex-wrp line30 mt2 pdb3 col8">
+            <navigator class="flex-item center" hoverClass="none" url="/pages/team/myTeam/myTeam">
+                <image class="icon55" src="../../../images/ic_team.png"></image>
+                <view class="mt">我的团队</view>
+            </navigator>
+            <navigator class="flex-item center" hoverClass="none" url="/pages/team/orderManager/orderManager">
+                <text class="mes-num icon40 br_half colf" wx:if="{{orderCountNum>0}}">{{orderCountNum}}</text>
+                <image class="icon55" src="../../../images/ic_order.png"></image>
+                <view class="mt">订单管理</view>
+            </navigator>
+            <view bindtap="goStaPage" class="flex-item center">
+                <image class="icon55" src="../../../images/ic_sta.png"></image>
+                <view class="mt">财务统计</view>
+            </view>
+            <view class="flex-item center">
+                <image class="icon55" src="../../../images/icon-empty.png"></image>
+                <view class="mt">敬请期待</view>
+            </view>
+        </view>
+    </view>
+    <view class="mb2">
+        <view class="flex-wrp bgf center font30 line70 data-switch" wx:if="{{teamId==userTeamId}}">
+            <view bindtap="switchPerson" class="flex-item {{currentShow==0?'hover':''}}" data-type="0">团队数据</view>
+            <view bindtap="switchPerson" class="flex-item {{currentShow==1?'hover':''}}" data-type="1">个人数据</view>
+        </view>
+        <view class="bgf pdlr3 bdb">
+            <view class="pd3">
+                <view class="flex-wrp">
+                    <view class="flex-item tleft pdl2">
+                        <view class="font36 fontb text-box">{{totalUser}}人</view>
+                        <view class="col9 mt1">总客户</view>
+                    </view>
+                    <view class="flex-item center">
+                        <view class="font36 fontb text-box">{{customCount}}单</view>
+                        <view class="col9 mt1">已成交</view>
+                    </view>
+                    <view class="flex-item tright pdr2">
+                        <view class="font36 fontb text-box">{{rate}}%</view>
+                        <view class="col9 mt1">成交率</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="bgf pdlr3">
+            <view class="pd3">
+                <view class="line70 font30 fontb col9">
+          {{nowMonth==nowDateMonth?'本月':nowDateMonth?nowDateMonth:'本月'}}营收统计
+          <picker bindchange="bindTimeChange" class=" bd col8 right disib font24 line30 time-box" range="{{timeList}}">{{nowDate}}<image class="icon20 ml1" src="../../../images/ic_drop.png"></image>
+                    </picker>
+                </view>
+                <view class="flex-wrp mb4">
+                    <view class="flex-item tleft pdl2">
+                        <view class="font36 fontb colo text-box">{{glob}}</view>
+                        <view class="col9 mt1">月目标</view>
+                    </view>
+                    <view class="flex-item center">
+                        <view class="font36 fontb yellow2 text-box">{{totalMoney}}</view>
+                        <view class="col9 mt1">已成交</view>
+                    </view>
+                    <view class="flex-item tright pdr2">
+                        <view class="font36 fontb blue2 text-box">{{globPer}}%</view>
+                        <view class="col9 mt1">完成率</view>
+                    </view>
+                </view>
+                <view class="flex-wrp">
+                    <view class="flex-item tleft pdl2">
+                        <view class="font36 fontb colo text-box">{{orderCount.today_count}}单</view>
+                        <view class="col9 mt1">今日成交</view>
+                    </view>
+                    <view class="flex-item center">
+                        <view class="font36 fontb yellow2 text-box">{{orderCount.week_count}}单</view>
+                        <view class="col9 mt1">本周成交</view>
+                    </view>
+                    <view class="flex-item tright pdr2">
+                        <view class="font36 fontb blue2 text-box">{{orderCount.month_count}}单</view>
+                        <view class="col9 mt1">本月成交</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bdb bgf line80 col9 pdlr2">
+    近七日成交（元）
+    <canvas canvasId="lineCanvas" class="tleft" style="width:{{screenwidth}}px"></canvas>
+    </view>
+    <view bindtap="hideModal" catchtouchmove="preventTouchMove" class="modal-mask" wx:if="{{showModal}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal}}">
+        <view class="modal-title">团队标语</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <textarea bindinput="hsMsgBlur" maxlength="17" placeholder="请输入您的团队标语(不能多于17字哦)" value="{{sign}}"></textarea>
+            </view>
+        </view>
+        <view class="modal-footer">
+            <view bindtap="onCancel" class="btn-cancel" data-status="cancel">取消</view>
+            <view bindtap="onConfirm" class="btn-confirm" data-status="confirm">确定</view>
+        </view>
+    </view>
+</view>

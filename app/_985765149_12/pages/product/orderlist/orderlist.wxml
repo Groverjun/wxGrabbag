@@ -1,0 +1,63 @@
+<view class="container order-container">
+    <view class="pdlr2 order-bdt bgf font30 center index-tab">
+        <view class="bgf font30 line90 flex-wrp col8 {{menuFixed?'tab-fixed':''}}" id="fix" style="flex-direction:row;">
+            <view bindtap="switchStatus" class="flex-item {{currentTab==0?'order-hover':''}}" data-index="0">
+                <view data-index="0" style="height:100%;display:block;">待付款</view>
+                <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittingpay!=0}}">{{waittingpay>99?99:waittingpay}}</text>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==1?'order-hover':''}}" data-index="1">
+                <view data-index="1">待发货</view>
+                <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittindelivery!=0}}">{{waittindelivery>99?99:waittindelivery}}</text>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==2?'order-hover':''}}" data-index="2">
+                <view data-index="2">待收货</view>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==3?'order-hover':''}}" data-index="3">
+                <view data-index="3">已完成</view>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==4?'order-hover':''}}" data-index="4">
+                <view data-index="4">退款/售后</view>
+                <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittingrevoke!=0}}">{{waittingrevoke>99?99:waittingrevoke}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="font30 br10 order-box bgf mg2 order-pdn" wx:for="{{list}}">
+        <view class="bgf pd2 bdb" style="height: 42rpx;line-height: 42rpx;">
+            <image class="icon left mr1 icon40 br_half ml1 middle" src="{{imgHead+item.storeIcon}}"></image>
+            <view class="left col35 font30">{{item.storeName}}</view>
+            <text class="right col51">
+                <block wx:if="{{item.orderState==1}}">待付款</block>
+                <block wx:elif="{{item.orderState==850}}">退款中</block>
+                <block wx:elif="{{item.orderState==60}}">待发货</block>
+                <block wx:elif="{{item.orderState==80}}">待收货</block>
+                <block wx:elif="{{item.orderState==600}}">已完成</block>
+                <block wx:elif="{{item.orderState==900}}">已退款</block>
+            </text>
+        </view>
+        <view bindtap="goorderdetail" class="ovh bdb pd2 pad4 block" data-id="{{item.orderId}}" url="/pages/product/orderDetail/orderDetail?orderId={{item.orderId}}">
+            <image class="icon140 left mr3 br6" src="{{imgHead+item.itmes[0].goodsPic}}"></image>
+        </view>
+        <view class="pd2 line50 col38 ovh">
+            <text class="time col8 font24">{{item.orderGct}}</text>
+            <view class="font30 right">
+                <text class="mr2">共{{item.itmes[0].itemNumber}}件商品</text>
+                <block wx:if="{{info.orderState==1}}">应付：
+					<text>¥{{item.orderGoodsCount}}</text>
+                </block>
+                <block wx:else>实付：
+					<text>¥{{(item.itmes[0].goodsPrice*item.itmes[0].itemNumber+item.itmes[0].frightFee)/100}}</text>
+                </block>
+            </view>
+        </view>
+        <view class="pd2 ovh" wx:if="{{item.orderState==1||item.orderState==80}}">
+            <view class="right">
+                <button catchtap="goPayOrder" class="order-btn btn middle right btn-width" data-id="{{item.orderId}}" data-type="{{item.type}}" wx:if="{{item.orderState==1}}">去付款</button>
+                <button bindtap="cancelOrder" class="order-btn order-btn1 mr1 btn mr1 btn2 middle right btn-longwidth" data-id="{{item.orderId}}" style="margin-right: 32rpx;" wx:if="{{item.orderState==1}}">取消订单</button>
+                <button catchtap="successOrder" class="order-btn btn middle right btn-longwidth" data-id="{{item.orderId}}" data-index="{{index}}" wx:if="{{item.orderState==80}}">确认收货</button>
+            </view>
+        </view>
+    </view>
+    <view class="center" wx:if="{{list.length==0}}">
+        <view class="colc center font28 mt3">暂时没有订单哦，等你来下单~</view>
+    </view>
+</view>

@@ -1,0 +1,89 @@
+{
+    "pages": [
+        "pages/customer/index/index",
+        "pages/my/card/index",
+        "pages/team/index/index",
+        "pages/team/statistics/statistics",
+        "pages/team/orderManager/orderManager",
+        "pages/product/list/list",
+        "pages/team/orderDetail/orderDetail",
+        "pages/team/staffAnalysis/index",
+        "pages/product/add/index",
+        "pages/team/myTeam/myTeam",
+        "pages/product/classify/classify",
+        "pages/my/details/index",
+        "pages/customer/fieldManager/fieldManager",
+        "pages/customer/labelList/labelList",
+        "pages/product/manageclassify/manageclassify",
+        "pages/my/dynamic/addArticle/addArticle",
+        "pages/aiAnalysis/index/index",
+        "pages/aiAnalysis/details/details",
+        "pages/message/index/index",
+        "pages/my/introduction/introduction",
+        "pages/my/index/index",
+        "pages/my/dynamic/list/list",
+        "pages/my/dynamic/addDynamic/addDynamic",
+        "pages/my/dynamic/articleDetail/articleDetail",
+        "pages/my/dynamic/dynamicDetail/dynamicDetail",
+        "pages/my/company/index",
+        "pages/customer/list/index",
+        "pages/customer/record/record",
+        "pages/customer/info/info",
+        "pages/message/leavMess/index",
+        "pages/my/myPhoto/index",
+        "pages/my/sendCard/index",
+        "pages/customer/add/add",
+        "pages/my/editCard/index",
+        "pages/team/companyDetail/index",
+        "pages/product/details/index",
+        "pages/customer/labelManager/labelManager",
+        "pages/customer/search/search",
+        "pages/customer/editRecord/editRecord",
+        "pages/team/invi/invi",
+        "pages/upload/upload"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "配配通CRM客户管理系统",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true,
+        "backgroundColor": "#f8f8f8"
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#de5d48",
+        "backgroundColor": "#fff",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/customer/index/index",
+                "text": "客户",
+                "iconPath": "images/ic_customer_no.png",
+                "selectedIconPath": "images/ic_customer_yes.png"
+            },
+            {
+                "pagePath": "pages/team/index/index",
+                "text": "团队",
+                "iconPath": "images/ic_item_no.png",
+                "selectedIconPath": "images/ic_item_yes.png"
+            },
+            {
+                "pagePath": "pages/message/index/index",
+                "text": "消息",
+                "iconPath": "images/ic_message_no.png",
+                "selectedIconPath": "images/ic_message_yes.png"
+            },
+            {
+                "pagePath": "pages/my/index/index",
+                "text": "我",
+                "iconPath": "images/ic_user_no.png",
+                "selectedIconPath": "images/ic_user_yes.png"
+            }
+        ],
+        "position": "bottom"
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wxd61362939f7e3181"
+    ]
+}

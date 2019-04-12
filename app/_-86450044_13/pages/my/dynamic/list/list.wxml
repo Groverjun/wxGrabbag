@@ -1,0 +1,37 @@
+<import src="../../../components/component.wxml"></import>
+<view class="container set-container">
+    <view class="nav">
+        <view class="mt2 mb3" wx:if="{{goodsList.length>0}}">
+            <view class="mb100">
+                <view bindtap="goInfo" data-index="{{index}}" wx:for="{{goodsList}}" wx:key="goodsList">
+                    <view data-id="{{item.productId}}">
+                        <view class="mg2 pd2 bdb bgf ovh br10">
+                            <image class="left icon140" src="{{item.dynamicsCover?imgHead+item.dynamicsCover[0]:'../../../../images/no-img.png'}}"></image>
+                            <view class="ovh pdl2">
+                                <view class="mr2 dynamic-name beyond2 mb3">{{item.dynamicsTitle?item.dynamicsTitle:item.dynamicsDetail}}</view>
+                                <view class="ovh mt1 col9 font24">
+                                    <text class="disib mt">添加于{{item.createTime}}</text>
+                                    <view class="right blue3">
+                                        <image class="icon40 mr1 middle mb1" src="../../../../images/ic_zan2.png"></image>{{item.thumbs_count}}
+                    <image class="icon40 middle ml2 mr1" src="../../../../images/ic_message.png"></image>{{item.comment_count}}
+                  </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="center col9 mt3" wx:else>
+            <image class="empty-image" src="../../../images/product-empty.png"></image>
+            <view class="mt1">您还没有发布任何动态哦</view>
+        </view>
+    </view>
+    <view class="height100"></view>
+    <view class="bgf pdtb3 center flex-wrp fixed-bottom">
+        <view bindtap="goGoodsEdit" class="flex-item">
+            <view class="icon middle add-icon mb1"></view>
+            <text class="ml1">添加动态</text>
+        </view>
+    </view>
+</view>

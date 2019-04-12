@@ -1,0 +1,26 @@
+<import src="../../../components/component.wxml"></import>
+<view class="container">
+    <view class="relative" wx:for="{{details}}">
+        <view id="details">
+            <view class="bgf pd2" data-id="{{index}}" wx:if="{{item.type==1}}">{{item.value}}</view>
+            <image bindtap="previewImage" class="detail-img" data-id="{{index}}" data-image="{{imgHead+item.value}}" mode="widthFix" src="{{imgHead+item.value}}" wx:if="{{item.type==2}}"></image>
+            <video controls enableDanmu binderror="videoErrorCallback" danmuList="{{danmuList}}" data-id="{{index}}" id="myVideo" src="{{item.value}}" wx:if="{{item.type==5}}"></video>
+            <block wx:if="{{item.type==6}}">
+                <video controls enableDanmu binderror="videoErrorCallback" danmuList="{{danmuList}}" data-id="{{index}}" id="myVideo" src="{{item.value}}" wx:if="{{item.value}}"></video>
+            </block>
+            <view class="mlr2 mb5 mt5 detail-line" wx:if="{{item.type==3}}"></view>
+            <swiper class="swiper" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true" style="height:{{screenheight}}px" wx:if="{{item.type==4}}">
+                <swiper-item wx:for="{{item.value}}" wx:for-index="idx">
+                    <view class="img-wrap">
+                        <image class="slide-image" src="{{imgHead+item}}" style="height:{{screenheight}}px"></image>
+                    </view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <view class="center col9" wx:if="{{!details}}">
+        <image class="empty-image mt5" src="../../../images/empty.png"></image>
+        <view>企业还未发布官网哦</view>
+    </view>
+    <template is="leavMess" data="{{nums:nums,hasTrueNum:hasTrueNum}}" wx:if="{{!isMyself}}"></template>
+</view>

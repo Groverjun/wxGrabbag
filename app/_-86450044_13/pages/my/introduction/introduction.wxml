@@ -1,0 +1,12 @@
+<view class="container mg2">
+    <textarea bindinput="inputText" class="bgf pd2" maxlength="120" placeholder="请输入文字描述" placeholderClass="placeholder" value="{{text}}"></textarea>
+    <view class="center green">
+        <image bindtap="audioPlay" class="icon100 mt5" src="{{isSpeaking?'../../../images/voice-on.gif':'../../../images/speak.png'}}"></image>
+        <view>
+            <block wx:if="{{isStart}}">{{voice!=null&&voice!=''?'已录制音频':'已录制0秒'}}</block>
+            <block wx:else>已录制{{count}}秒</block>
+        </view>
+        <view bindtouchend="stopTalk" bindtouchstart="startTalk" class="green-btn font30 mt5 br10">{{isSpeaking?'松 开 结 束':'按 住 说 话'}}</view>
+    </view>
+    <button bindtap="modifyInfo" class="btn fixed-bottom" style="line-height:80rpx">保存</button>
+</view>

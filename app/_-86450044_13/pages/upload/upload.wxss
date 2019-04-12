@@ -1,0 +1,12 @@
+.cropper {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cropper-buttons {
+    background-color: #E51C23;
+    color: #fff;
+    height: 78rpx;
+    line-height: 78rpx;
+}

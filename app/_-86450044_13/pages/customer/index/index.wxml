@@ -1,0 +1,53 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}"></template>
+<view class="container">
+    <view class="bgf ovh fixed-top bgf">
+        <view class="right mt1 ml2">
+            <image bindtap="goSearch" class="icon40 mr1 pdr1" src="../../../images/ic_seach.png"></image>
+            <navigator class="disib mr2" url="/pages/customer/search/search?type=2&page=1">
+                <image class="icon40" src="../../../images/ic_screen.png"></image>
+            </navigator>
+        </view>
+        <view class="flex-wrp line60 font28">
+            <view bindtap="setCurrent" class="flex-item center" data-id="1">
+                <text class="disib {{selectIndex==1?'current':''}}">我负责的</text>
+            </view>
+            <view bindtap="setCurrent" class="flex-item center" data-id="2">
+                <text class="disib {{selectIndex==2?'current':''}}">共享客户</text>
+            </view>
+            <view bindtap="setCurrent" class="flex-item center" data-id="3" wx:if="{{teamId}}">
+                <text class="disib {{selectIndex==3?'current':''}}">全公司的</text>
+            </view>
+        </view>
+    </view>
+    <view class="line50 pdt6 total-box" wx:if="{{list.length>0||searchText}}">
+        <block wx:if="{{keyword||searchText}}">按{{keyword?keyword:searchText}}查询</block>共{{totalCount}}人</view>
+    <view class="mb100">
+        <view wx:for="{{list}}">
+            <navigator class="ovh pd2 mg2 ovh bgf br10 bds" url="/pages/customer/info/info?relationId={{item.relationId}}">
+                <view class="user-head left mr1 cust-head">{{item.customHeadText}}</view>
+                <view>
+                    <view class="ovh">
+                        <text class="fontb font36">{{item.customName}}</text>
+                        <text class="col9">  {{item.shareName}}</text>
+                        <view class="right colr" wx:if="{{item.customTime!=null}}">
+                            <image class="icon30 middle" src="../../../images/alarm.png"></image>
+            约{{item.customTime}}</view>
+                    </view>
+                    <view class="mt1">
+                        <text class="tips" style="background:{{obj.lebelColor}};color:#fff" wx:if="{{obj.lebelContent}}" wx:for="{{item.customUserLabel}}" wx:for-item="obj">{{obj.lebelContent}}</text>
+                    </view>
+                </view>
+                <view class="col9 mt1" wx:if="{{item.customCompany}}">{{item.customCompany}}</view>
+                <view class="col9 mt1 ovhEll2" wx:if="{{item.kekeFollow.followId!=null}}">
+          {{item.kekeFollow.followModifyTime+' '}}
+          {{item.kekeFollow.followTypeName?item.kekeFollow.followTypeName:''}}
+          <block wx:if="{{item.kekeFollow.followTypeName&&item.kekeFollow.followRemark}}"> · </block>
+                    <block wx:if="{{item.kekeFollow.followRemark}}">{{item.kekeFollow.followRemark}}</block>
+                </view>
+            </navigator>
+        </view>
+        <view class="center col9 line70 bg total-box" wx:if="{{list.length==0&&!searchText}}">暂时没有此类型的客户哦，快去添加吧</view>
+    </view>
+    <image bindtap="addInfo" class="user-head fixed add" src="../../../images/ic_add.png"></image>
+</view>

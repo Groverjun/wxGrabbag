@@ -1,0 +1,80 @@
+<view class="container">
+    <scroll-view scrollY bindscrolltoupper="upperLoad" scrollTop="{{sTop}}" style="height:{{height}}">
+        <view class="leave-wrap pd2">
+            <block wx:for="{{list}}">
+                <view class="ovh mb4" wx:if="{{item.messageContent.type==1}}">
+                    <navigator openType="switchTab" url="/pages/card/index/index?userId={{userId}}">
+                        <image class="icon120 br_half left" src="{{userHead}}"></image>
+                    </navigator>
+                    <view class="bgf pd3 left mess-box ml6">
+            {{item.messageContent.text}}
+            <view class="mt2 mb3">您还可以：</view>
+                        <form bindtap="goPage" data-id="1">
+                            <button class="btn btn2 mb2">
+                                <image class="icon40 middle mr1 mb1" src="../../../images/menu-card.png"></image> 查看我的名片</button>
+                        </form>
+                        <form bindtap="goPage" data-id="2">
+                            <button class="btn btn2 mb2">
+                                <image class="icon40 middle mr1 mb1" src="../../../images/menu-product.png"></image>查看我的产品</button>
+                        </form>
+                        <form bindtap="goPage" data-id="3">
+                            <button class="btn btn2 mb2">
+                                <image class="icon40 middle mr1 mb1" src="../../../images/menu-net.png"></image>查看我的官网</button>
+                        </form>
+                    </view>
+                </view>
+                <view class="ovh mb4" wx:elif="{{item.messageContent.type==2}}">
+                    <image bindtap="goCard" class="icon120 br_half right" src="{{memHead}}"></image>
+                    <view class="bgf pd3 right relative product-box mr4">
+                        <image class="icon100 br_half left mr2" src="{{imgHead+item.messageContent.productPic}}"></image>
+                        <view class="left product-tit">
+              {{item.messageContent.productName}}
+              <view class="red mt1 font24 fontb">￥{{item.messageContent.productPrice/100}}</view>
+                        </view>
+                    </view>
+                </view>
+                <block wx:elif="{{item.messageContent.type==3}}">
+                    <block wx:if="{{userId==item.messageTo}}">
+                        <view class="center col9 line50" wx:if="{{item.createTime!=null}}">{{item.createTime}}</view>
+                        <view class="ovh pdb4 relative mb2">
+                            <image bindtap="goCard" class="icon120 br_half right" src="{{memHead}}"></image>
+                            <view class="bgf pd3 mt3 right mess-box mt2 mess-box2 mr4 font28">
+                {{item.messageContent.text}}
+              </view>
+                            <view class="tright col9 msg-state">{{item.messageState==0?'未读':'已读'}}</view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="center col9 line50" wx:if="{{item.createTime!=null}}">{{item.createTime}}</view>
+                        <view class="ovh pdb4 relative mb2">
+                            <navigator openType="switchTab" url="/pages/card/index/index?userId={{userId}}">
+                                <image class="icon120 br_half left mr4" src="{{userHead}}"></image>
+                            </navigator>
+                            <view class="bgf pd3 left mess-box mt2 mess-box3  font28">
+                {{item.messageContent.text}}
+              </view>
+                        </view>
+                    </block>
+                </block>
+            </block>
+        </view>
+        <view class="fixed-bottom bgf">
+            <view class="leav-btn pd2 bdb">
+                <block wx:if="{{!hasTrueNum}}">
+                    <button bindgetphonenumber="callPhone" openType="getPhoneNumber">拨打电话</button>
+                    <button bindgetphonenumber="copyPhone" openType="getPhoneNumber">微信电话</button>
+                </block>
+                <block wx:else>
+                    <button bindtap="callPhone">拨打电话</button>
+                    <button bindtap="copyPhone">微信电话</button>
+                </block>
+            </view>
+            <view>
+                <form bindsubmit="formSubmit" reportSubmit="true">
+                    <input bindinput="inputMessage" class="leav-iput left" name="messageInput" placeholder="可以直接留言和我对话哦" value="{{msg}}"></input>
+                    <button class="btn right leav-send" formType="submit">发送</button>
+                </form>
+            </view>
+        </view>
+    </scroll-view>
+</view>

@@ -1,0 +1,44 @@
+.wechat-head {
+    width: 45rpx;
+    height: 45rpx;
+}
+
+.edit_icon {
+    width: 45rpx;
+    height: 45rpx;
+}
+
+.common_icon {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.common_icon52 {
+    display: inline-block;
+    width: 52rpx;
+    height: 52rpx;
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+.mb4 {
+    margin-bottom: 40rpx;
+}
+
+.icon-right {
+    display: inline-block;
+    width: 12rpx;
+    height: 20rpx;
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+.ml3 {
+    margin-left: 35rpx;
+}
+
+input {
+    width: 400rpx;
+}

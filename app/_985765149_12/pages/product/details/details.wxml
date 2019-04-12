@@ -1,0 +1,115 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}" wx:if="{{!isLogin}}"></template>
+<view class="container">
+    <view class="relative">
+        <swiper style="height:{{screenheight}}px">
+            <swiper-item bindtap="goStore" data-index="{{index}}" data-type="1" wx:for="{{info.productPic}}">
+                <image class="slide-image" src="{{imgHead+item}}" style="height:{{screenheight}}px"></image>
+            </swiper-item>
+        </swiper>
+        <image bindtap="gopersonal" class="icon70 absolute user-icon" src="../../../images/user2-icon.png"></image>
+        <image bindtap="gocart" class="icon70 absolute cart-icon" src="../../../images/cart2-icon.png"></image>
+        <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{cartNum!=0&&cartNum!=null}}">{{cartNum>99?99:cartNum}}</text>
+    </view>
+    <view class="bgf pd2 mb2">
+        <view class="pro-name relative">{{info.productName}}<button bindtap="onShareAppMessage" class="share-fi share-fi2" openType="share">
+                <image class="icon60" src="../../../images/share.png"></image>
+            </button>
+        </view>
+        <view class="red font30 fontb pdb3 bdb">¥{{info.productPrice/100}}</view>
+        <view class="bgf br10 ovh {{userInfo.userType!=0?'':'box1'}}">
+            <image class="br_half middle icon100 user-head left" src="{{userInfo.teamIcon!=''?imgHead+userInfo.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+            <view class="left col35 ml1 mt2 ml4" wx:if="{{userInfo.userType!=0}}">
+                <view class="col35 font28 mb1">{{userInfo.teamName?userInfo.teamName:'暂未创建企业团队'}}</view>
+                <view class="green">
+                    <image class="icon left middle icon30 mr1 mb1" src="../../../images/enterprise.png"></image>
+                    <text class="font24">企业认证</text>
+                </view>
+            </view>
+            <view class="left col35" wx:else>
+                <view class="col35 font28 mb1 ml4">{{userInfo.teamName?userInfo.teamName:'暂未创建企业团队'}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="bgf">
+        <view class="col9 pd2 bdb center">
+			产品详情
+		</view>
+        <view>
+            <block wx:for="{{details}}">
+                <view wx:if="{{item.type==1}}">{{item.value}}</view>
+                <image mode="widthFix" src="{{imgHead+item.value}}" style="width:100%;display:block" wx:elif="{{item.type==2}}"></image>
+                <view class="line2" wx:else></view>
+            </block>
+            <view class="pd2" wx:if="{{!details}}">未发布</view>
+        </view>
+    </view>
+    <view class="fixed nav font24">
+        <view bindtap="checkShowNav" class="bgf nav-box font20" wx:if="{{!showNav}}">
+            <image class="icon35 mt2" src="../../../images/arr-top.png"></image>
+            <view>导航</view>
+        </view>
+        <view class="bgf nav-open-box" wx:if="{{showNav}}">
+            <form bindsubmit="goPage" data-type="1" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav1.png"></image>
+                    <view class="mb2">名片夹</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="2" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav2.png"></image>
+                    <view class="mb2">名片</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="3" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav3.png"></image>
+                    <view class="mb2">产品</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="5" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav5.png"></image>
+                    <view class="mb2">动态</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="4" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav4.png"></image>
+                    <view class="mb2">官网</view>
+                </button>
+            </form>
+            <image bindtap="checkShowNav" class="icon40 mt2" src="../../../images/nav-close.png"></image>
+        </view>
+    </view>
+    <view class="height150"></view>
+    <view class="bgf detail-bdt center flex-wrp fixed-bottom col9">
+        <view class="flex-item">
+            <button catchtap="onShareApp" class="share-fi share-fi1" openType="share">
+                <image class="icon icon40 mt mb1" src="../../../images/share3.png"></image>
+                <view class="col9 font26">分享</view>
+            </button>
+        </view>
+        <view bindtap="callPhone" class="flex-item" wx:if="{{!isBuy}}">
+            <image class="icon icon40 mb1" src="../../../images/ic_phone_s.png"></image>
+            <view class="font26">拨打电话</view>
+        </view>
+        <view bindtap="goleavMess" class="flex-item" wx:if="{{isBuy}}">
+            <image class="icon icon40 mb1" src="../../../images/ic_message_gray.png"></image>
+            <view class="col9 font26">咨询</view>
+        </view>
+        <view class="consultation-btn right" wx:if="{{isBuy}}">
+            <button bindtap="addincart" class="center btn add-btn">加入购物车</button>
+            <button bindtap="goBuy" class="center btn consult-btn">立即购买</button>
+        </view>
+        <block wx:if="{{!isBuy}}">
+            <button bindgetphonenumber="getNumberToLev" class="btn consultation-btn" openType="getPhoneNumber" wx:if="{{!hasTrueNum}}">
+                <text>立即咨询</text>
+            </button>
+            <navigator class="btn consultation-btn consultation-width" hoverClass="none" url="/pages/index/leavMess/index" wx:else>
+                <text>立即咨询</text>
+            </navigator>
+        </block>
+    </view>
+</view>

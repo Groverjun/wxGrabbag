@@ -1,0 +1,34 @@
+<view class="container font32">
+    <view class="pd2 bgf bdb ovh">
+        <text>姓名</text>
+        <text class="right red">必填</text>
+    </view>
+    <view class="pd2 bgf bdb ovh">
+        <text>电话</text>
+        <text class="right red">必填</text>
+    </view>
+    <view class="pd2 bgf bdb ovh mb2">
+        <text>微信号</text>
+        <picker bindchange="bindPickerChangeWechat" class="right {{isRequired?'red':'col9'}}" range="{{array}}" value="{{isRequired?0:1}}">
+      {{isRequired?'必填':'选填'}}
+      <image class="icon middle ml1" src="../../../images/ic_drop2.png"></image>
+        </picker>
+    </view>
+    <view class="pd2 bgf bdb ovh" wx:for="{{list}}">
+        <view class="left">
+            <image bindtap="delModel" class="icon icon40 middle mr2 mb1 left" data-index="{{index}}" src="../../../images/ic_sub.png"></image>
+            <input bindinput="inputName" class="left" data-index="{{index}}" placeholder="字段名称" placeholderClass="placeholder" value="{{item.name}}"></input>
+        </view>
+        <picker bindchange="bindPickerChange" class="right {{item.required?'red':'col9'}}" data-index="{{index}}" range="{{array}}">
+      {{item.required?'必填':'选填'}}
+      <image class="icon middle ml1" src="../../../images/ic_drop2.png"></image>
+        </picker>
+    </view>
+    <view bindtap="addModel" class="pd2 bgf bdb ovh mb2 center red">
+        <image class="icon icon40 middle mr1 mb1" src="../../../images/ic_add2.png"></image>
+        <text>添加字段</text>
+    </view>
+    <view bindtap="modifyFild" class="mt5 mb5">
+        <button class="btn">保存</button>
+    </view>
+</view>

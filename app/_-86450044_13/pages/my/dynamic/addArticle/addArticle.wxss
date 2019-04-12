@@ -1,0 +1,22 @@
+.add-head {
+    padding: 50rpx 0 45rpx;
+}
+
+.slide-image {
+    width: 100%;
+    height: 300rpx;
+}
+
+textarea {
+    width: 95%;
+    height: 90rpx;
+}
+
+.input-detail {
+    height: 160rpx;
+    width: 87%;
+}
+
+.add-input {
+    width: 300rpx;
+}

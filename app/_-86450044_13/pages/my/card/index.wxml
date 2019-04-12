@@ -1,0 +1,152 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}"></template>
+<view class="container">
+    <view class="center fontb font32 mb2" wx:if="{{page!=2}}">hello,收到来自{{userName}}的名片,望惠存</view>
+    <view class="bgf pdt mb2 pdb2">
+        <view class="card-bg relative mg2 bds br20" style="background:#fff" wx:if="{{cardType==1}}">
+            <view class="left">
+                <view class="mt2 font36 fontb mb1 mt7 col3 wd280 beyond">{{userInfo.userName}}</view>
+                <view class="col8 font20 mb3">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</view>
+                <view class="mb1 font24">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                <view class="mb1 font24">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                <view class="mb1 font24">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+            </view>
+            <view class="right relative ">
+                <image class="head-bg" src="../../../images/head-bg.png"></image>
+                <image class="user-headbg br20 absolute" src="{{userHead}}"></image>
+            </view>
+            <view class="card-btm">{{teamName?teamName:'公司信息未填写'}}</view>
+        </view>
+        <view class="card-bg relative card-bg-small mg2 bds br20" wx:elif="{{cardType==2}}">
+            <view class="tleft relative mt2 ovh tright">
+                <image class="small-head left mt2 mr2 ml2" src="{{userHead}}"></image>
+                <view class="left ">
+                    <view class="mb2">
+                        <view class="font32 wd280 beyond disib middle mr2">{{userInfo.userName}}</view>
+                        <text class="disib middle">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</text>
+                    </view>
+                    <view class="mb1">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                    <view class="mb1">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                    <view class="mb1">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+                </view>
+            </view>
+            <view class="mt5">
+          {{userInfo.teamName?userInfo.teamName:'公司信息未填写'}} >{{userInfo.typeName?userInfo.typeName:'行业信息未填写'}}
+        </view>
+        </view>
+        <view class="card-bg2 bds mg2 bgf mb2 relative" style="border-radius:40rpx;" wx:elif="{{cardType==3}}">
+            <view class="card-top ovh">
+                <image class="icon120 br_half left mt7 mr3 ml7" src="{{userHead}}"></image>
+                <view class="mt7 left">
+                    <view class="font36 mt2 mb1 wd400 beyond disib middle">{{userInfo.userName}}</view>
+                    <view>({{userInfo.userPosition?userInfo.userPosition:'职位未填写'}})</view>
+                </view>
+            </view>
+            <view class="yCard-bottom col3 font22 line30">
+                <view class="mb1">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                <view class="mb1">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                <view class="mb1">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+                <view>{{teamName?teamName:'公司信息未填写'}} >{{typeName?typeName:'行业信息未填写'}}</view>
+            </view>
+        </view>
+        <view class="bds mg2 bgf mb2 relative br20" wx:elif="{{cardType==4}}">
+            <view class="slide-image relative">
+                <image class="slide-image" mode="aspectFill" src="{{userHead}}"></image>
+            </view>
+            <view class="font20 pd2_3 relative bdb mb2">
+                <view>
+                    <text class="font30 mr1 fontb">{{userInfo.userName}}</text>{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</view>
+                <view class="col9 fontb mt1">{{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+            </view>
+            <view class="pdlr5 bgf ovh">
+                <view class="left line30 beyond mt1" style="width:125px" wx:if="{{watchList.length>0}}">
+                    <image class="icon40 mr1 br6" src="{{item.user_head_img}}" wx:for="{{watchList}}"></image>
+                    <view class="col9 font22">已有{{userInfo.userWatched}}人浏览</view>
+                </view>
+                <view class="right font22 col8">
+                    <view bindtap="saveUserData" class="center left mr3">
+                        <image class="icon40" src="../../../images/ic_save.png"></image>
+                        <view class="ml1">保存 {{userInfo.phoneSaved/1}}</view>
+                    </view>
+                    <view bindtap="giveThumbs" class="center left">
+                        <image class="icon40" src="../../../images/ic_zan1.png" wx:if="{{userInfo.beThumed}}"></image>
+                        <image class="icon40" src="../../../images/ic_zan.png" wx:else></image>
+                        <view class="ml1">靠谱 {{userInfo.thumed/1}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="pdb2">
+                <navigator appId="{{appId}}" class="btn mb2 center" openType="navigate" path="pages/card/index/index?userId={{userId}}&teamId={{teamId}}" target="miniProgram" wx:if="{{page!=2}}">查看名片详情</navigator>
+                <block wx:if="{{!hasTrueNum}}">
+                    <button bindgetphonenumber="creatCard" class="btn btn2" openType="getPhoneNumber" wx:if="{{page!=2}}">{{isOld?'我的名片':'创建我的名片'}}</button>
+                </block>
+                <block wx:else>
+                    <button bindtap="creatCard" class="btn btn2" wx:if="{{page!=2}}">{{isOld?'我的名片':'创建我的名片'}}</button>
+                </block>
+            </view>
+        </view>
+        <view class="pd15 fc69 mb4" wx:if="{{cardType!=4}}">
+            <view class="font28" style="display: flex;flex-direction: row; justify-content: space-around;">
+                <view class="pdlr5 bgf ovh width100">
+                    <view class="left line30 beyond mt1" style="width:125px" wx:if="{{watchList.length>0}}">
+                        <image class="icon40 mr1 br6" src="{{item.user_head_img}}" wx:for="{{watchList}}"></image>
+                        <view class="col9 font22">已有{{userInfo.userWatched}}人浏览</view>
+                    </view>
+                    <view class="right font22 col8">
+                        <view bindtap="saveUserData" class="center left mr3">
+                            <image class="icon40" src="../../../images/ic_save.png"></image>
+                            <view class="ml1">保存 {{userInfo.userSaved/1}}</view>
+                        </view>
+                        <view bindtap="giveThumbs" class="center left">
+                            <image class="icon40" src="../../../images/ic_zan.png"></image>
+                            <view class="ml1">靠谱 {{userInfo.thumed/1}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block wx:if="{{cardType!=4}}">
+            <navigator appId="{{appId}}" class="btn mb2 center" openType="navigate" path="pages/card/index/index?userId={{userId}}&teamId={{teamId}}" target="miniProgram" wx:if="{{page!=2}}">查看名片详情</navigator>
+            <block wx:if="{{!hasTrueNum}}">
+                <button bindgetphonenumber="creatCard" class="btn btn2" openType="getPhoneNumber" wx:if="{{page!=2}}">{{isOld?'我的名片':'创建我的名片'}}</button>
+            </block>
+            <block wx:else>
+                <button bindtap="creatCard" class="btn btn2" wx:if="{{page!=2}}">{{isOld?'我的名片':'创建我的名片'}}</button>
+            </block>
+        </block>
+        <block wx:if="{{isShow}}">
+            <view class="col9 pd2 bdb">
+          企业产品简介
+        </view>
+            <view class="relative" wx:for="{{list}}">
+                <view id="details">
+                    <view class="bgf pd2" data-id="{{index}}" wx:if="{{item.type==1}}">{{item.value}}</view>
+                    <image bindtap="chooseImg" class="detail-img" data-id="{{index}}" mode="widthFix" src="{{item.value}}" wx:if="{{item.type==2}}"></image>
+                    <view class="mlr2 mb5 mt5 detail-line" wx:if="{{item.type==3}}"></view>
+                    <swiper class="swiper" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true" wx:if="{{item.type==4}}">
+                        <swiper-item wx:for="{{item.value}}" wx:for-index="idx">
+                            <view class="img-wrap">
+                                <image class="slide-image" src="{{item}}"></image>
+                            </view>
+                        </swiper-item>
+                    </swiper>
+                </view>
+            </view>
+            <view class="pd2" wx:if="{{list.length==0}}">这么棒的企业，居然还没有简介！</view>
+            <view class="fixed-bottom  mb3 btn-list" wx:if="{{page!=2}}">
+                <button bindtap="saveMember" class="btn mb2" style="margin-right:20rpx">转存为客户</button>
+                <block wx:if="{{!hasTrueNum}}">
+                    <button bindgetphonenumber="creatCard" class="btn btn2" openType="getPhoneNumber" style="margin-right:30rpx" wx:if="{{page!=2}}">{{isOld?'我的名片':'创建我的名片'}}</button>
+                </block>
+                <block wx:else>
+                    <button bindtap="creatCard" class="btn btn2" style="margin-right:30rpx" wx:if="{{page!=2}}">{{isOld?'我的名片':'创建我的名片'}}</button>
+                </block>
+            </view>
+            <view class="fixed-bottom mb3" wx:if="{{page==2}}">
+                <button bindtap="onShareAppMessage" class="btn mb2" openType="share" wx:if="{{userInfo.userPhone}}">分享名片</button>
+            </view>
+        </block>
+        <block wx:else></block>
+    </view>
+    <view class="height100"></view>
+</view>

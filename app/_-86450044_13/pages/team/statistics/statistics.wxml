@@ -1,0 +1,34 @@
+<view class="container">
+    <view class="bgf center pd2">
+        <image class="icon140" src="../../../images/goldcoin.png"></image>
+        <view class="font30 mt1 mb1">总收入</view>
+        <view class="font48 fontb mb4">￥{{onlineIncome+underIncome}}</view>
+        <view class="col9">线上总计：{{onlineIncome}}元  <text class="ml2"> 线下总计：{{underIncome}}元</text>
+        </view>
+    </view>
+    <view class="bg height20"></view>
+    <view class="bgf">
+        <view class="flex-wrp center font30 line70 data-switch">
+            <view bindtap="switchPerson" class="flex-item {{currentShow==2?'hover':''}}" data-type="2">线下流水</view>
+            <view bindtap="switchPerson" class="flex-item {{currentShow==1?'hover':''}}" data-type="1">线上流水</view>
+        </view>
+        <view class="pd2 bdb" wx:for="{{list}}">
+            <view class="font36 mb4">{{item.amount>0?item.streamType==2?'退款':'订单收入':'退款'}}
+        <text class="right {{item.amount>0?item.streamType==2?'colr':'':'colr'}}">
+                    <block wx:if="{{currentShow==2}}"> {{item.amount>0?'+':''}}</block>
+                    <block wx:else>{{item.streamType==2?'-':'+'}}</block>{{currentShow==2?item.amount:item.amount/100}}
+        </text>
+            </view>
+            <view class="font24 col9 ovh">{{item.creatTime}}<view class="right" wx:if="{{currentShow==2}}">
+                    <text class="disib wd280 mb middle ovhEll">@{{item.sellerName}}</text>
+                    <text class="{{item.amount>0?item.streamType==2?'colr':'col3':'colr'}}">{{item.amount>0?item.streamType==2?'退款':'成交':'退款'}}</text> {{item.userName}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="center mt20">
+        <view class="center col9 line80" wx:if="{{list.length==0}}">暂时没有流水数据哦</view>
+        <block wx:else>
+            <view class="center col9 line80 mb3" wx:if="{{!isloading}}">没有更多数据哦</view>
+        </block>
+    </view>
+</view>

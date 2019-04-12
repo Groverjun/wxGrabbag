@@ -1,0 +1,13 @@
+.add {
+    bottom: 15%;
+    right: 3%;
+}
+
+.current {
+    color: #E51C23;
+    border-bottom: 2px solid #E51C23;
+}
+
+.total-box {
+    padding: 65rpx 20rpx 0;
+}

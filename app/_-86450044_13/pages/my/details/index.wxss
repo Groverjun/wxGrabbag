@@ -1,0 +1,19 @@
+textarea {
+    margin: 20rpx 30rpx;
+    height: 160rpx;
+    width: 87%;
+}
+
+.del-icon {
+    width: 50rpx;
+    height: 50rpx;
+    top: 20rpx;
+    right: 30rpx;
+}
+
+.add-logo {
+    width: 88rpx;
+    height: 88rpx;
+    bottom: 20rpx;
+    right: 30rpx;
+}

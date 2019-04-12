@@ -1,0 +1,34 @@
+<import src="../../../components/component.wxml"></import>
+<view class="container">
+    <view class="fixed-top">
+        <view class="flex-wrp line70 bgf center">
+            <view bindtap="checkTab" class="flex-item {{tabIndex==0?'current':''}}" data-type="0">
+                <text>智能追踪</text>
+            </view>
+            <view bindtap="checkTab" class="flex-item {{tabIndex==1?'current':''}}" data-type="1">
+                <text>AI分析</text>
+            </view>
+            <view bindtap="checkTab" class="flex-item {{tabIndex==2?'current':''}}" data-type="2">
+                <text>商机预测</text>
+            </view>
+        </view>
+        <view class="center" wx:if="{{tabIndex==0||tabIndex==1}}">
+            <view class="tab-list line50 flex-wrp br6 {{tabIndex==1?'tab-list2':''}}">
+                <block wx:if="{{tabIndex==0}}">
+                    <text bindtap="checkChildTab" class="flex-item {{childIndex==0?'current':''}}" data-type="0">时间追踪</text>
+                    <text bindtap="checkChildTab" class="flex-item {{childIndex==1?'current':''}}" data-type="1">客户追踪</text>
+                </block>
+                <block wx:elif="{{tabIndex==1}}">
+                    <text bindtap="checkChildTab" class="flex-item {{childIndex==0?'current':''}}" data-type="0">对我感兴趣</text>
+                    <text bindtap="checkChildTab" class="flex-item {{childIndex==1?'current':''}}" data-type="1">喜欢产品</text>
+                    <text bindtap="checkChildTab" class="flex-item {{childIndex==2?'current':''}}" data-type="2">看重公司</text>
+                </block>
+            </view>
+        </view>
+    </view>
+    <scroll-view scrollY bindscrolltolower="lowerUpload" bindscrolltoupper="upperLoad" class="scroll-wrap" style="height:{{height}};padding-top:{{tabIndex==2?'90rpx':'190rpx'}}">
+        <template is="ailist" data="{{list:list,tabIndex:tabIndex,childIndex:childIndex}}" wx:if="{{tabIndex==0||tabIndex==1}}"></template>
+        <template is="bussList" data="{{list:list,tabIndex:tabIndex}}" wx:else></template>
+        <view class="center col9" wx:if="{{!hasMoreData&&list.length>0}}">没有更多数据咯</view>
+    </scroll-view>
+</view>

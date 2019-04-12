@@ -1,0 +1,45 @@
+.flex-wrp text {
+    display: inline-block;
+}
+
+.flex-wrp .current {
+    color: #D81E06;
+}
+
+.flex-wrp .current text {
+    border-bottom: 2px solid #D81E06;
+}
+
+.tab-list {
+    width: 360rpx;
+    border: 1px solid #26C6DA;
+    margin: 40rpx auto 20rpx;
+    color: #26C6DA;
+    border-radius: 8 rpx;
+}
+
+.tab-list text {
+    text-align: center;
+    display: inline-block;
+}
+
+.tab-list .current {
+    background: #26C6DA;
+    color: #fff;
+}
+
+.tab-list2 {
+    width: 540rpx;
+}
+
+.tab-list2 text:nth-child(2),.tab-list2 text:nth-child(1) {
+    border-right: 1px solid #26C6DA;
+}
+
+.beyond2 {
+    width: 80%;
+}
+
+.tips {
+    padding: 1rpx;
+}

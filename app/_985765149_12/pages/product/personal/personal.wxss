@@ -1,0 +1,154 @@
+.product-head {
+    width: 100%;
+    height: 290rpx;
+    background-size: 100%;
+}
+
+.enter-icon {
+    width: 257rpx;
+    height: 47rpx;
+    top: -43rpx;
+    z-index: 99;
+    left: 50%;
+    margin-left: -128rpx;
+}
+
+.product-item {
+    width: 46%;
+    float: left;
+    margin-top: 0;
+}
+
+.mes-num {
+    position: absolute;
+    background: #E51C23;
+    text-align: center;
+    left: 75rpx;
+    top: -15rpx;
+}
+
+.product-item:nth-child(2n+1) {
+    margin-right: 0px;
+}
+
+.team-wrap {
+    padding: 20rpx 0;
+}
+
+.share-icon {
+    top: 10px;
+    z-index: 5;
+}
+
+.user-icon {
+    top: 10px;
+    right: 120rpx;
+}
+
+.cart-icon {
+    top: 10px;
+    right: 215rpx;
+}
+
+.flex-item5 {
+    position: relative;
+    flex: 1;
+    width: 20%;
+}
+
+.img-middle {
+    vertical-align: middle;
+}
+
+.per-top {
+    top: 280rpx;
+}
+
+.pro-list {
+    float: left;
+    width: 390rpx;
+    margin-left: 20rpx;
+}
+
+.pro-box {
+    height: 200rpx;
+    line-height: 40rpx;
+}
+
+.product-img {
+    width: 100%;
+    height: 340rpx;
+}
+
+.product-img2 {
+    width: 240rpx;
+    height: 240rpx;
+}
+
+.head-box {
+    top: 220rpx;
+    z-index: 999;
+    width: 710rpx;
+}
+
+.user-head {
+    border: 2rpx solid #fff;
+    box-shadow: 0px 2px 24px rgba(9,1,3,0.1);
+}
+
+.mask {
+    z-index: 4;
+}
+
+.mask2 {
+    height: 250rpx;
+    background-color: rgba(0,0,0,.1);
+    position: absolute;
+    z-index: 1;
+}
+
+.classify-box {
+    height: 48rpx;
+}
+
+.goods-classify2 {
+    width: 95%;
+    height: 70rpx;
+    color: #9c9c9c;
+    white-space: nowrap;
+    display: flex;
+    float: left;
+}
+
+.goods-classify2 .classify {
+    padding: 0 20rpx;
+    display: inline-block;
+}
+
+.goods-classify2 .classify.hover {
+    color: #2878FF;
+    font-weight: bold;
+    border-bottom: 1px solid #2878FF;
+}
+
+.personuser-icon {
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 50%;
+    border: 5rpx solid #fff;
+    vertical-align: middle;
+}
+
+.per-text {
+    width: 100%;
+    top: 60rpx;
+    text-align: center;
+}
+
+.mb8 {
+    margin-bottom: 15rpx;
+}
+
+.mt-15 {
+    margin-top: 8rpx;
+}

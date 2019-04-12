@@ -1,0 +1,92 @@
+page {
+    overflow-x: hidden;
+}
+
+.teamName {
+    max-width: 350rpx;
+}
+
+.theme-icon {
+    width: 54rpx;
+    height: 85rpx;
+    right: 0;
+    top: -20rpx;
+    z-index: 999;
+}
+
+.card-img1 {
+    width: 400rpx;
+}
+
+.card-img2 {
+    width: 380rpx;
+}
+
+.card-img3 {
+    width: 350rpx;
+}
+
+.card-img4 {
+    width: 240rpx;
+}
+
+.card-img5 {
+    width: 400rpx;
+}
+
+.edit-icon {
+    position: absolute;
+    right: 20rpx;
+    bottom: 10rpx;
+    background: transparent;
+}
+
+.slide-image {
+    width: 100%;
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+}
+
+.scroll-view_H {
+    width: 90%;
+    white-space: nowrap;
+}
+
+.scroll-view-item_H {
+    display: inline-block;
+    height: 240rpx;
+}
+
+.scroll-view-item_H image {
+    padding: 10rpx;
+    height: 220rpx;
+    border: 2px solid #fff;
+}
+
+.scroll-view-item_H.hover image {
+    border: 2px solid #B2E2F8;
+}
+
+.scroll-view-item_H.hover {
+    border: 2px solid #00A0E9;
+    border-radius: 8rpx;
+}
+
+.share-btn,.getnums {
+    background: transparent;
+    padding: 0;
+    line-height: inherit;
+}
+
+.share-btn::after,.getnums::after {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.btn-list .btn {
+    width: 48%;
+    display: inline-block;
+    margin: 35rpx auto 30rpx;
+}

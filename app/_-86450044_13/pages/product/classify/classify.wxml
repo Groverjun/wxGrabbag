@@ -1,0 +1,25 @@
+<view class="container set-container mb100">
+    <view class="bgf pdlr3 mb2 ovh line90" wx:for="{{typeList}}" wx:key="typeList">
+        <text class="font30 ml2">{{item.typeName}}</text>
+        <text class="right font22 col9 mr2">{{item.goodsCount}}件商品</text>
+    </view>
+    <view class="bgf fixed-bottom pdtb2 center flex-wrp commodity-footer">
+        <navigator class="flex-item" url="/pages/product/manageclassify/manageclassify">
+            <image class="middle icon" src="../../../images/ic_edit3.png"></image>
+            <text class="ml2">管理分类</text>
+        </navigator>
+        <view bindtap="newClass" class="flex-item">
+            <image class="middle icon" src="../../../images/ic_addmanager.png"></image>
+            <text class="ml2">新建分类</text>
+        </view>
+    </view>
+    <view bindtap="screen" class="mask" hidden="{{flag}}"></view>
+    <view class="input-box" hidden="{{flag}}" style="top:40%">
+        <view class="font36 center mt3">新建分类</view>
+        <input bindinput="inputName" class="bg classifyinput" maxlength="6" placeholder="请输入2~6字的分类名称" type="text" value="{{className}}"></input>
+        <view class="flex-wrp font36 center bdt">
+            <view bindtap="hideClass" class="flex-item bdr2 pd2">取消</view>
+            <view bindtap="addClassify" class="flex-item red pd2" formType="form-type">保存</view>
+        </view>
+    </view>
+</view>

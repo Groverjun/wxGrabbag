@@ -1,0 +1,59 @@
+<import src="../../../components/component.wxml"></import>
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}" wx:if="{{!isLogin}}"></template>
+<view class="container">
+    <view class="bgf width100 relative">
+        <view class="relative">
+            <image class="product-head" src="../../../images/product.png"></image>
+            <navigator url="/pages/product/personal/personal">
+                <image class="icon70 absolute user-icon" src="../../../images/user-icon.png"></image>
+            </navigator>
+            <navigator url="/pages/product/carts/carts">
+                <image class="icon70 absolute cart-icon" src="../../../images/cart-icon.png"></image>
+                <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{cartNum!=0&&cartNum!=null}}">{{cartNum>99?99:cartNum}}</text>
+            </navigator>
+            <button bindtap="onShareAppMessage" class="absolute share-icon {{userInfo.userType!=0?'':'share-icon2'}}" openType="share">
+                <image class="icon70" src="../../../images/share.png"></image>
+            </button>
+            <view class="mask mask2"></view>
+        </view>
+        <view class="bgf absolute mg2 bds pd3 br10 head-box ovh {{userInfo.userType!=0?'':'box1'}}">
+            <image class="br_half middle icon100 user-head left" src="{{userInfo.teamIcon!=''?userInfo.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+            <view class="left col35 ml1 mt2 ml4" wx:if="{{userInfo.userType!=0}}">
+                <view class="col35 font28 mb1">{{userInfo.teamName?userInfo.teamName:'暂未创建企业团队'}}</view>
+                <view class="green">
+                    <image class="icon left middle icon30 mr1 mb1" src="../../../images/enterprise.png"></image>
+                    <text class="font24">企业认证</text>
+                </view>
+            </view>
+            <view class="left col35" wx:else>
+                <view class="col35 font28 mb1 ml4">{{userInfo.teamName?userInfo.teamName:'暂未创建企业团队'}}</view>
+            </view>
+            <image src="../../../images/vip.png" style="width: 34px;height: 16px;" wx:if="{{userInfo.vipEndTime}}"></image>
+        </view>
+        <view class="bgf width100 classify-box relative" style="top:72rpx;">
+            <scroll-view scrollX class="goods-classify2 col8 font28 type-line74 pd-left-right">
+                <view bindtap="setType" class="classify {{currentType==-1?'hover':''}}" data-type="1">全部</view>
+                <view bindtap="setType" class="classify {{currentType==index?'hover':''}}" data-id="{{item.typeId}}" data-index="{{index}}" data-type="2" wx:for="{{typeList}}">{{item.typeName}}</view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="ovh mt2" style="margin-top: 95rpx;">
+        <form bindsubmit="goDetail" data-id="{{item.productId}}" reportSubmit="true" wx:for="{{goodsList}}">
+            <button class="bds br10 ovh mg2 {{cartType==1?'product-item':'pd3'}} reset-btn" formType="submit" style="background: #fff;">
+                <image class="product-img" src="{{imgHead+item.productPic}}" wx:if="{{cartType==1}}"></image>
+                <image class="product-img2 left" src="{{imgHead+item.productPic}}" wx:else></image>
+                <view class="{{cartType==1?'':'pro-list'}}">
+                    <view class="pdlr2 {{cartType==1?'beyond width90':'pro-box'}}">{{item.productName}}</view>
+                    <view class="red fontb pdb2 {{cartType==1?'pdlr2 font24':'tright font36'}}">¥{{item.productPrice/100}}</view>
+                </view>
+            </button>
+        </form>
+    </view>
+    <view class="center col9" wx:if="{{goodsList.length==0}}">
+        <image class="empty-image mt5" src="../../../images/pro-empty.png"></image>
+        <view>企业还未发布产品哦</view>
+    </view>
+    <template is="leavMess" data="{{nums:nums,hasTrueNum:hasTrueNum}}" wx:if="{{!isMyself}}"></template>
+    <view class="height50"></view>
+</view>

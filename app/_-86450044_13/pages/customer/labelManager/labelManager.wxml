@@ -1,0 +1,39 @@
+<view class="container font32">
+    <view class="pdlr2 font24 col9 line60">标签名字</view>
+    <view class="pd2 bgf bdb ovh">
+        <input bindinput="inputLableName" disabled="{{lebelName=='状态'?true:false}}" placeholder="标签组名称" placeholderClass="placeholder" value="{{lebelName}}"></input>
+    </view>
+    <view class="pdlr2 font24 col9 line60">标签列表</view>
+    <view class="pd2 bgf bdb ovh" wx:for="{{list}}">
+        <image bindtap="delModel" class="icon icon40 middle mt1 mr2 left" data-index="{{index}}" src="../../../images/ic_sub.png"></image>
+        <input bindinput="inputName" class="left" data-index="{{index}}" name="customEmail" placeholder="标签名称" placeholderClass="placeholder" value="{{item}}"></input>
+    </view>
+    <view bindtap="addModel" class="pd2 bgf bdb ovh mb2 center red">
+        <image class="icon icon40 middle mr1 mb1" src="../../../images/ic_add2.png"></image>
+        <text>添加标签</text>
+    </view>
+    <block wx:if="{{lebelName=='状态'}}">
+        <view class="pd2 bgf bdb ovh">
+      成交<text class="col9 font24"> (特殊字段，不可修改)</text>
+        </view>
+        <view class="pd2 bgf bdb ovh">
+      流失<text class="col9 font24"> (特殊字段，不可修改)</text>
+        </view>
+    </block>
+    <view class="pdlr2 font24 col9 line60">标签组颜色</view>
+    <view class="pd2 bgf bdb ovh">
+        <text bindtap="changeColor" class="dot dot1 mr5 {{dotIndex==0?'hover':''}}" data-index="0"></text>
+        <text bindtap="changeColor" class="dot dot2 mr5 {{dotIndex==1?'hover':''}}" data-index="1"></text>
+        <text bindtap="changeColor" class="dot dot3 mr5 {{dotIndex==2?'hover':''}}" data-index="2"></text>
+        <text bindtap="changeColor" class="dot dot4 mr5 {{dotIndex==3?'hover':''}}" data-index="3"></text>
+        <text bindtap="changeColor" class="dot dot5 mr5 {{dotIndex==4?'hover':''}}" data-index="4"></text>
+        <text bindtap="changeColor" class="dot dot6 mr5 {{dotIndex==5?'hover':''}}" data-index="5"></text>
+        <text bindtap="changeColor" class="dot dot7 {{dotIndex==6?'hover':''}}" data-index="6"></text>
+    </view>
+    <view bindtap="delGroup" class="pd2 bgf bdb ovh mb2 center red" wx:if="{{id&&lebelName!='状态'}}">
+        <text>删除标签组</text>
+    </view>
+    <view bindtap="doAdd" class="mt10 mb2">
+        <button class="btn">保存</button>
+    </view>
+</view>

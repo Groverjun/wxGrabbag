@@ -1,0 +1,45 @@
+<view class="container ovh">
+    <view class="bgf">
+        <view class="pd2 line70 relative search-box " wx:if="{{source==1}}">
+            <view class="ovh bg">
+                <image class="icon left icon-search" src="../../../images/ic_search.png"></image>
+                <input autoFocus bindinput="inputKeyword" class="left br5 search-input" placeholder="按客户电话姓名搜索"></input>
+            </view>
+            <text bindtap="goSearch" class="right fontb absolute cancel-btn">搜索</text>
+        </view>
+        <view class="bgf pd3" style="padding-bottom:0" wx:if="{{source==2}}">
+            <block wx:for="{{list}}">
+                <text class="dot left" style="background:{{item.lebelColor}}"></text>
+                <view bindtap="goEditPage" class="font32 mb2" data-index="{{index}}">
+            {{item.lebelName}}
+            <image class="right icon middle mt" src="../../../images/ic_right_grey.png" wx:if="{{isEditLabel}}"></image>
+                </view>
+                <view class="flex-list ovh bdb pdb3 center {{index+1==list.length?'':'mb3'}}">
+                    <view class="list-item" wx:for="{{item.lebelContent}}" wx:for-index="idx" wx:for-item="obj">
+                        <text bindtap="choiceCustomLabel" class="tips2" data-i="{{index}}" data-index="{{idx}}" style="background:{{item.lebelIndex!=-1&&item.lebelIndex==idx?item.lebelColor:''}};color:{{item.lebelIndex!=-1&&item.lebelIndex==idx?'#fff':''}}">{{obj}}</text>
+                        <view class="colr" wx:if="{{obj=='成交'&&turnover>0}}">￥{{turnover}}</view>
+                    </view>
+                </view>
+            </block>
+            <view bindtap="goEdit" class="pd2 bgf center col9 font32">
+                <image class="icon icon40 mr1 mb1" src="../../../images/ic_edit.png"></image>
+                <text>标签管理</text>
+            </view>
+            <view class="height100"></view>
+            <form bindsubmit="confirmLabel" reportSubmit="true" wx:if="{{!isEditLabel}}">
+                <button class="btn fixed-bottom confrim-btn" formType="submit" style="line-height:80rpx">确定</button>
+            </form>
+        </view>
+    </view>
+    <view hidden="{{isEdit}}">
+        <view bindtap="hideEdit" class="mask"></view>
+        <view class="pop bgf pd2" style="min-height:120rpx">
+            <view class="line70 center font32 mb2">成交金额</view>
+            <input bindinput="inputExitName" class="bd br10 pd" focus="{{!isEdit}}" placeholder="成交金额" style="width:80%;margin:0 auto" type="digit"></input>
+            <view class="font36 flex-wrp center mt3">
+                <view bindtap="hideEdit" class="col9 left flex-item bdr">取消</view>
+                <view bindtap="doEdit" class="col right flex-item" data-id="1">确定</view>
+            </view>
+        </view>
+    </view>
+</view>

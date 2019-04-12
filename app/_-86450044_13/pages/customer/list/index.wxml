@@ -1,0 +1,37 @@
+<view class="container">
+    <view class="flex-wrp bgf line60 font28">
+        <view bindtap="setCurrent" class="flex-item  center" data-id="7">
+            <text class="disib {{type==7?'current':''}}">今日新增</text>
+        </view>
+        <view bindtap="setCurrent" class="flex-item center" data-id="4">
+            <text class="disib {{type==4?'current':''}}">今日跟进</text>
+        </view>
+        <view bindtap="setCurrent" class="flex-item center" data-id="5">
+            <text class="disib {{type==5?'current':''}}">今日未跟进</text>
+        </view>
+    </view>
+    <view class="line50 pdlr2" wx:if="{{type>3}}">共{{totalCount}}人</view>
+    <view class="bgf mb100">
+        <view class="bdb" wx:for="{{list}}">
+            <view bindtap="goRecord" class="ovh pd2" data-id="{{item.relationId}}" data-name="{{item.customName}}">
+                <view class="user-head left mr1 cust-head">{{item.customHeadText}}</view>
+                <view>
+                    <view class="ovh">
+                        <text class="fontb font36">{{item.customName}}</text>
+                        <text class="right colr" wx:if="{{item.customTime!=null}}">约{{item.customTime}}</text>
+                    </view>
+                    <view class="mt1">
+                        <text class="tips orange-tips" wx:if="{{(item.customLabel&3)>0}}">{{custType[item.customLabel&3-1]}}</text>
+                        <text class="tips green-tips" wx:if="{{(item.customLabel>>2&3)>0}}">{{custLevel[ (item.customLabel>>2&3)-1 ]}}</text>
+                        <text class="tips pink-tips" wx:if="{{item.customLabel>>4>0}}">{{custState[ (item.customLabel>>4)-1 ]}}</text>
+                    </view>
+                </view>
+                <view class="col9 mt1" wx:if="{{item.customCompany}}">{{item.customCompany}}</view>
+                <view class="col9 mt1" wx:if="{{item.kekeFollow.followId!=null}}">
+          {{item.kekeFollow.followModifyTime+' '+(item.kekeFollow.followTypeName!=null?item.kekeFollow.followTypeName+' · ':'')+item.kekeFollow.followRemark}}
+        </view>
+            </view>
+        </view>
+        <view class="center col9 line70 bg" wx:if="{{list.length==0}}">暂时没有相关数据</view>
+    </view>
+</view>

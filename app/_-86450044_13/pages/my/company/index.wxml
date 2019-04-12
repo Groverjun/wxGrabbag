@@ -1,0 +1,43 @@
+<view class="container">
+    <view class="bgf pdt pdl2 center">
+        <image bindtap="changeHead" class="big-head mg2" src="{{teamIcon?teamIcon:'../../../images/ic_company_head.png'}}"></image>
+    </view>
+    <form bindsubmit="saveModify" reportSubmit="true">
+        <view class="line90 bgf pdl2 ovh">
+            <image class="icon40 middle" src="../../../images/ic_company.png"></image>
+            <text class="font32 ml2">我的公司</text>
+            <text class="red">*</text>
+            <view class="right ml2 tright" style="margin-right:30rpx">
+                <input bindinput="inputTeamName" class="right tright mt2" placeholder="请输入公司名称" style="width:350rpx" value="{{teamName}}"></input>
+            </view>
+        </view>
+        <view class="line90 bgf pdl2 ovh mb2">
+            <image class="icon40 middle" src="../../../images/ic_industry.png"></image>
+            <text class="font32 ml2">所属行业</text>
+            <text class="red">*</text>
+            <image class="right ml1 icon middle mt3 mr1" src="../../../images/ic_right_grey.png"></image>
+            <picker bindchange="bindTypeChange" class="right ml2 tright" range="{{typeList}}" value="{{typeIndex}}">
+        {{typeList[typeIndex]}}
+      </picker>
+        </view>
+        <navigator class="line90 bgf pdl2 ovh" url="/pages/my/dynamic/list/list">
+            <image class="icon40 middle" src="../../../images/ic-eye.png"></image>
+            <text class="font32 ml2">发布企业动态</text>
+            <image class="right ml1 icon middle mt3 mr1" src="../../../images/ic_right_grey.png"></image>
+            <view class="right">{{dynamicsCount>0?'共'+dynamicsCount+'条动态':'未添加'}}</view>
+        </navigator>
+        <navigator class="line90 bgf pdl2 ovh" url="/pages/product/list/list">
+            <image class="icon40 middle" src="../../../images/ic_desc.png"></image>
+            <text class="font32 ml2">发布企业产品</text>
+            <image class="right ml1 icon middle mt3 mr1" src="../../../images/ic_right_grey.png"></image>
+            <view class="right">{{productCount>0?'共'+productCount+'款产品':'未发布'}}</view>
+        </navigator>
+        <view bindtap="goDetail" class="line90 bgf pdl2 ovh">
+            <image class="icon40 middle" src="../../../images/ic_network.png"></image>
+            <text class="font32 ml2">发布企业官网</text>
+            <image class="right ml1 icon middle mt3 mr1" src="../../../images/ic_right_grey.png"></image>
+            <view class="right">{{teamDetail.length>0?'已发布':'未发布'}}</view>
+        </view>
+        <button class="btn" formType="submit">保存</button>
+    </form>
+</view>

@@ -1,0 +1,9 @@
+.add {
+    bottom: 10%;
+    right: 3%;
+}
+
+.current {
+    color: #E51C23;
+    border-bottom: 1px solid #E51C23;
+}

@@ -1,0 +1,33 @@
+<view class="container" style="padding-bottom:100rpx">
+    <view class="ovh pdt2 pd2 bdb mb3s mg2 bgf br10">
+        <view class="user-head left mr1 cust-head">{{customHead}}</view>
+        <view>
+            <view class="ovh">
+                <view>
+                    <text class="fontb font36">{{userName}}</text>
+                    <text class="col9 right mt1" wx:if="{{userConpany!='null'&&userConpany!='undefined'}}">{{userConpany}}</text>
+                </view>
+            </view>
+            <view class="mt1">
+                <text class="tips orange-tips" wx:if="{{(userLabel&3)>0}}">{{custType[userLabel&3-1]}}</text>
+                <text class="tips green-tips" wx:if="{{(userLabel>>2&3)>0}}">{{custLevel[ (userLabel>>2&3)-1 ]}}</text>
+                <text class="tips pink-tips" wx:if="{{userLabel>>4>0}}">{{custState[ (userLabel>>4)-1 ]}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="pd2 pdb10 bgf mg2 br10 bds">
+        <view class="mb2 relative" wx:for="{{followList}}">
+            <view class="left col9 time-box font20">{{item.followModifyTime}}</view>
+            <text class="dot left middle {{index==0?'current':''}}"></text>
+            <text class="line" wx:if="{{followList.length>1&&index<followList.length-1}}"></text>
+            <view class="content">
+                <text class="fontb">{{item.followTypeName?item.followTypeName:''}}</text>
+                <block wx:if="{{item.followRemark&&item.followTypeName}}">：</block>
+                <text class="fontb" wx:if="{{item.followRemark}}"></text>
+        {{item.followRemark?item.followRemark:''}}
+      </view>
+        </view>
+        <view class="col9 center" wx:if="{{followList.length==0}}">暂无拜访记录</view>
+    </view>
+    <button bindtap="editNote" class="btn fixed-bottom" style="width:60%;border-radius:40rpx;left:20%;bottom:20rpx">添加拜访记录</button>
+</view>

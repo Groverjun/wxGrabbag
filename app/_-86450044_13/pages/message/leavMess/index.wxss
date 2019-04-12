@@ -1,0 +1,254 @@
+.mess-box,.mess-box2 {
+    width: 400rpx;
+    position: relative;
+}
+
+.product-box {
+    width: 450rpx;
+    position: relative;
+}
+
+.btn {
+    width: 80%;
+    color: #2A0F45;
+}
+
+.product-tit {
+    width: 72%;
+}
+
+.mess-box2 {
+    background: #745AF2;
+    color: #fff;
+}
+
+.mess-box::before,.mess-box2::before,.product-box::before,.mess-box3::before {
+    content: '';
+    position: absolute;
+    right: -20rpx;
+    top: 10rpx;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 30rpx solid transparent;
+    border-left: 30rpx solid #fff;
+    border-bottom: 30rpx solid transparent;
+}
+
+.mess-box2::before,.product-box::before,.mess-box3::before {
+    right: inherit;
+    left: -20rpx;
+    border-right: 30rpx solid #745AF2;
+    border-left: none;
+}
+
+.mess-box2::before,.product-box::before {
+    left: inherit;
+    right: -20rpx;
+    border-left: 30rpx solid #745AF2;
+    border-right: none;
+}
+
+.mess-box3::before {
+    border-right-color: #fff;
+}
+
+.product-box::before {
+    border-left-color: #fff;
+}
+
+.leav-btn button {
+    padding: 0 10px;
+    background: #fff;
+    color: #BCBBBC;
+    display: inline-block;
+    font-size: 24rpx;
+    margin-right: 30rpx;
+    border-radius: 30rpx;
+}
+
+.leav-iput {
+    background: #F9F9F9;
+    padding: 10rpx 30rpx;
+    border-radius: 30rpx;
+    width: 65%;
+    margin: 20rpx;
+    text-align: left;
+}
+
+.leav-send {
+    width: 160rpx;
+    color: #fff;
+    border-radius: 0;
+    height: 110rpx;
+    line-height: 110rpx;
+    margin: 0;
+}
+
+.leave-wrap {
+    padding-bottom: 100rpx;
+}
+
+.msg-state {
+    margin-right: 150rpx;
+    position: absolute;
+    right: 10rpx;
+    bottom: -4rpx;
+}
+
+.msg-state2 {
+    margin-left: 150rpx;
+    left: 10rpx;
+}
+
+.fixed-bottom {
+    z-index: 999;
+}
+
+.hs {
+    height: 250px;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.hs scroll-view {
+    height: 230px;
+}
+
+.hsMessage {
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    float: left;
+}
+
+.addHS {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    text-align: center;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+}
+
+.messages {
+    width: 80%;
+    float: left;
+}
+
+.imgs {
+    width: 20%;
+    height: 20px;
+    float: right;
+}
+
+.imgs image {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.message {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.modal-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    z-index: 9000;
+    color: #fff;
+}
+
+.modal-dialog {
+    width: 540rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 9999;
+    background: #f9f9f9;
+    margin: -180rpx 105rpx;
+    border-radius: 36rpx;
+}
+
+.modal-title {
+    padding-top: 50rpx;
+    font-size: 36rpx;
+    color: #030303;
+    text-align: center;
+}
+
+.modal-content {
+    padding: 50rpx 32rpx;
+}
+
+.modal-input {
+    display: flex;
+    background: #fff;
+    border: 2rpx solid #ddd;
+    border-radius: 4rpx;
+    font-size: 28rpx;
+}
+
+.input {
+    width: 100%;
+    height: 82rpx;
+    font-size: 28rpx;
+    line-height: 28rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    color: #333;
+}
+
+input-holder {
+    color: #666;
+    font-size: 28rpx;
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: row;
+    height: 86rpx;
+    border-top: 1px solid #dedede;
+    font-size: 34rpx;
+    line-height: 86rpx;
+}
+
+.btn-cancel {
+    width: 50%;
+    color: #666;
+    text-align: center;
+    border-right: 1px solid #dedede;
+}
+
+.btn-confirm {
+    width: 50%;
+    color: #ec5300;
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}

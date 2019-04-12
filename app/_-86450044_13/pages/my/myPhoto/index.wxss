@@ -1,0 +1,68 @@
+textarea {
+    margin: 20rpx 30rpx;
+    height: 160rpx;
+    width: 87%;
+}
+
+.dis-container {
+    margin-top: 60rpx;
+}
+
+.addrange-btn {
+    background: #fff;
+    margin-bottom: 100rpx;
+}
+
+.details-icon {
+    width: 20rpx;
+    height: 20rpx;
+}
+
+.insert-icon {
+    width: 15rpx;
+    height: 12rpx;
+}
+
+.move-icon {
+    width: 15rpx;
+    height: 20rpx;
+}
+
+.detail-list {
+    margin-bottom: 50rpx;
+}
+
+.detail-fun {
+    right: 35rpx;
+    bottom: 0;
+}
+
+.detail-img {
+    width: 95%;
+    height: 520rpx;
+}
+
+.detail-line {
+    border-top: 1px dashed #ccc;
+}
+
+.details-btn {
+    border: none;
+    border-radius: 0;
+    line-height: 40rpx;
+    font-size: 20rpx;
+    width: 85rpx;
+    padding: 0;
+}
+
+.del-icon,.insert-icon,.move-icon {
+    width: 22rpx;
+    height: 22rpx;
+}
+
+.fun-img {
+    width: 75rpx;
+    height: 60rpx;
+    padding: 25rpx;
+    border: 1px solid #f2f2f2;
+}

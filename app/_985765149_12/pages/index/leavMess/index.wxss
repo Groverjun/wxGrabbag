@@ -1,0 +1,103 @@
+.mess-box,.mess-box2 {
+    width: 400rpx;
+    position: relative;
+}
+
+.product-box {
+    width: 450rpx;
+}
+
+.btn {
+    width: 80%;
+    color: #2A0F45;
+}
+
+.product-tit {
+    width: 72%;
+}
+
+.mess-box2 {
+    background: #745AF2;
+    color: #fff;
+}
+
+.mess-box::before,.mess-box2::before,.mess-box3::before,.product-box::before {
+    content: '';
+    position: absolute;
+    left: -20rpx;
+    top: 10rpx;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 30rpx solid transparent;
+    border-right: 30rpx solid #fff;
+    border-bottom: 30rpx solid transparent;
+}
+
+.mess-box2::before,.product-box::before {
+    left: inherit;
+    right: -20rpx;
+    border-left: 30rpx solid #745AF2;
+    border-right: none;
+}
+
+.product-box::before {
+    border-left-color: #fff;
+}
+
+.mess-box3::before {
+    right: 0;
+    left: -20rpx;
+    border-right: 30rpx solid #fff;
+    border-left: none;
+}
+
+.leav-btn button {
+    padding: 0 10px;
+    background: #fff;
+    color: #BCBBBC;
+    display: inline-block;
+    font-size: 24rpx;
+    margin-right: 30rpx;
+    border-radius: 30rpx;
+    border: 1px solid #ccc;
+    line-height: 50rpx;
+}
+
+.leav-iput {
+    background: #F9F9F9;
+    padding: 10rpx 30rpx;
+    border-radius: 30rpx;
+    width: 65%;
+    margin: 20rpx;
+}
+
+.leav-send {
+    width: 160rpx;
+    color: #fff;
+    border-radius: 0;
+    height: 110rpx;
+    line-height: 110rpx;
+    margin: 0;
+}
+
+.leave-wrap {
+    padding-bottom: 220rpx;
+}
+
+.msg-state {
+    margin-right: 135rpx;
+    position: absolute;
+    right: 30rpx;
+    bottom: -2rpx;
+}
+
+.msg-state2 {
+    margin-left: 150rpx;
+    left: 10rpx;
+    right: inherit;
+}
+
+.fixed-bottom {
+    z-index: 999;
+}

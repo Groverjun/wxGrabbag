@@ -1,0 +1,47 @@
+<view class="container dis-container">
+    <form bindsubmit="saveDetails" class="mb100">
+        <view class="detail-list relative" wx:for="{{list}}">
+            <view id="details">
+                <textarea bindinput="inputText" class="bgf pd2" data-id="{{index}}" placeholder="请输入文字描述" placeholderClass="placeholder" value="{{item.value}}" wx:if="{{item.type==1}}"></textarea>
+                <image bindtap="chooseImg" class="pd2 detail-img" data-id="{{index}}" mode="widthFix" src="{{item.value}}" wx:if="{{item.type==2}}"></image>
+                <view class="mlr2 mt3 detail-line" wx:if="{{item.type==3}}"></view>
+            </view>
+            <view class="bg font20 absolute detail-fun">
+                <button bindtap="delModel" class="left details-btn" data-id="{{index}}">
+                    <image class="icon icon20" src="../../../images/ic_delete.png"></image>
+          删除
+        </button>
+                <button bindtap="moveModel" class="left details-btn" data-id="{{index}}" wx:if="{{index!=0}}">
+                    <view class="icon middle move-icon"></view>
+          上移
+        </button>
+            </view>
+        </view>
+        <button class="btn fixed-bottom" formType="submit">保存</button>
+    </form>
+    <button bindtap="showAdd" class="font30 red line65 addrange-btn">
+        <image class="icon30 middle mb" src="../../../images/plus.png"></image>
+    添加内容
+  </button>
+    <view class="height100"></view>
+    <view hidden="{{hideAdd}}">
+        <view bindtap="hideAdd" class="mask"></view>
+        <view class="bgf col9 fixed-bottom">
+            <view class="flex-wrp mt3">
+                <view bindtap="addModel" class="pd2 center flex-item" data-type="1">
+                    <image class="mb2 fun-img" src="../../../images/addtext.png"></image>
+                    <view>添加文本</view>
+                </view>
+                <view bindtap="addModel" class="pd2 center flex-item" data-type="2">
+                    <image class="mb2 fun-img" src="../../../images/addimg.png"></image>
+                    <view>添加图片</view>
+                </view>
+                <view bindtap="addModel" class="pd2 center flex-item" data-type="3">
+                    <image class="mb2 fun-img" src="../../../images/addline.png"></image>
+                    <view>添加分割线</view>
+                </view>
+            </view>
+            <view bindtap="hideAdd" class="line95 center bg font30">取消</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,34 @@
+.mes-box {
+    width: 79%;
+}
+
+.empty-img {
+    width: 360rpx;
+    height: 300rpx;
+}
+
+.icon-electric {
+    width: 112rpx;
+    height: 40rpx;
+}
+
+.mes-count {
+    right: 40rpx;
+    width: 45rpx;
+    text-align: center;
+}
+
+.v-canvas {
+    position: fixed;
+    right: 0px;
+    top: 15px;
+    width: 70px;
+    background-color: transparent;
+    z-index: 999；;
+}
+
+.myCanvas {
+    background-color: transparent;
+    width: 70px;
+    height: 70px;
+}

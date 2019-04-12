@@ -1,0 +1,7 @@
+.btn {
+    margin-top: 50rpx;
+}
+
+.small_icon_my {
+    display: inline-block;
+}

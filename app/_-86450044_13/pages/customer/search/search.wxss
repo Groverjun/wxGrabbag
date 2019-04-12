@@ -1,0 +1,37 @@
+.search-box {
+    padding-right: 100rpx;
+}
+
+.cancel-btn {
+    right: 20rpx;
+    top: 20rpx;
+}
+
+.search-input {
+    padding: 10rpx 20rpx;
+}
+
+.icon-search {
+    margin: 20rpx 10rpx 0 20rpx;
+}
+
+.state-list {
+    width: 33%;
+    float: left;
+    margin-bottom: 25rpx;
+}
+
+.dot {
+    width: 25rpx;
+    height: 25rpx;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 10rpx 20rpx 0 0;
+}
+
+.list-item {
+    flex: inherit;
+    width: 33%;
+    float: left;
+    margin-bottom: 20rpx;
+}

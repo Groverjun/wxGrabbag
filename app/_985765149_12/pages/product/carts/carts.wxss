@@ -1,0 +1,42 @@
+.add-car,.sub-car {
+    border: 1px solid #e8e8e8;
+    line-height: 50rpx;
+    text-align: center;
+    border-radius: 10rpx 0 0 10rpx;
+    vertical-align: middle;
+}
+
+.add-sum {
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    width: 80rpx;
+    display: inline-block;
+    line-height: 50rpx;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sub-car {
+    border-radius: 0 10rpx 10rpx 0rpx;
+    vertical-align: middle;
+}
+
+.empty-img {
+    width: 280rpx;
+    height: 305rpx;
+}
+
+.cart-bgf {
+    background: #f8f8f8;
+}
+
+.cart-bdt {
+    border-bottom: 1rpx solid #f8f8f8;
+}
+
+.btn-gray {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    box-shadow: none;
+    color: #383838;
+}

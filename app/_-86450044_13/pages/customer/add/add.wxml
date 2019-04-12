@@ -1,0 +1,60 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}"></template>
+<view class="container font32">
+    <form bindsubmit="formSubmit" reportSubmit="true">
+        <view class="bgf">
+            <view class="pd2 bdb ovh">
+                <view class="left">
+          姓名<text class="red ml1">*</text>
+                </view>
+                <input class="right tright" name="customName" placeholder="请输入联系人姓名（必填）" placeholderClass="placeholder" value="{{customerInfo.customName}}"></input>
+            </view>
+            <view class="pd2 bdb ovh">
+                <view class="left">
+          电话<text class="red ml1">*</text>
+                </view>
+                <input class="right tright" name="customPhone" placeholder="请输入手机或固定号码（必填）" placeholderClass="placeholder" style="width:400rpx" type="digit" value="{{customerInfo.customPhone}}"></input>
+            </view>
+            <view class="pd2 bdb ovh">
+                <view class="left">
+          微信号<text class="red ml1" wx:if="{{isRequired}}">*</text>
+                </view>
+                <input class="right tright" name="weChat" placeholder="请输入微信号{{isRequired?'（必填）':''}}" placeholderClass="placeholder" value="{{customerInfo.weChat}}"></input>
+            </view>
+            <view class="pd2 bdb ovh" wx:for="{{list}}">
+                <view class="left">{{item.name}}<text class="red ml1" wx:if="{{item.required}}">*</text>
+                </view>
+                <input bindinput="inputField" class="right tright" data-index="{{index}}" placeholder="{{item.required?'必填':'选填'}}" placeholderClass="placeholder" value="{{item.value}}"></input>
+            </view>
+        </view>
+        <view bindtap="goManager" class="pd2 bgf bdb ovh mb2 center col9">
+            <image class="icon40 middle mr1 mb1 mt" src="../../../images/ic_manager.png"></image>
+            <text>字段管理</text>
+        </view>
+        <view bindtap="goEditLabel" class="pd2 bdb ovh bgf">
+            <view class="left">
+                <image class="left icon mb1 middle mt1 mr2" src="../../../images/ic_label.png"></image>
+        标签<text class="red ml1">*</text>
+            </view>
+            <image class="right icon mt" src="../../../images/ic_right_grey.png"></image>
+            <view class="col9 right small_icon_my">
+                <text class="tips" style="background:{{item.lebelColor}};color:#fff" wx:if="{{item.lebelContent}}" wx:for="{{labelList}}">{{item.lebelContent}}</text>
+            </view>
+        </view>
+        <view class="pdlr2 font24 col9 line60">标签能够对客户进行分类和管理，也可用于筛选和搜索</view>
+        <view class="pd2 bgf ovh">
+            <view class="left">
+                <image class="icon middle mb1" src="../../../images/ic_share.png"></image>
+        共享范围<text class="red ml1">*</text>
+            </view>
+            <image class="right icon middle mt" src="../../../images/ic_right_grey.png"></image>
+            <picker bindchange="bindScopeChange" class="right font28" range="{{scope}}" value="{{scopeIndex}}">
+        {{scopeIndex?scope[scopeIndex]:'自己独占'}}
+      </picker>
+        </view>
+        <view class="pdlr2 font24 col9 line60">共享后团队成员可查看、跟进该联系人</view>
+        <view class="mb100">
+            <button class="btn" formType="submit">保存</button>
+        </view>
+    </form>
+</view>

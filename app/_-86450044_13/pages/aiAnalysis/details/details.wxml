@@ -1,0 +1,92 @@
+<view class="container">
+    <view class="bgf pd3">
+        <view class="ovh mb4 relative pdb6 bdb">
+            <navigator appId="{{appId}}" openType="navigate" path="pages/card/index/index?userId={{user_Id}}" target="miniProgram">
+                <image class="icon100 br_half left mt2" src="{{user_head_img}}"></image>
+            </navigator>
+            <view class="ml2 mes-box mt1 left">
+                <view class="font34 mb1 wd400 beyond">{{user_name}}
+        </view>
+                <view class="col9 font28 beyond2 width100 detail-text">
+           总计与你互动<text class="red">{{total_see}}</text>次，预计成交率达<text class="red">{{turnover}}%</text>，尽快抓住商机
+        </view>
+            </view>
+            <view class="right tright canvas-wrap relative">
+                <canvas canvasId="ringCanvas" class="canvas" style="width:157rpx;height:160rpx"></canvas>
+                <view class="blue fontb font28">商机预测</view>
+            </view>
+        </view>
+    </view>
+    <view class="bgf pdlr3 ">
+        <view class="center font28">AI分析</view>
+        <view class="bdb">
+            <view class="relative" style="height:300px">
+                <canvas bindtouchstart="touchHandler" canvasId="pieCanvas" class="canvas2" style="width:{{windowWidth-15}}px;height:300px"></canvas>
+            </view>
+        </view>
+    </view>
+    <view class="pd2_3 bgf">
+        <view class="col9 ovh mb1 mt2">
+            <text class="left mr3 mt">打开留言</text>
+            <progress active activeColor="#26C6DA" borderRadius="10" class="pro-wrap left mt25" percent="{{mesPer}}"></progress>
+            <text class="left mt1 ml1">{{mesPer}}%</text>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">查看名片</text>
+            <progress active activeColor="#745AF2" borderRadius="10" class="pro-wrap left mt25" percent="{{cardPer}}"></progress>
+            <text class="left mt1 ml1">{{cardPer}}%</text>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">查看产品</text>
+            <progress active activeColor="#FC4B6C" borderRadius="10" class="pro-wrap left mt25" percent="{{proPer}}"></progress>
+            <text class="left mt1 ml1">{{proPer}}%</text>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">查看公司</text>
+            <progress active activeColor="#FFB22B" borderRadius="10" class="pro-wrap left mt25" percent="{{offPer}}"></progress>
+            <text class="left mt1 ml1">{{offPer}}%</text>
+        </view>
+    </view>
+    <view class="bgf pdb10">
+        <view class="center line70 font28">智能追踪</view>
+        <view class="pd2 pdb10" style="padding-bottom: 0;" wx:for="{{list}}">
+            <view class="mb2 relative">
+                <view class="left col9 time-box">{{item.createTime}}</view>
+                <text class="dot left middle mr2 {{index==0?'current':''}}"></text>
+                <text class="line" wx:if="{{index!=list.length-1}}"></text>
+                <view class="content">
+          正在<text class="blue">{{item.logType==12||item.logType==13?item.logType==12?'评论':'点赞':item.logType==5?'打开':'查看'}}</text>
+                    <block wx:if="{{item.logType==1||item.logType==2}}">你的<text class="blue">{{item.logType==1?'名片':'产品'}}</text>第<text class="red">{{item.logTimes}}</text>次，{{item.logType==1?'成交在望':'尽快把握商机'}}</block>
+                    <block wx:elif="{{item.logType==11||item.logType==12||item.logType==13||item.logType==14}}">你发布的<text class="blue">{{item.logContent==null||item.logContent==''?'动态':'文章·'}}</text>
+                        <view class="blue disib" wx:if="{{item.logContent!=null&&item.logContent!=''}}">
+                            <text class="beyond wd180 middle mb1">{{item.logContent}}</text>
+                        </view>
+                        <block wx:if="{{item.comment!=null}}">说：<text class="blue">{{item.comment}}</text>
+                        </block>
+                        <block wx:if="{{item.logType==11||item.logType==14}}">第<text class="red">{{item.logTimes}}次</text>
+                        </block>
+        ,合作意向强烈
+          </block>
+                    <block wx:elif="{{item.logType==3||item.logType==4}}">你发布的<text class="blue">{{item.logType==3?item.logContent:'官网'}}</text>第<text class="red">{{item.logTimes}}</text>次，{{item.logType==3?'离成交更近一步':'合作意向强烈'}}</block>
+                    <block wx:else>与你<text class="blue">留言</text>的窗口第<text class="red">{{item.logTimes}}</text>次，即抓住商机洽谈合作</block>
+                </view>
+            </view>
+            <view class="col9 center" wx:if="{{followList.length==0}}">暂无拜访记录</view>
+        </view>
+    </view>
+    <view class="height150"></view>
+    <view class="bgf bdt center flex-wrp fixed-bottom col9 font22">
+        <view bindtap="callPhone" class="flex-item">
+            <image class="icon icon40" src="../../../images/ic_phone_g.png"></image>
+            <view>拨打电话</view>
+        </view>
+        <view bindtap="copyWX" class="flex-item">
+            <image class="icon icon40" src="../../../images/ic_weixin.png"></image>
+            <view class="col9">复制微信</view>
+        </view>
+        <view class="consultation-btn consultation-btn2">
+            <button bindtap="goSaveUser" class="btn consult-btn">保存客户</button>
+            <button bindtap="goMessage" class="btn add-btn">联系Ta</button>
+        </view>
+    </view>
+</view>

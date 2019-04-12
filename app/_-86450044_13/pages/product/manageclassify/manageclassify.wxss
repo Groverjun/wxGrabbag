@@ -1,0 +1,24 @@
+.arr-icon {
+    margin: 0 0 0 0;
+}
+
+.box {
+    width: 300px;
+    position: relative;
+}
+
+.mainmove {
+    position: absolute;
+    opacity: 0.7;
+    width: 100%;
+}
+
+.maind {
+    background: #fff;
+    border: 1px dashed #efefef;
+}
+
+.mainend {
+    position: static;
+    opacity: 1;
+}

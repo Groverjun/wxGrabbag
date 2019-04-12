@@ -1,0 +1,57 @@
+<view class="addr-list pdb15">
+    <view bindtap="confirmAddr" class="mt2 bgf line90 pdlr2" wx:if="{{address==null||address==''}}">
+        <image class="icon mr1 mb" src="../../../images/markaddr.png"></image>
+		请选择你的地址
+	</view>
+    <view bindtap="confirmAddr" class="pd2 bdb col8 ovh mt2 bgf" wx:else>
+        <image class="mt1 left icon icon40" src="../../../images/markaddr.png"></image>
+        <view class="left col35 ml1 add-width">
+            <view class="col35 font34 mb1">{{userName}} {{userPhone}}</view>
+            <view class="font24 colb2">{{address}}</view>
+        </view>
+        <image class="icon icon40 absolute" src="../../../images/arr.png" style="top: 50rpx;right: 40rpx;"></image>
+    </view>
+</view>
+<view class="font30 bgf mt2 mb2">
+    <view class="bgf pd2 bdb line50" style="height: 42rpx;line-height: 42rpx;">
+        <image class="icon left mr1 icon50 br_half ml1 middle" src="{{teamIcon!=''?teamIcon:'../../../images/ic_company_head.png'}}"></image>
+        <view class="left col35 font30">{{teamName}}</view>
+    </view>
+    <view class="pdlr2 bdb" wx:for="{{goodsList}}">
+        <view class="flex-wrp pdtb2" data-id="">
+            <image class="icon140 left mr3 br6" src="{{imgHead+item.goodsPic[0]}}"></image>
+            <view class="flex-item set-ht">
+                <view class="font30 mb60 fontb">{{item.goodsName}}</view>
+                <view class="col9">
+                    <block wx:if="{{item.packageName}}">{{item.itemNumber}}</block>
+                    <text class="tline colr mr4">¥{{item.price/100}}</text>
+                    <view class="col0 right">
+                        <text class="col8">x{{item.itemNumber}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="pd2 bdb col35">
+		商品金额
+		<text class="col8 font28 right">¥{{totalMoney}}</text>
+    </view>
+    <view class="pd2 bdb col35" wx:if="{{freight!=0}}">
+		运费
+		<text class="col8 font28 right">¥{{freight?freight:0}}</text>
+    </view>
+    <view class="pd2 bdb bgf line50 col38 ovh mt2">
+        <view class="font34 right">
+            <text class="mr2">共{{totalCount}}件商品</text>
+            <block wx:if="{{info.orderState==1}}">应付：
+				<text class="red fontb">¥{{totalMoney}}</text>
+            </block>
+            <block wx:else>实付：
+				<text class="colr fontb">¥{{endMoney}}</text>
+            </block>
+        </view>
+    </view>
+    <view class="fixed-bottom sett-btn flex-wrp">
+        <button bindtap="submitOrder" class="btn-pay btn flex-item line80 {{disabled?'gray-btn':''}}" data-type="1">立即支付</button>
+    </view>
+</view>

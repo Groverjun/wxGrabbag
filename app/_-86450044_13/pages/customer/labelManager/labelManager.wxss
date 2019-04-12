@@ -1,0 +1,63 @@
+.dot {
+    width: 30rpx;
+    height: 30rpx;
+    border-radius: 50%;
+    display: inline-block;
+    border: 12rpx solid #fff;
+}
+
+.dot1 {
+    background: #D81E06;
+}
+
+.dot2 {
+    background: #FF9800;
+}
+
+.dot3 {
+    background: #057C53;
+}
+
+.dot4 {
+    background: #069AD8;
+}
+
+.dot5 {
+    background: #9006D8;
+}
+
+.dot6 {
+    background: #FB3B76;
+}
+
+.dot7 {
+    background: #0B0348;
+}
+
+.dot1.hover {
+    border: 12rpx solid #f9ddda;
+}
+
+.dot2.hover {
+    border: 12rpx solid #fff0d9;
+}
+
+.dot3.hover {
+    border: 12rpx solid #daebe5;
+}
+
+.dot4.hover {
+    border: 12rpx solid #daf0f9;
+}
+
+.dot5.hover {
+    border: 12rpx solid #eedaf9;
+}
+
+.dot6.hover {
+    border: 12rpx solid #fee2eb;
+}
+
+.dot7.hover {
+    border: 12rpx solid #dbd9e4;
+}

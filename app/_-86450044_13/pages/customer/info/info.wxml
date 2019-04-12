@@ -1,0 +1,95 @@
+<view class="container">
+    <view class="bgf pdt mb2">
+        <view class="bds pd3 mg4_2 br10 customer-height">
+            <view class="ovh mt2">
+                <view class="user-head left mr1 cust-head">{{customerInfo.customHead?customerInfo.customHead:'无'}}</view>
+                <view class="ml1 left" style="width:80%">
+                    <view class="fontb font32">{{customerInfo.customName?customerInfo.customName:'无'}}</view>
+                    <view class="font24 mt1">
+                        <text class="colc mr1">电话</text>
+                        <text catchtap="goCall">{{customerInfo.customPhone?customerInfo.customPhone:'未填写'}}</text>
+                        <image bindtap="editCustomer" class="edit_icon right" src="../../../images/ic_edit.png"></image>
+                    </view>
+                    <view class="font24 mt1">
+                        <text class="colc mr1">微信号</text>
+                        <text catchtap="goCall">{{customerInfo.weChat!=null?customerInfo.weChat:'未填写'}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="pdlr3">
+            <navigator class="bdb mt3 pdb2 relative mb2 ovh" url="/pages/customer/record/record?relationId={{customerInfo.relationId}}&customLabel={{customerInfo.customLabel}}&customCompany={{customerInfo.customCompany}}&customName={{customerInfo.customName}}&customHead={{customerInfo.customHead}}">
+                <image class="icon-record left" src="../../../images/ic_record.png"></image>
+                <view class="left" style="width:80%">
+                    <text class="font32 fontb">跟进记录</text>
+                    <view class="col9 mt1">
+                        <block wx:if="{{customerInfo.kekeFollow.followId!=null}}">{{customerInfo.kekeFollow.followModifyTime}} 
+              <block wx:if="{{customerInfo.kekeFollow.followTypeName&&customerInfo.kekeFollow.followRemark}}">
+                {{customerInfo.kekeFollow.followTypeName+' · '+customerInfo.kekeFollow.followRemark}}
+              </block>
+                            <block wx:else>{{customerInfo.kekeFollow.followTypeName?customerInfo.kekeFollow.followTypeName:customerInfo.kekeFollow.followRemark}}</block>
+                        </block>
+                        <block wx:else>无</block>
+                    </view>
+                    <image class="right icon middle absolute arr-icon" src="../../../images/ic_right_grey.png"></image>
+                </view>
+            </navigator>
+            <navigator bindtap="goEdit" class="mb2 relative ovh pdb2">
+                <image class="icon-label left" src="../../../images/ic_label.png"></image>
+                <view class="left">
+                    <text class="font32 fontb">标签</text>
+                    <view class="col9 mt1">
+                        <text class="tips" style="background:{{obj.lebelColor}};color:#fff" wx:if="{{obj.lebelContent}}" wx:for="{{customUserLabel}}" wx:for-item="obj">{{obj.lebelContent}}</text>
+                    </view>
+                    <image class="right icon middle absolute arr-icon" src="../../../images/ic_right_grey.png"></image>
+                </view>
+            </navigator>
+        </view>
+    </view>
+    <view class="mb2 pd2_3 bgf font32">
+        <image class="icon40 mr1 middle" src="../../../images/time.png"></image>
+    提醒时间
+    <form bindsubmit="saveTime" reportSubmit="true">
+            <button class="colr middle right ml2 save-btn" formType="submit" wx:if="{{isEditTime}}">保存</button>
+            <image class="right icon middle" src="../../../images/ic_right_grey.png" style="margin-top:8rpx" wx:else></image>
+            <picker bindchange="timerChange" bindcolumnchange="timerColumnChange" bindconfirm="timeSubmit" class="right mr1 tright" mode="multiSelector" range="{{multiArray}}" style="width: 300rpx;">
+        {{timeStr}}
+      </picker>
+        </form>
+    </view>
+    <view class="bgf font32 ovh pd2_3 bdb">
+        <image class="icon40 middle left mr1" src="../../../images/ic_share.png"></image>
+        <view class="left">共享范围</view>
+        <image class="right icon middle mt" src="../../../images/ic_right_grey.png"></image>
+        <picker bindchange="bindScopeChange" class="right mr1" range="{{scope}}" value="{{scopeIndex}}">
+      {{scopeIndex?scope[scopeIndex]:shareName}}
+    </picker>
+    </view>
+    <view class="line100 pd2_3 bgf col9">
+        <view class="mt2 mb4">
+            <view class="tips tips3 blue2-tips">姓名</view>
+      {{customerInfo.customName?customerInfo.customName:'无'}}
+      <view bindtap="addInfo" class="tips tips3 blue3-tips right" data-name="1">点击复制</view>
+        </view>
+        <view class="mb4">
+            <view class="tips tips3 blue2-tips">电话</view>{{customerInfo.customPhone?customerInfo.customPhone:'无'}}
+      <view bindtap="playPhone" class="tips tips3 blue3-tips right">点击复制</view>
+        </view>
+        <view class="mb4" wx:for="{{customInfoDetails}}">
+            <view class="tips tips3 blue2-tips">{{item.name}}</view>{{item.value}}
+      <view bindtap="addInfo" class="tips tips3 blue3-tips right" data-name="3">点击复制</view>
+        </view>
+    </view>
+    <view class="height150"></view>
+    <view class="fixed-bottom pdb2 center">
+        <block wx:if="{{scopeIndex==0}}">
+            <button bindtap="editNote" class="btn btn2 info-btn">拜访记录</button>
+            <button bindtap="playPhone" class="btn info-btn" style="margin-left:20rpx">电话呼叫</button>
+        </block>
+        <block wx:else>
+            <button bindtap="editNote" class="btn btn2 info-btn2">拜访记录</button>
+            <button bindtap="getMyCustomer" class="btn info-btn2" style="margin:0 20rpx">抢为独占</button>
+            <button bindtap="playPhone" class="btn btn2 info-btn2">电话呼叫</button>
+        </block>
+    </view>
+</view>

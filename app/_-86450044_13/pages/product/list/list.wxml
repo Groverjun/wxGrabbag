@@ -1,0 +1,57 @@
+<import src="../../../components/component.wxml"></import>
+<view class="container set-container">
+    <view class="nav">
+        <view class="mt2 mb3" wx:if="{{goodsList.length>0}}">
+            <template is="commoditylist" data="{{goodsList:goodsList,imgHead:imgHead}}"></template>
+        </view>
+        <view class="center col9 mt3" wx:else>
+            <image class="empty-image" src="../../../images/product-empty.png"></image>
+            <view class="mt1">您还没有添加任何产品哦</view>
+        </view>
+    </view>
+    <view class="height150"></view>
+    <view class="bgf center fixed-bottom bdt">
+        <view class="flex-wrp bdb">
+            <view bindtap="switchCardBox" class="flex-item pdtb2">
+                <image class="icon icon40 mb1" src="../../../images/ic_module.png"></image>
+                <view>展示方式</view>
+            </view>
+            <navigator appId="{{appId}}" class="mr2 flex-item pdtb2" hoverClass="none" openType="navigate" path="pages/product/index/index?userId={{userId}}&teamId={{teamId}}" target="miniProgram">
+                <image class="icon icon40 mb1" src="../../../images/ic_eye_red.png"></image>
+                <view>展示预览</view>
+            </navigator>
+            <view bindtap="goClassify" class="flex-item pdtb2">
+                <image class="icon icon40 mb1" src="../../../images/classify_icon.png"></image>
+                <view>分类管理</view>
+            </view>
+            <view bindtap="goGoodsEdit" class="flex-item pdtb2">
+                <image class="icon icon40 mb1" src="../../../images/ic_addmanager.png"></image>
+                <view>添加商品</view>
+            </view>
+        </view>
+    </view>
+    <view class="bgf" wx:if="{{showFlag}}">
+        <view class="mask"></view>
+        <view class="fixed-bottom bgf center">
+            <view class="line80 font28 pdlr2">
+                <image class="icon icon30 mr1 ml25" src="../../../images/ic_module.png"></image>
+        展示方式<text bindtap="switchCardBox" class="col9 right">取消</text>
+            </view>
+            <view class="pd3 ovh mb1">
+                <view bindtap="checkType" class="type-list {{showType==1?'hover':''}}" data-type="1">
+                    <image class="icon200 pd2" src="../../../images/ic_menu.png" wx:if="{{showType==1}}"></image>
+                    <image class="icon200 pd2" src="../../../images/ic_menu2.png" wx:else></image>
+                    <view class="mt1">双图列表</view>
+                </view>
+                <view bindtap="checkType" class="type-list {{showType==2?'hover':''}}" data-type="2">
+                    <image class="icon200 pd2" src="../../../images/ic_list.png" wx:if="{{showType==2}}"></image>
+                    <image class="icon200 pd2" src="../../../images/ic_list2.png" wx:else></image>
+                    <view class="mt1">大图横排</view>
+                </view>
+            </view>
+            <view class="mb2">
+                <button bindtap="saveType" class="btn">保存</button>
+            </view>
+        </view>
+    </view>
+</view>

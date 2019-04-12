@@ -1,0 +1,90 @@
+.slide-image {
+    width: 100%;
+}
+
+.share-fi {
+    background: transparent;
+    line-height: 30rpx;
+    font-size: 26rpx;
+    display: inline-block;
+}
+
+.pro-name {
+    padding-right: 90rpx;
+}
+
+.share-fi2 {
+    position: absolute;
+    right: -15rpx;
+    top: 0;
+}
+
+.consultation-btn {
+    border-radius: 0;
+    height: 115rpx;
+    line-height: 115rpx;
+    margin: 0;
+}
+
+.consultation-width {
+    width: 440rpx;
+}
+
+.reset-btn {
+    text-align: center;
+    line-height: 25rpx;
+}
+
+.share-fi1 {
+    padding: 0 30rpx;
+}
+
+.consult-btn,.add-btn {
+    width: 250rpx;
+    height: 90rpx;
+    margin: 12rpx 0;
+    float: left;
+    border-radius: 0;
+    padding: 0 30rpx;
+    font-weight: bold;
+    line-height: 90rpx;
+}
+
+.add-btn {
+    background: linear-gradient(135deg,rgba(255,167,69,1),rgba(255,134,0,1));
+    border-radius: 39px 0px 0px 39px;
+}
+
+.consult-btn {
+    border-radius: 0 39px 39px 0;
+    margin-right: 32rpx;
+}
+
+.user-icon {
+    top: 10px;
+    right: 30rpx;
+}
+
+.cart-icon {
+    top: 10px;
+    right: 120rpx;
+}
+
+.detail-bdt {
+    border-top: 1px solid #f8f8f8;
+}
+
+.box1 {
+    height: 104rpx;
+    line-height: 104rpx;
+}
+
+.mes-num {
+    position: absolute;
+    background: #E51C23;
+    text-align: center;
+    right: 103rpx;
+    top: 4rpx;
+    line-height: 40rpx;
+    z-index: 999;
+}

@@ -1,0 +1,8 @@
+.slide-image {
+    width: 100%;
+    height: 400rpx;
+}
+
+.video-wrap {
+    width: 100%;
+}

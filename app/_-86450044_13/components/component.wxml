@@ -1,0 +1,98 @@
+<template name="bussList">
+    <navigator class="bds bgf ovh pd2 mg2 br10" url="/pages/aiAnalysis/details/details?user_Id={{item.user_Id}}" wx:for="{{list}}">
+        <view class="ovh flex-wrp mb4 relative">
+            <image class="icon100 br_half" src="{{item.user_head_img}}"></image>
+            <view class="ml2 mes-box mt1 flex-item relative">
+                <view class="font34 mt2">{{item.user_name}}<text class="tips blue-tips ml1" wx:if="{{item.logTimes==1}}">新客</text>
+                    <text class="right  fontb font24 {{index<3?index==0?'red':index==1?'yellow':'green':'col9'}}">NO {{index+1}}</text>
+                </view>
+                <view class="col9 font28 beyond2 width100">总计与你互动<text class="red">{{item.total_see}}</text>次，预计成交率达<text class="red">{{item.turnover}}</text>%，尽快抓住商机
+        </view>
+                <navigator class="mess-icon mess-icon2" url="/pages/message/leavMess/index?userId={{item.user_Id}}&userHead={{item.user_head_img}}">
+                    <image class="icon40 mt2" src="../../../images/message-icon.png"></image>
+                </navigator>
+            </view>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">打开留言</text>
+            <progress active activeColor="#26C6DA" borderRadius="10" class="pro-wrap left mt2" percent="{{item.mesPer}}"></progress>
+            <text class="left mt ml1">{{item.mesPer}}%</text>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">查看名片</text>
+            <progress active activeColor="#745AF2" borderRadius="10" class="pro-wrap left mt2" percent="{{item.cardPer}}"></progress>
+            <text class="left mt ml1">{{item.cardPer}}%</text>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">查看产品</text>
+            <progress active activeColor="#FC4B6C" borderRadius="10" class="pro-wrap left mt2" percent="{{item.proPer}}"></progress>
+            <text class="left mt ml1">{{item.proPer}}%</text>
+        </view>
+        <view class="col9 ovh mb1">
+            <text class="left mr3 mt">查看公司</text>
+            <progress active activeColor="#FFB22B" borderRadius="10" class="pro-wrap left mt2" percent="{{item.offPer}}"></progress>
+            <text class="left mt ml1">{{item.offPer}}%</text>
+        </view>
+    </navigator>
+    <view class="center col9" wx:if="{{list.length==0}}">暂时没有相关访问记录哦</view>
+</template>
+<template name="ailist">
+    <navigator class="bds flex-wrp bgf ovh pd2 mg2 br10" url="/pages/aiAnalysis/details/details?user_Id={{item.fromId}}" wx:for="{{list}}">
+        <image class="icon100 br_half" src="{{item.headUrl}}"></image>
+        <view class="ml2 mes-box flex-item relative">
+            <view class="font34">
+                <view class="beyond middle user-name wd400">{{item.userName}}</view>
+                <text class="tips blue-tips line30 font24 ml1" wx:if="{{item.isNew}}">新客</text>
+                <text class="right col9 font24" wx:if="{{tabIndex==0}}">{{item.createTime}}</text>
+                <text class="right  fontb font24 {{index<3?index==0?'red':index==1?'yellow':'green':'col9'}}" wx:else>NO {{index+1}}</text>
+            </view>
+            <view class="col9 font28 beyond2 width100">{{tabIndex==0?'正在':''}}<text class="blue">{{item.logType==12||item.logType==13?item.logType==12?'评论':'点赞':item.logType==5?'打开':'查看'}}</text>
+                <block wx:if="{{item.logType==1||item.logType==2}}">你的<text class="blue">{{item.logType==1?'名片':'产品'}}</text>{{tabIndex==0?'第':'总计'}}
+        <text class="red">{{item.productTime!=null?item.productTime/1:item.logTimes/1}}</text>次，{{item.logType==1?'成交在望':'尽快把握商机'}}</block>
+                <block wx:elif="{{item.logType==11||item.logType==12||item.logType==13||item.logType==14}}">你发布的<text class="blue">{{item.logContent==null||item.logContent==''?'动态':'文章·'}}</text>
+                    <view class="blue disib" wx:if="{{item.logContent!=null&&item.logContent!=''}}">
+                        <text class="beyond wd180 middle mb1">{{item.logContent}}</text>
+                    </view>
+                    <block wx:if="{{item.logType==11||item.logType==14}}">第<text class="red">{{item.logTimes}}次</text>
+                    </block>
+        ,合作意向强烈
+      </block>
+                <block wx:elif="{{item.logType==3||item.logType==4}}">
+        你{{tabIndex==1&&childIndex==1?'':'发布'}}的<text class="blue">{{item.logType==3?tabIndex==1&&childIndex==1?'产品':item.logContent:tabIndex==1&&childIndex==2?'公司':'官网'}}</text>{{tabIndex==0?'第':'总计'}}<text class="red">{{tabIndex==1&&childIndex==1?item.productTime:item.logTimes}}</text>次，{{item.logType==3?'离成交更近一步':'合作意向强烈'}}</block>
+                <block wx:else>与你<text class="blue">留言</text>的窗口{{tabIndex==0?'第':'总计'}}<text class="red">{{item.logTimes}}</text>次，即抓住商机洽谈合作</block>
+            </view>
+            <view bindtap="goLeavmess" class="mess-icon" data-fid="{{item.fromId}}" data-head="{{item.headUrl}}" url="/pages/message/leavMess/index?userId={{item.fromId}}&userHead={{item.headUrl}}">
+                <image class="icon40" src="../../../images/message-icon.png"></image>
+            </view>
+        </view>
+    </navigator>
+    <view class="center col9" wx:if="{{list.length==0}}">暂时没有相关访问记录哦</view>
+</template>
+<template name="commoditylist">
+    <view class="mb100">
+        <view catchtap="goInfo" data-goodsid="{{item.productId}}" wx:for="{{goodsList}}" wx:key="goodsList">
+            <view data-id="{{item.productId}}">
+                <view class="pdtb2 bdb bgf ovh">
+                    <image class="left ml2 small-head" src="{{imgHead}}{{item.productPic}}"></image>
+                    <view class="ovh pdl2">
+                        <view class="mr2">{{item.productName}}</view>
+                        <view class="ovh mt1">
+                            <view class="font30 red fontb mb1">￥{{item.productPrice/100}}</view>
+                            <view class="col9">添加于{{item.createTime}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="bgf pdtb2 ovh center flex-wrp bgf mb2">
+                    <view catchtap="delGoods" class="left flex-item" data-goodsid="{{item.productId}}" data-index="{{index}}" data-status="1">
+                        <image class="icon icon40" src="../../../images/ic_delete.png"></image>
+                        <view class="font20 col9">删除</view>
+                    </view>
+                    <view class="left flex-item">
+                        <image class="icon icon40" src="../../../images/ic_found.png"></image>
+                        <view class="font20 col9">编辑</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

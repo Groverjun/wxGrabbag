@@ -1,0 +1,41 @@
+.arr-icon {
+    right: 0;
+    top: 20rpx;
+}
+
+.info-btn {
+    display: inline-block;
+    width: 45%;
+}
+
+.info-btn2 {
+    display: inline-block;
+    width: 30%;
+}
+
+.customer-height {
+    height: 140rpx;
+}
+
+.icon-record,.icon-label {
+    width: 55rpx;
+    height: 55rpx;
+    margin: 10rpx 30rpx 0 0;
+}
+
+.icon-call {
+    width: 40rpx;
+    height: 52rpx;
+    margin: 30rpx 20rpx 0;
+}
+
+.save-btn {
+    background: #fff;
+    line-height: 48rpx;
+    border: none;
+    font-size: 32rpx;
+}
+
+.save-btn::after {
+    border: none;
+}

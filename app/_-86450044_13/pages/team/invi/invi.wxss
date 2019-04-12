@@ -1,0 +1,13 @@
+.pull-icon {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+page {
+    background: #fff;
+}
+
+.btn-list button {
+    width: 30%;
+    float: right;
+}

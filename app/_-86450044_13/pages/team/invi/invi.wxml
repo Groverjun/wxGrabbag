@@ -1,0 +1,51 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}"></template>
+<view class="container">
+    <view class="bgf pdt mb2">
+        <view class="center fontb font32 mb2">hello,{{userName}}邀请你加入以下团队</view>
+        <view class="bd pd2 mg2 br10 mb100">
+            <view class="ovh">
+                <image class="small-head left mr1" src="{{info.teamIcon?imgHead+info.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+                <view class="left">
+                    <view class="fontb font36">{{info.teamName}}</view>
+                    <view class="col9 mt1">{{info.tradeTypeName}}</view>
+                </view>
+            </view>
+            <view class="col9 center mt2">欲望以提升热忱,毅力以磨平高山···</view>
+        </view>
+        <view class="pdb10" wx:if="{{!isShow}}">
+            <button bindtap="addTeam" class="btn">立即加入该企业团队</button>
+            <button bindtap="goCreat" class="btn btn2">{{isOld?'我的团队':'创建我的企业团队'}}</button>
+        </view>
+        <block wx:if="{{isShow}}">
+            <view class="col9 pd2 bdb">
+          企业产品简介
+        </view>
+            <view class="relative pdb10" wx:for="{{list}}">
+                <view id="details">
+                    <view class="bgf pd2" data-id="{{index}}" wx:if="{{item.type==1}}">{{item.value}}</view>
+                    <image bindtap="chooseImg" class="pd2 detail-img" data-id="{{index}}" mode="widthFix" src="{{item.value}}" wx:if="{{item.type==2}}"></image>
+                    <view class="mlr2 mt3 detail-line" wx:if="{{item.type==3}}"></view>
+                </view>
+            </view>
+            <view class="pd2" wx:if="{{list.length==0}}">这么棒的企业，居然还没有简介！</view>
+            <view class="fixed-bottom  mb3 btn-list">
+                <button bindtap="addTeam" class="btn" style="margin-right:20rpx">加入团队</button>
+                <button bindtap="goCreat" class="btn btn2" style="margin-right:30rpx">{{isOld?'我的团队':'创建企业团队'}}</button>
+            </view>
+        </block>
+        <block wx:else></block>
+    </view>
+    <view wx:if="{{showLogin}}">
+        <view class="mask"></view>
+        <view class="pop bgf col font36 login-pop">
+            <view class="center line80 mt1">授权提示</view>
+            <view class="pd2 col8">
+        登录小程序，需获取你的部分信息
+      </view>
+            <view class="auth-btn mt2">
+                <button bindgetuserinfo="getAuth" class="right green" openType="getUserInfo" size="20">允许</button>
+            </view>
+        </view>
+    </view>
+</view>

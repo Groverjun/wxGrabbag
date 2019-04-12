@@ -1,0 +1,40 @@
+<view class="container bgf" style="padding-bottom:100rpx;">
+    <view class="bgf pdt mb2">
+        <view class="bds pd2 mg2">
+            <view class="ovh">
+                <image class="small-head left mr1" src="{{info.teamIcon?imgHead+info.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+                <view class="left">
+                    <view class="fontb font36">{{info.teamName?info.teamName:'公司信息未填写'}}</view>
+                    <view class="col9 mt1">{{info.tradeTypeName?info.tradeTypeName:'行业信息未填写'}}</view>
+                </view>
+            </view>
+            <navigator class="center mt2 line70 font30 col9">
+                <image class="icon small_icon mr2" src="../../../images/ic_notice.png"></image>
+                <text class="col9 center mt2">欲望以提升热忱,毅力以磨平高山···</text>
+            </navigator>
+        </view>
+    </view>
+    <view class="col9 pd2 bdb">
+    企业产品简介
+    <image bindtap="goDetail" class="right small-icon" src="../../../images/ic_edit.png" wx:if="{{hadAuth}}"></image>
+    </view>
+    <view class="relative" id="details" wx:for="{{list}}">
+        <view class="bgf pd2" data-id="{{index}}" wx:if="{{item.type==1}}">{{item.value}}</view>
+        <image bindtap="chooseImg" class="detail-img" data-id="{{index}}" mode="widthFix" src="{{item.value}}" wx:if="{{item.type==2}}"></image>
+        <view class="mlr2 mt3 detail-line" wx:if="{{item.type==3}}"></view>
+        <swiper class="swiper" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true" wx:if="{{item.type==4}}">
+            <swiper-item wx:for="{{item.value}}" wx:for-index="idx">
+                <view class="img-wrap">
+                    <image class="slide-image" src="{{item}}" style="width:100%"></image>
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+    <block wx:if="{{list.length==0}}">
+        <navigator class="bg center mg2 col9 box" url="/pages/my/details/index?page=1" wx:if="{{hasAuth}}">
+            <image class="icon add-img" src="../../../images/ic_add_gray.png"></image>
+            <view>添加企业简介，让客户更懂你</view>
+        </navigator>
+        <view class="pd2" wx:else>这么棒的企业，居然还没有简介！</view>
+    </block>
+</view>

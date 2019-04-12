@@ -1,0 +1,132 @@
+<import src="../../../components/component.wxml"></import>
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}" wx:if="{{!isLogin}}"></template>
+<view class="container">
+    <view class="bgf pd2 mb2" wx:if="{{cardType==1}}">
+        <view class="card-bg relative bds" style="background:#fff">
+            <view class="left">
+                <view class="mt2 font36 fontb mb1 mt7 col3 beyond wd280">{{userInfo.userName}}</view>
+                <view class="col8 font20 mb3">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</view>
+                <view class="mb1 font24">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                <view class="mb1 font24">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+                <view class="mb1 font24">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+            </view>
+            <view class="right relative ">
+                <image class="head-bg" src="../../../images/head-bg.png"></image>
+                <image class="user-headbg br20 absolute" src="{{userInfo.userHeadImg}}"></image>
+            </view>
+            <view class="card-btm">{{userInfo.teamName?userInfo.teamName:'公司信息未填写'}}</view>
+        </view>
+        <template is="indexComm" data="{{userInfo:userInfo,isMyself:isMyself,appId:appId,myTeamId:myTeamId,watchList:watchList,cardType:cardType}}"></template>
+    </view>
+    <view class="pd2 bgf mb2" wx:elif="{{cardType==2}}">
+        <view class="card-bg relative card-bg-small bds">
+            <view class="tleft relative mt2 ovh tright">
+                <image class="small-head left mt2 mr2 ml2" src="{{userInfo.userHeadImg}}"></image>
+                <view class="left ">
+                    <view class="mb2">
+                        <view class="font32 wd280 beyond disib middle mr2">{{userInfo.userName}}</view>
+                        <text class="disib middle">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</text>
+                    </view>
+                    <view class="mb1">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                    <view class="mb1">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                    <view class="mb1">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+                </view>
+            </view>
+            <view class="mt5">
+          {{userInfo.teamName?userInfo.teamName:'公司信息未填写'}} >{{userInfo.typeName?userInfo.typeName:'行业信息未填写'}}
+        </view>
+        </view>
+        <template is="indexComm" data="{{userInfo:userInfo,isMyself:isMyself,appId:appId,myTeamId:myTeamId,watchList:watchList,cardType:cardType}}"></template>
+    </view>
+    <view class="bgf mb2 pd2" wx:elif="{{cardType==3}}">
+        <view class="card-bg2 bds mb2 relative br40" style="border-radius:40rpx;">
+            <view class="card-top ovh">
+                <image class="icon120 br_half left mt7 mr3 ml7" src="{{userInfo.userHeadImg}}"></image>
+                <view class="mt7 left">
+                    <view class="font36 mt2 mb1 wd400 beyond disib middle">{{userInfo.userName}}</view>
+                    <view>({{userInfo.userPosition?userInfo.userPosition:'职位未填写'}})</view>
+                </view>
+            </view>
+            <view class="card-bottom col3 font22 line30">
+                <view class="mb1">电话：{{userInfo.userPhone?userInfo.userPhone:'未填写'}} <text class="ml2"> 邮箱：{{userInfo.userEmail?userInfo.userEmail:'未填写'}}</text>
+                </view>
+                <view>{{userInfo.teamName?userInfo.teamName:'公司信息未填写'}} >{{userInfo.typeName?userInfo.typeName:'行业信息未填写'}}</view>
+            </view>
+        </view>
+        <template is="indexComm" data="{{userInfo:userInfo,isMyself:isMyself,appId:appId,myTeamId:myTeamId,watchList:watchList,cardType:cardType}}"></template>
+    </view>
+    <view class="bds mg2 bgf mb2 relative br20" wx:elif="{{cardType==4}}">
+        <view class="slide-image relative">
+            <image class="width100 head-img" mode="aspectFill" src="{{userInfo.userHeadImg}}"></image>
+        </view>
+        <view class="font20 pd3 relative">
+            <view>
+                <text class="font30 mr1 fontb beyond wd400 middle">{{userInfo.userName}}</text>
+                <text class="middle mt1 disib">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</text>
+            </view>
+            <view class="col9 fontb mt1">{{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+        </view>
+        <template is="indexComm" data="{{userInfo:userInfo,isMyself:isMyself,appId:appId,myTeamId:myTeamId,watchList:watchList,cardType:cardType}}"></template>
+    </view>
+    <view class="col9 bgf">
+        <text class="card-info font24 colf center disib line40">名片详情</text>
+    </view>
+    <view class="pd2_3 bgf col9 mb2">
+        <form bindsubmit="setBord" class="pd2 mb2 ovh block" data-id="1" reportSubmit="true">
+            <view class="tips tips3 blue2-tips">姓名</view>
+            <view class="beyond wd400 ml1 middle">{{userInfo.userName}}</view>
+            <button class="tips tips3 blue3-tips right" formType="submit">点击复制</button>
+        </form>
+        <form bindsubmit="setBord" class="pd2 mb2 ovh block" data-id="3" reportSubmit="true">
+            <view class="tips tips3 blue2-tips">微信</view>
+            <view class="beyond wd400 ml1 middle">{{userInfo.wechatNumber}}</view>
+            <button class="tips tips3 blue3-tips right" formType="submit">点击复制</button>
+        </form>
+        <form bindsubmit="callPhone" class="pd2 mb2 block" reportSubmit="true">
+            <view class="tips tips3 blue2-tips">电话</view>
+          {{userInfo.userPhone?userInfo.userPhone:'未填写'}}
+          <button class="tips tips3 blue3-tips right" formType="submit">点击拨打</button>
+        </form>
+        <form bindsubmit="setBord" class="pd2 mb2 block" data-id="2" reportSubmit="true">
+            <view class="tips tips3 blue2-tips">邮箱</view>
+          {{userInfo.userEmail?userInfo.userEmail:'未填写'}}
+          <button class="tips tips3 blue3-tips right" formType="submit" wx:if="{{userInfo.userEmail}}">点击复制</button>
+        </form>
+        <form bindsubmit="setBord" class="pd2 mb2 bdb block" data-id="3" reportSubmit="true" style="padding-bottom:40rpx">
+            <view class="tips tips3 blue2-tips">公司</view>
+          {{userInfo.teamName?userInfo.teamName:'公司信息未填写'}}
+          <button class="tips tips3 blue3-tips right" formType="submit" wx:if="{{userInfo.teamName}}">点击复制</button>
+        </form>
+        <form bindsubmit="creatContact" class="center pdb2" reportSubmit="true">
+            <button class="btn btn2 mb2 syn-btn" formType="submit">同步到手机通讯录</button>
+        </form>
+    </view>
+    <view class="col9 bgf pdb2" wx:if="{{userInfo.summary.text||userInfo.summary.mp3}}">
+        <text class="card-desc font24 colf center disib line40">我的简介</text>
+    </view>
+    <view class="bgf line60 font28 mb2" wx:if="{{userInfo.summary.text||userInfo.summary.mp3}}">
+        <view class="pd2 line40">
+            {{userInfo.summary.text!=''?userInfo.summary.text:'无'}}
+            <view class="ovh mt2" wx:if="{{userInfo.summary.mp3&&userInfo.summary.mp3!=''}}">
+                <image bindtap="audioPlay" class="icon90 left mr2" src="{{isPlay?'../../../images/plays.gif':'../../../images/voice.png'}}"></image>
+                <view class="left col9">
+                我的语音介绍
+                <slider bindchange="slider2change" class="voice-slider" max="{{count}}" min="0.0" showValue="true" step="1" value="{{nowSec}}"></slider>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="col9 pdb2 bgf" wx:if="{{userInfo.pics&&userInfo.pics.length>0}}">
+        <text class="card-photo font24 colf center disib line40">我的照片</text>
+    </view>
+    <view class="bgf ovh line60 font28 mb2" wx:if="{{userInfo.pics}}">
+        <image class="left mr2 width100" mode="widthFix" src="{{imgHead+item.value}}" wx:for="{{userInfo.pics}}"></image>
+    </view>
+    <form bindsubmit="goBack" class="back-icon fixed" reportSubmit="true">
+        <button class="reset-btn" formType="submit">
+            <image class="back-icon" src="../../../images/list-icon.png"></image>
+        </button>
+    </form>
+    <template is="leavMess" data="{{nums:nums,hasTrueNum:hasTrueNum}}" wx:if="{{!isMyself}}"></template>
+</view>

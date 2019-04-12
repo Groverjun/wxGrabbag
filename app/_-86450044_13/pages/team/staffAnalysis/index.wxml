@@ -1,0 +1,153 @@
+<view class="container">
+    <view class="bgf pd3">
+        <view class="ovh mb4 relative pdb6 bdb">
+            <image class="icon100 br_half left mt2" src="{{user_head_img}}"></image>
+            <view class="ml2 mes-box mt1 left">
+                <view class="font34 mb1 beyond wd400">{{user_name}}
+        </view>
+                <view class="col9 font28 beyond2 width100 detail-text">
+           独占客户<text class="red">{{userData.totalUser}}</text>人，今日已跟进<text class="red">{{userData.today_follow}}人</text>，未跟进<text class="red">{{userData.totalUser-userData.today_follow}}</text>
+                </view>
+            </view>
+            <view class="right tright canvas-wrap relative">
+                <canvas canvasId="ringCanvas" class="canvas" style="width:157rpx;height:160rpx"></canvas>
+                <view class="blue fontb font28">勤奋指数</view>
+            </view>
+        </view>
+    </view>
+    <view class="bgf pdlr3">
+        <view class="center font30">业绩统计</view>
+        <scroll-view class="data-list mt2" scrollLeft="{{scrollLeft}}" scrollX="true">
+            <text bindtap="switchMonth" class="pdlr2 disb {{nowIndex==index?'col3':'col9'}}" data-index="{{index}}" wx:for="{{monthList}}">{{item}}</text>
+        </scroll-view>
+        <view class="bdb mb2">
+            <view class="relative" style="height:225px;top:-50rpx">
+                <canvas bindtouchstart="touchHandler" canvasId="pieCanvas" class="canvas2" style="width:{{windowWidth-15}}px;height:280px"></canvas>
+            </view>
+            <view class="center col8 fontb pdb2 ">本月目标{{userData.glob}}元</view>
+        </view>
+    </view>
+    <view class="bgf pd3 bdb">
+        <view class="center font30 mb2">工作分析</view>
+        <view class="col8 ovh center flex-wrp mb2">
+            <view bindtap="goList" class="ana-box" data-type="7" url="/pages/customer/list/index?type=7">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data1.png"></image>
+                        <text class="yellow font28 data-text absolute">{{userData.today_add}}人</text>
+                        <view class="font24">今日新增</view>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="goList" class="relative ana-box" data-type="4" url="">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data3.png"></image>
+                        <text class="purple font28 data-text absolute">{{userData.today_follow}}人</text>
+                        <view class="font24">今日跟进</view>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="goList" class="relative ana-box" data-type="5" url="/pages/customer/list/index?type=5">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data2.png"></image>
+                        <text class="pink font28 data-text absolute">{{userData.totalUser-userData.today_follow}}人</text>
+                        <view class="font24">今日未跟进</view>
+                    </view>
+                </view>
+            </view>
+            <view class="flex-item relative">
+                <view class="absolute tright" style="right:20rpx;top:-122rpx">
+                    <canvas canvasId="todayAdd" style="width:157rpx;height:160rpx"></canvas>
+                    <text class="font24 col8 mr2">跟进率</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bgf pd3 bdb mb2">
+        <view class="center font30 mb2">业绩分析</view>
+        <view class="relative" style="height:150rpx">
+            <view class="left">
+                <view class="col9 ovh mb1">
+                    <text class="left mr3 mt">今日成交</text>
+                    <progress active borderRadius="10" class="pro-wrap2 left mt2" percent="{{userData.glob>0?userData.day_totalMoney/userData.glob*100:0}}"></progress>
+                    <text class="left mt ml1 yellow">{{dayMoney}}</text>
+                </view>
+                <view class="col9 ovh mb1">
+                    <text class="left mr3 mt">本周成交</text>
+                    <progress active activeColor="#745AF2" borderRadius="10" class="pro-wrap2 left mt2" percent="{{userData.glob>0?userData.week_totalMoney/userData.glob*100:0}}"></progress>
+                    <text class="left mt ml1 purple">{{weekMoney}}</text>
+                </view>
+                <view class="col9 ovh mb1">
+                    <text class="left mr3 mt">本月成交</text>
+                    <progress active activeColor="#FC4B6C" borderRadius="10" class="pro-wrap2 left mt2" percent="{{userData.glob>0?userData.month_totalMoney/userData.glob*100:0}}"></progress>
+                    <text class="left mt ml1 pink">{{monthMoney}}</text>
+                </view>
+            </view>
+            <view class="absolute tright" style="right:20rpx;top:-40rpx">
+                <view>
+                    <canvas canvasId="completeData" class="disib" style="width:157rpx;height:158rpx"></canvas>
+                </view>
+                <text class="font24 col8 mr2">完成率</text>
+            </view>
+        </view>
+    </view>
+    <view class="bgf pd3 bdb mb2">
+        <view class="center font30 mb4">推广分析</view>
+        <view class="col8 ovh center flex-wrp mb2">
+            <view class="ana-box">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data1.png"></image>
+                        <text class="yellow font28 data-text absolute">{{spreadData[0]}}人</text>
+                        <view class="font24">浏览量</view>
+                    </view>
+                </view>
+            </view>
+            <view class="ana-box">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data3.png"></image>
+                        <text class="purple font28 data-text absolute">{{spreadData[1]}}人</text>
+                        <view class="font24">点击靠谱</view>
+                    </view>
+                </view>
+            </view>
+            <view class="ana-box">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data2.png"></image>
+                        <text class="pink font28 data-text absolute">{{spreadData[2]}}次</text>
+                        <view class="font24">被保存</view>
+                    </view>
+                </view>
+            </view>
+            <view class="ana-box">
+                <view class="relative">
+                    <view class="disb">
+                        <image class="icon100" src="../../../images/data4.png"></image>
+                        <text class="pink font28 data-text absolute">{{spreadData[3]}}次</text>
+                        <view class="font24">被分享</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bgf pd3 bdb" wx:if="{{list.length>0}}">
+        <view class="center font30 mb2">智能追踪</view>
+        <view class="pd2 pdb10" wx:for="{{list}}">
+            <view class="mb2 relative">
+                <view class="left col9 time-box font20">{{item.dayj}}</view>
+                <text class="dot left middle {{index==0?'current':''}}"></text>
+                <text class="line" wx:if="{{index!=list.length-1}}"></text>
+                <view class="content">
+          已跟进客户<text class="red">{{item.has_follow}}</text>人；
+          未跟进<text class="red">{{item.has_nofollow}}</text>人；
+          今日成交<text class="red">{{item.success_money}}</text>元；
+        </view>
+            </view>
+            <view class="col9 center" wx:if="{{followList.length==0}}">暂无跟进记录</view>
+        </view>
+    </view>
+</view>

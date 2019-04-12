@@ -1,0 +1,25 @@
+<view class="container dis-container">
+    <form bindsubmit="saveDetails" class="mb100">
+        <view class="detail-list relative" wx:for="{{list}}">
+            <view id="details">
+                <image bindtap="chooseImg" class="pd2 detail-img" data-id="{{index}}" mode="widthFix" src="{{item.value}}"></image>
+            </view>
+            <view class="bg font20 absolute detail-fun">
+                <button bindtap="delModel" class="left details-btn" data-id="{{index}}">
+                    <image class="icon icon20" src="../../../images/ic_delete.png"></image>
+          删除
+        </button>
+                <button bindtap="moveModel" class="left details-btn" data-id="{{index}}" wx:if="{{index!=0}}">
+                    <image class="icon icon20" src="../../../images/move.png"></image>
+          上移
+        </button>
+            </view>
+        </view>
+        <button class="btn fixed-bottom" formType="submit">保存</button>
+    </form>
+    <button bindtap="chooseImg" class="font30 red line65 addrange-btn">
+        <image class="icon30 mt1" src="../../../images/plus.png"></image>
+    添加照片
+  </button>
+    <view class="height100"></view>
+</view>

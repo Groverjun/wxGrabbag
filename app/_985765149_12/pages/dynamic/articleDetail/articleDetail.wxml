@@ -1,0 +1,86 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}" wx:if="{{!isLogin}}"></template>
+<view class="container addgoods-container">
+    <view class="pd2">
+        <view class="ovh">
+            <view class="mb3 font40 fontb">{{info.dynamicsTitle}}</view>
+            <view class="font24 mb5">
+                <text class="blue3 mr3">{{info.teamName}}</text>
+                <text class="col8 font24">{{info.createTime}}</text>
+                <button bindtap="onShareAppMessage" class="right font24 reset-btn blue3" openType="share">转发</button>
+            </view>
+            <view wx:for="{{info.dynamicsDetail}}">
+                <view class="bgf pd2" data-id="{{index}}" wx:if="{{item.type==1}}">{{item.value}}</view>
+                <image bindtap="chooseImg" class="detail-img" data-id="{{index}}" mode="widthFix" src="{{imgHead+item.value}}" wx:if="{{item.type==2}}"></image>
+                <view class="mlr2 mb5 mt5 detail-line" wx:if="{{item.type==3}}"></view>
+                <swiper class="swiper" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true" style="height:{{screenheight}}px" wx:if="{{item.type==4}}">
+                    <swiper-item wx:for="{{item.value}}" wx:for-index="idx">
+                        <view class="img-wrap">
+                            <image class="slide-image" src="{{imgHead+item}}" style="height:{{screenheight}}px"></image>
+                        </view>
+                    </swiper-item>
+                </swiper>
+            </view>
+        </view>
+        <view class="bg br6" wx:if="{{info.nameList.length>0||info.comments.length>0}}">
+            <view class="pd1_2 font30 blue3 bdb" wx:if="{{info.nameList&&info.nameList.length>0}}">
+                <image class="icon40 mr1 middle" src="../../../images/ic_zan2.png"></image>
+                <block wx:for="{{info.nameList}}" wx:for-index="idx" wx:for-item="obj">{{obj}}<block wx:if="{{idx+1!=info.nameList.length&&info.nameList.length>1}}">，</block>
+                </block>
+            </view>
+            <view class="ovh">
+                <view class="ovh">
+                    <view class="ovh pd2" wx:if="{{info.comments.length>0}}">
+                        <view class="left">
+                            <view class="ovh">
+                                <view class="{{idx+1==item.comments.length?'':'mb'}}" wx:for="{{info.comments}}" wx:for-index="idx" wx:for-item="obj">
+                                    <text class="blue3 mb">{{obj.userName}}：</text>
+                                    <text class="font30">{{obj.commentDetail}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="fixed nav font24">
+        <view bindtap="checkShowNav" class="bgf nav-box font20" wx:if="{{!showNav}}">
+            <image class="icon35 mt2" src="../../../images/arr-top.png"></image>
+            <view>导航</view>
+        </view>
+        <view class="bgf center nav-open-box" wx:if="{{showNav}}">
+            <form bindsubmit="goPage" data-type="1" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav1.png"></image>
+                    <view class="mb2">名片夹</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="2" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav2.png"></image>
+                    <view class="mb2">名片</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="3" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav3.png"></image>
+                    <view class="mb2">产品</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="5" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav5.png"></image>
+                    <view class="mb2">动态</view>
+                </button>
+            </form>
+            <form bindsubmit="goPage" data-type="4" reportSubmit="true">
+                <button class="reset-btn" formType="submit">
+                    <image class="icon35 mt1" src="../../../images/nav4.png"></image>
+                    <view class="mb2">官网</view>
+                </button>
+            </form>
+            <image bindtap="checkShowNav" class="icon40 mt2" src="../../../images/nav-close.png"></image>
+        </view>
+    </view>
+</view>

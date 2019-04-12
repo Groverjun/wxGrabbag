@@ -1,0 +1,23 @@
+.pull-icon {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+page {
+    background: #fff;
+}
+
+.btn-list button {
+    width: 37%;
+    float: right;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.share-btn,.getnums {
+    background: transparent;
+    padding: 0;
+    line-height: inherit;
+}

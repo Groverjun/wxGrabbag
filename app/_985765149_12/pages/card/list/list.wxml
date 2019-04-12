@@ -1,0 +1,105 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}" wx:if="{{!isLogin}}"></template>
+<view class="container">
+    <view class="font24 relative pd2">
+        <view class="card-bg mb2" style="background:#fff" wx:if="{{myCard&&!myCard.userPhone&&isLogin}}">
+            <view class="center relative mt1 ovh">
+                <view>
+                    <image class="icon120 mt2" src="../../../images/smile.png"></image>
+                </view>
+                <view class="font32 mt1 col8">您还没有自己的专属名片哦</view>
+            </view>
+            <view class="center mt1">
+                <navigator appId="{{appId}}" class="btn middle" openType="navigate" path="pages/my/editCard/index" style="display:inline-block" target="miniProgram" wx:if="{{userInfo.userPhone==null}}">创建我的名片</navigator>
+            </view>
+        </view>
+        <view bindtap="goDetail" class="mb2 br10" data-id="{{myCard.userId}}" data-tid="{{myCard.currentTeamId}}" wx:if="{{myCard.userPhone}}">
+            <view class="card-bg relative ovh bds" style="background:#fff">
+                <view class="left">
+                    <view>
+                        <text class="col9 tips">我的名片</text>
+                    </view>
+                    <view class="mt2 font36 fontb mb1 mt3 col3 wd280 beyond">{{myCard.userName}}</view>
+                    <view class="col8 font20 mb3">{{myCard.userPosition?myCard.userPosition:'职位未填写'}}</view>
+                    <view class="mb1 font24">电话 {{myCard.userPhone?myCard.userPhone:'未填写'}}</view>
+                    <view class="mb1 font24">邮箱 {{myCard.userEmail?myCard.userEmail:'未填写'}}</view>
+                    <view class="mb1 font24">微信 {{myCard.wechatNumber?myCard.wechatNumber:'未填写'}}</view>
+                </view>
+                <view class="right relative">
+                    <image class="head-bg" src="../../../images/head-bg.png"></image>
+                    <image class="user-headbg br20 absolute" src="{{myCard.userHeadImg}}"></image>
+                </view>
+                <view class="card-btm">{{myCard.teamName?myCard.teamName:'公司信息未填写'}}</view>
+            </view>
+        </view>
+        <view class="v-canvas">
+            <canvas canvasId="canvas_wi" class="myCanvas" style="{{canvas_style}}"></canvas>
+        </view>
+        <form bindsubmit="updateFromId" class="pd2 mb2 bgf col8 block br10 bds" reportSubmit="true" style="height:40rpx">
+            <text class="left mr2">消息推送剩余数量</text>
+            <view class="left colf relative">
+                <image class="icon-electric disib" src="../../../images/electric.png"></image>
+                <text class="absolute mes-count fontb font28">
+                    <block wx:if="{{messageCount>99}}">99+</block>
+                    <block wx:else>{{messageCount/1}}</block>
+                </text>
+            </view>
+            <button class="reset-btn right" formType="submit" hoverClass="icon-green">
+                <image class="icon icon40 right" src="../../../images/add-green.png"></image>
+            </button>
+        </form>
+        <block wx:if="{{item.userName!=null}}" wx:for="{{list}}">
+            <button bindtap="goDetail" class="reset-btn" data-id="{{item.userId}}" data-tid="{{item.currentTeamId}}" wx:if="{{hasTrueNum}}">
+                <view class="mb2 col9">{{item.createTime}} 收入</view>
+                <view class="card-bg relative ovh bds mb2" style="background:#fff">
+                    <text class="leav-num leav-num2" wx:if="{{item.messageCount>0}}">{{item.messageCount}}</text>
+                    <view class="left">
+                        <view class="mt2 font36 fontb mb1 mt4 col3 wd280 beyond">{{item.userName}}</view>
+                        <view class="col8 font20 mb3">{{item.userPosition?item.userPosition:'职位未填写'}}</view>
+                        <view class="mb1">电话 {{item.userPhone?item.userPhone:'未填写'}}</view>
+                        <view class="mb1">邮箱 {{item.userEmail?item.userEmail:'未填写'}}</view>
+                        <view class="mb1">微信 {{item.wechatNumber?item.wechatNumber:'未填写'}}</view>
+                    </view>
+                    <view class="right relative ">
+                        <image class="head-bg" src="../../../images/head-bg.png"></image>
+                        <image class="user-headbg br20 absolute" src="{{item.userHeadImg}}"></image>
+                    </view>
+                    <view class="card-btm">{{item.teamName?item.teamName:'公司信息未填写'}}</view>
+                </view>
+            </button>
+            <button bindgetphonenumber="goDetail" class="reset-btn" data-id="{{item.userId}}" data-tid="{{item.currentTeamId}}" openType="getPhoneNumber" wx:else>
+                <view class="mb2 col9">{{item.createTime}} 收入</view>
+                <view class="card-bg relative ovh bds mb2" style="background:#fff">
+                    <text class="leav-num leav-num2" wx:if="{{item.messageCount>0}}">{{item.messageCount}}</text>
+                    <view class="left">
+                        <view class="mt2 font36 fontb mb1 mt4 col3 wd280 beyond">{{item.userName}}</view>
+                        <view class="col8 font20 mb3">{{item.userPosition?item.userPosition:'职位未填写'}}</view>
+                        <view class="mb1 font24">电话 {{item.userPhone?item.userPhone:'未填写'}}</view>
+                        <view class="mb1 font24">邮箱 {{item.userEmail?item.userEmail:'未填写'}}</view>
+                        <view class="mb1 font24">微信 {{item.wechatNumber?item.wechatNumber:'未填写'}}</view>
+                    </view>
+                    <view class="right relative ">
+                        <image class="head-bg" src="../../../images/head-bg.png"></image>
+                        <image class="user-headbg br20 absolute" src="{{item.userHeadImg}}"></image>
+                    </view>
+                    <view class="card-btm">{{item.teamName?item.teamName:'公司信息未填写'}}</view>
+                </view>
+            </button>
+        </block>
+        <view class="card-bg3" wx:if="{{defaultCard&&(myCard.userPhone==null||myCard.userPhone=='')&&list.length==0}}">
+            <view bindtap="goDetail" class="tleft relative mt2 ovh tright" data-id="{{defaultCard.userId}}" data-tid="{{defaultCard.currentTeamId}}">
+                <image class="br_half left icon140 mr2 ml2" src="{{defaultCard.userHeadImg}}"></image>
+                <view class="left ">
+                    <view class="mb2">
+                        <text class="font32">{{defaultCard.userName}}</text> {{defaultCard.userPosition?defaultCard.userPosition:'未填写'}}
+          </view>
+                    <view class="mb1">电话 {{defaultCard.userPhone}}</view>
+                    <view>邮箱 {{defaultCard.userEmail?defaultCard.userEmail:'未填写'}}
+          </view>
+                </view>
+                <image class="icon40 absolute code-icon" src="../../../images/ic_wechat_code.png"></image>
+            </view>
+            <view class="mt5">{{defaultCard.teamName!=null?defaultCard.teamName:'公司未填写'}} > {{defaultCard.typeName!=null?defaultCard.typeName:'行业未填写'}}</view>
+        </view>
+    </view>
+</view>

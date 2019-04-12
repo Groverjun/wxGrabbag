@@ -1,0 +1,46 @@
+.dot {
+    width: 10rpx;
+    height: 10rpx;
+    text-align: center;
+    line-height: 10rpx;
+    display: inline-block;
+    background: #D6D6D6;
+    border-radius: 50%;
+    margin-top: 20rpx;
+    margin-left: 7rpx;
+}
+
+.dot.current {
+    width: 20rpx;
+    height: 20rpx;
+    background: #E51C23;
+    margin-left: -6rpx;
+    border: 10rpx solid #f7babd;
+    margin-top: 5rpx;
+}
+
+.add-btn {
+    background: #E51C23;
+    color: #fff;
+}
+
+.line {
+    border-left: 1rpx solid #D6D6D6;
+    position: absolute;
+    height: 100%;
+    top: 35rpx;
+    left: 93rpx;
+    display: inline-block;
+}
+
+.time-box {
+    display: inline-block;
+    width: 58rpx;
+    margin-right: 25rpx;
+    text-align: center;
+}
+
+.content {
+    padding-left: 120rpx;
+    min-height: 60rpx;
+}

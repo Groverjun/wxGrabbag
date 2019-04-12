@@ -1,0 +1,28 @@
+<view class="container font32">
+    <form bindsubmit="writeLogMethod" reportSubmit="true">
+        <view bindtap="goList" class="pd2 bgf mb2 bdb ovh">
+            <view class="left">拜访对象</view>
+            <image class="right icon middle" hidden="{{editTag==1}}" src="../../../images/ic_right_grey.png"></image>
+            <text class="right tright col9">{{relationName?relationName:'请选择'}}</text>
+        </view>
+        <picker bindchange="bindTradeChange" class="pd2 bgf mb2 bdb ovh" range="{{trade}}" value="{{tradeIndex}}">
+            <view class="left">拜访方式</view>
+            <view class="right tright">
+                <text class="{{tradeIndex?'':'col9'}}">{{tradeIndex?trade[tradeIndex]:'请选择'}}</text>
+                <image class="icon middle" src="../../../images/ic_right_grey.png"></image>
+            </view>
+        </picker>
+        <picker bindchange="timerChange" bindcolumnchange="timerColumnChange" class="pd2 bgf mb2 bdb ovh" mode="multiSelector" range="{{multiArray}}">
+            <view class="left">提醒时间</view>
+            <view class="right tright">
+                <text class="{{tradeIndex?'':'col9'}}">{{timeVal}}</text>
+                <image class="icon middle" src="../../../images/ic_right_grey.png"></image>
+            </view>
+        </picker>
+        <view class="pd2 bgf mb2 bdb ovh">
+            <view class="mb1">跟进结果/备注</view>
+            <textarea bindinput="bindTextAreaBlur" class="note-input" placeholder="选填"></textarea>
+        </view>
+        <button class="btn" formType="submit" style="margin-top:80rpx">提交</button>
+    </form>
+</view>

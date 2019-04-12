@@ -1,0 +1,80 @@
+<view class="container order-container">
+    <view class="bgf font30 center index-tab fixed bdt col8">
+        <view class="line90 flex-wrp" style="flex-direction:row;">
+            <view bindtap="switchStatus" class="flex-item {{currentTab==0?'order-hover':''}}" data-index="0">
+                <text class="mes-num icon40 br_half colf" wx:if="{{orderCount.waittingpay>0}}">{{orderCount.waittingpay}}</text>
+                <text data-index="0" style="height:100%;display:block;">待付款</text>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==1?'order-hover':''}}" data-index="1">
+                <text class="mes-num icon40 br_half colf" wx:if="{{orderCount.waittindelivery>0}}">{{orderCount.waittindelivery}}</text>
+                <text data-index="1">待发货</text>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==2?'order-hover':''}}" data-index="2">
+                <text class="mes-num icon40 br_half colf" wx:if="{{orderCount.waittinget>0}}">{{orderCount.waittinget}}</text>
+                <text data-index="2">已发货</text>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==3?'order-hover':''}}" data-index="3">
+                <text data-index="2">已完成</text>
+            </view>
+            <view bindtap="switchStatus" class="flex-item {{currentTab==4?'order-hover':''}}" data-index="4">
+                <text class="mes-num icon40 br_half colf" wx:if="{{orderCount.waittingrevoke>0}}">{{orderCount.waittingrevoke}}</text>
+                <text>退款/售后</text>
+            </view>
+        </view>
+    </view>
+    <view class="pdt11">
+        <navigator class="font30 br10 order-box bgf mg2" url="/pages/team/orderDetail/orderDetail?id={{item.orderId}}" wx:for="{{list}}">
+            <view class="bgf pd2 bdb line50">
+                <image class="mr1 mb1 mt1 middle icon50 br_half" src="{{item.headUrl}}"></image>
+                <text class="beyond middle disib wd400">{{item.nickName}}</text>
+                <text class="right font26 colr middle mt1">
+                    <block wx:if="{{item.orderState==1}}">等待付款</block>
+                    <block wx:elif="{{item.orderState==40}}">已付款</block>
+                    <block wx:elif="{{item.orderState==50}}">等待接单</block>
+                    <block wx:elif="{{item.orderState==60}}">等待发货</block>
+                    <block wx:elif="{{item.orderState==70||item.orderState==75||item.orderState==80}}">等待用户确认收货</block>
+                    <block wx:elif="{{item.orderState==90}}">等待用户确认收货</block>
+                    <block wx:elif="{{item.orderState==500||item.orderState==600||item.orderState==610}}">已完成</block>
+                    <block wx:elif="{{item.orderState==700}}">已撤销</block>
+                    <block wx:elif="{{item.orderState==850}}">退款中</block>
+                    <block wx:elif="{{item.orderState==900}}">已退款</block>
+                </text>
+            </view>
+            <view class="mb2 mt2 pdlr3">
+                <image class="icon120 mr2 bdr6" src="{{imgHead+item.goodsPic[0]}}" wx:if="{{index<4}}" wx:for="{{item.itmes}}"></image>
+                <view class="right mt2 line85" wx:if="{{item.itmes.length>0}}">
+          {{item.shows.length>4?'...':''}}
+        </view>
+            </view>
+            <view class="pd2 line50 col38 ovh bdb">
+                <text class="time col8 font24">{{item.orderGct}}</text>
+                <view class="font30 right">
+                    <text class="mr2">共{{item.itmes.length}}件商品</text>
+                    <block wx:if="{{item.orderState==1}}">应付：
+            <text>¥{{item.orderTotalAmount/100}}</text>
+                    </block>
+                    <block wx:else>实付：
+            <text>¥{{item.orderPayAmount/100}}</text>
+                    </block>
+                </view>
+            </view>
+            <view class="pd2 ovh">
+                <text class="beyond disib wd400 mt1">@{{item.sellerName}}</text>
+                <block wx:if="{{currentTab==4}}">
+                    <view class="right" wx:if="{{item.orderState==850}}">
+                        <button catchtap="agreeReturn" class="right order-btn btn" data-id="{{item.orderId}}" data-index="{{index}}">同意退款</button>
+                    </view>
+                </block>
+                <view class="right" wx:else>
+                    <button catchtap="confirmDeliver" class="right order-btn btn" data-id="{{item.orderId}}" data-index="{{index}}" wx:if="{{item.orderState<=70&&item.orderState>1}}">确认发货</button>
+                </view>
+            </view>
+        </navigator>
+    </view>
+    <view class="center">
+        <view class="center col9 line80" wx:if="{{list.length==0}}">暂时没有更多订单哦</view>
+        <block wx:else>
+            <view class="center col9 line80 mb3" wx:if="{{!isloading&&list.length>3}}">没有更多订单哦</view>
+        </block>
+    </view>
+</view>

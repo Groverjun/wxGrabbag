@@ -1,0 +1,63 @@
+<view class="container">
+    <view class="width100 relative">
+        <view class="center product-head">
+            <image class="product-head" src="../../../images/product.png"></image>
+            <view class="absolute per-text">
+                <image class="personuser-icon" src="{{userInfo.avatarUrl}}"></image>
+                <view class="font34 colf">{{userInfo.nickName}}</view>
+            </view>
+        </view>
+        <view class="bgf absolute mg2 bds br10 head-box ovh">
+            <view class="line100 pd4 font30 bdb">
+                <view bindtap="goOrderlist" class="bgf classify-box" style="line-height:44rpx;">
+                    <view class="left col38 fontb font30">我的订单</view>
+                    <image class="icon right middle icon30 mt1 ml1" src="../../../images/arr.png"></image>
+                    <view class="col9 right font24">查看全部</view>
+                </view>
+            </view>
+            <view class="font24 col8 user_order">
+                <view class="flex-wrp center pd4">
+                    <view class="flex-item5">
+                        <view bindtap="goOrder" data-index="0">
+                            <image class="icon icon50" src="../../../images/nopay.png"></image>
+                            <view class="mt2">待付款</view>
+                            <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittingpay!=0}}">{{waittingpay>99?99:waittingpay}}</text>
+                        </view>
+                    </view>
+                    <view class="flex-item5">
+                        <view bindtap="goOrder" data-index="1">
+                            <image class="icon icon50" src="../../../images/unship.png"></image>
+                            <view class="mt2">待发货</view>
+                            <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittindelivery!=0}}">{{waittindelivery>99?99:waittindelivery}}</text>
+                        </view>
+                    </view>
+                    <view class="flex-item5">
+                        <view bindtap="goOrder" data-index="2">
+                            <image class="icon icon50" src="../../../images/receiving.png"></image>
+                            <view class="mt2">待收货</view>
+                            <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittinget!=0}}">{{waittinget>99?99:waittinget}}</text>
+                        </view>
+                    </view>
+                    <view class="flex-item5">
+                        <view bindtap="goOrder" data-index="3">
+                            <image class="icon icon50" src="../../../images/alreadydone.png"></image>
+                            <view class="mt2">已完成</view>
+                        </view>
+                    </view>
+                    <view class="flex-item5">
+                        <view bindtap="goOrder" data-index="4">
+                            <image class="icon icon50" src="../../../images/unship.png"></image>
+                            <view class="mt2">退款/售后</view>
+                            <text class="mes-num icon40 font24 br_half colf line40" wx:if="{{waittingrevoke!=0}}">{{waittingrevoke>99?99:waittingrevoke}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view bindtap="goaddresslist" class="bgf classify-box relative per-top pd2" style="line-height:44rpx;">
+            <image class="left icon middle icon30 mt1" src="../../../images/markaddress.png"></image>
+            <view class="font30 left col38 ml1">我的地址</view>
+            <image class="right icon middle icon30 ml1 mt1" src="../../../images/arr.png"></image>
+        </view>
+    </view>
+</view>

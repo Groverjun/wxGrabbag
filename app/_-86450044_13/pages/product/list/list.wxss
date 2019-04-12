@@ -1,0 +1,39 @@
+.nav {
+    width: 100%;
+}
+
+.default {
+    text-align: center;
+    margin-left: 160rpx;
+    padding-bottom: 20rpx;
+}
+
+.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.redd {
+    color: #de5d49;
+}
+
+.type-list {
+    width: 50%;
+    float: left;
+}
+
+.type-list image {
+    border: 1px dashed #fff;
+}
+
+.type-list.hover image {
+    border: 1px dashed #BCBBBC;
+}
+
+.empty-image {
+    width: 360rpx;
+    height: 360rpx;
+}

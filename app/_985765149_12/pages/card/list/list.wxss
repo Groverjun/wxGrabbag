@@ -1,0 +1,48 @@
+.code-icon {
+    right: 0rpx;
+    top: 0;
+}
+
+.icon-electric {
+    width: 112rpx;
+    height: 40rpx;
+}
+
+.mes-count {
+    right: 40rpx;
+    width: 45rpx;
+    text-align: center;
+}
+
+.v-canvas {
+    position: fixed;
+    right: 0px;
+    top: 120px;
+    width: 70px;
+    background-color: transparent;
+    z-index: 999；;
+}
+
+.myCanvas {
+    background-color: transparent;
+    width: 70px;
+    height: 70px;
+}
+
+.reset-btn .icon {
+    background-image: url("http://imgd.mfoyou.com/wechat/crm/add-gray.png");
+}
+
+.icon-green view.icon {
+    background-image: url("http://imgd.mfoyou.com/wechat/crm/add-green.png");
+}
+
+.btn {
+    background: linear-gradient(90deg,rgba(102,212,245,1),rgba(0,183,238,1));
+    box-shadow: 0px 2px 7px 0px rgba(184,184,184,0.35);
+}
+
+.tips {
+    border: 1px solid #B8B8B8;
+    border-radius: 25rpx;
+}

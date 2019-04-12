@@ -1,0 +1,10 @@
+textarea {
+    width: 88%;
+}
+
+.green-btn {
+    padding: 25rpx 100rpx;
+    border: 1px solid #09bb07;
+    display: inline-block;
+    border-radius: 50rpx;
+}

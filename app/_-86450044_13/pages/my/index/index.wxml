@@ -1,0 +1,168 @@
+<view class="container">
+    <view class="pdt pdb1 {{cardType!=4?'bgf mb2':''}}">
+        <navigator appId="{{appId}}" class="card-bg relative mg2 bds br20" openType="navigate" path="pages/card/index/index?userId={{userInfo.userId}}&teamId={{teamId}}" style="background:#fff" target="miniProgram" wx:if="{{cardType==1}}">
+            <image catchtap="switchCardBox" class="absolute theme-icon" src="../../../images/icon-theme.png"></image>
+            <view class="left">
+                <view class="mt2 font36 fontb mb1 mt7 col3 wd280 beyond">{{userInfo.userName}}</view>
+                <view class="col8 font20 mb3">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</view>
+                <view class="mb1 font24">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                <view class="mb1 font24">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                <view class="mb1 font24">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+            </view>
+            <view class="right relative ">
+                <image class="head-bg" src="../../../images/head-bg.png"></image>
+                <image class="user-headbg br20 absolute" src="{{userHead}}"></image>
+            </view>
+            <view class="card-btm">{{userInfo.teamName?userInfo.teamName:'公司信息未填写'}}</view>
+        </navigator>
+        <navigator appId="{{appId}}" class="card-bg relative card-bg-small mg2 bds br20" openType="navigate" path="pages/card/index/index?userId={{userInfo.userId}}&teamId={{teamId}}" target="miniProgram" wx:elif="{{cardType==2}}">
+            <image catchtap="switchCardBox" class="absolute theme-icon" src="../../../images/icon-theme.png"></image>
+            <view class="tleft relative mt2 ovh tright">
+                <image class="small-head left mt2 mr2 ml2" src="{{userHead}}"></image>
+                <view class="left ">
+                    <view class="mb2">
+                        <view class="font32 wd280 beyond disib middle mr2">{{userInfo.userName}}</view>
+                        <text class="disib middle">{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</text>
+                    </view>
+                    <view class="mb1">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                    <view class="mb1">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                    <view class="mb1">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+                </view>
+            </view>
+            <view class="mt5">
+        {{userInfo.teamName?userInfo.teamName:'公司信息未填写'}} >{{userInfo.typeName?userInfo.typeName:'行业信息未填写'}}
+      </view>
+        </navigator>
+        <navigator appId="{{appId}}" class="card-bg2 bds mg2 bgf mb2 relative" openType="navigate" path="pages/card/index/index?userId={{userInfo.userId}}&teamId={{teamId}}" style="border-radius:40rpx;" target="miniProgram" wx:elif="{{cardType==3}}">
+            <image catchtap="switchCardBox" class="absolute theme-icon" src="../../../images/icon-theme.png"></image>
+            <view class="card-top ovh">
+                <image class="icon120 br_half left mt7 mr3 ml7" src="{{userHead}}"></image>
+                <view class="mt7 left">
+                    <view class="font36 mt2 mb1 wd400 beyond disib middle">{{userInfo.userName}}</view>
+                    <view>({{userInfo.userPosition?userInfo.userPosition:'职位未填写'}})</view>
+                </view>
+            </view>
+            <view class="card-bottom col3 font22 line30">
+                <view class="mb1">电话 {{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+                <view class="mb1">邮箱 {{userInfo.userEmail?userInfo.userEmail:'未填写'}}</view>
+                <view class="mb1">微信 {{userInfo.wechatNumber?userInfo.wechatNumber:'未填写'}}</view>
+                <view>{{userInfo.teamName?userInfo.teamName:'公司信息未填写'}} >{{userInfo.typeName?userInfo.typeName:'行业信息未填写'}}</view>
+            </view>
+        </navigator>
+        <view class="bds mg2 bgf mb2 relative br20" wx:elif="{{cardType==4}}">
+            <image catchtap="switchCardBox" class="absolute theme-icon" src="../../../images/icon-theme.png"></image>
+            <view class="slide-image relative">
+                <navigator appId="{{appId}}" openType="navigate" path="pages/card/index/index?userId={{userInfo.userId}}&teamId={{teamId}}" target="miniProgram">
+                    <image class="slide-image" mode="aspectFill" src="{{userHead}}"></image>
+                </navigator>
+            </view>
+            <view class="font20 pd2_3 relative bdb mb2">
+                <view>
+                    <text class="font30 mr1 fontb">{{userInfo.userName}}</text>{{userInfo.userPosition?userInfo.userPosition:'职位未填写'}}</view>
+                <view class="col9 fontb mt1">{{userInfo.userPhone?userInfo.userPhone:'未填写'}}</view>
+            </view>
+            <view class="pdlr5 bgf ovh">
+                <view class="left line30 beyond mt1" style="width:125px" wx:if="{{watchList.length>0}}">
+                    <image class="icon40 mr1 br6" src="{{item.user_head_img}}" wx:for="{{watchList}}"></image>
+                    <view class="col9 font22">已有{{userInfo.userWatched}}人浏览</view>
+                </view>
+                <view class="right font22 col8">
+                    <view class="center left mr3">
+                        <image class="icon40" src="../../../images/ic_save.png"></image>
+                        <view class="ml1">保存 {{userInfo.userSaved/1}}</view>
+                    </view>
+                    <view class="center left">
+                        <image class="icon40" src="../../../images/ic_zan.png"></image>
+                        <view class="ml1">靠谱 {{userInfo.thumed/1}}</view>
+                    </view>
+                    <button bindtap="goSend" class="share-btn disib middle">
+                        <image class="icon70 ml25" src="../../../images/share.png"></image>
+                    </button>
+                </view>
+            </view>
+            <view class="pdlr3 center ovh btn-list">
+                <block wx:if="{{userInfo.userPhone}}">
+                    <button catchtap="goEdit" class="btn btn2 disib left">编辑名片</button>
+                    <button bindtap="onShareAppMessage" class="btn disib right" openType="share">发名片</button>
+                </block>
+                <button catchtap="goEdit" class="btn disib" wx:else>创建我的名片</button>
+            </view>
+        </view>
+        <block wx:if="{{cardType!=4}}">
+            <view class="pdlr5 bgf ovh mt4">
+                <view class="left line30 beyond mt1" style="width:125px" wx:if="{{watchList.length>0}}">
+                    <image class="icon40 mr1 br4" src="{{item.user_head_img}}" wx:for="{{watchList}}"></image>
+                    <view class="col9 font22">已有{{userInfo.userWatched}}人浏览</view>
+                </view>
+                <view class="right font22 col8">
+                    <view class="center left mr3">
+                        <image class="icon40" src="../../../images/ic_save.png"></image>
+                        <view class="ml1">保存 {{userInfo.userSaved/1}}</view>
+                    </view>
+                    <view class="center left">
+                        <image class="icon40" src="../../../images/ic_zan.png"></image>
+                        <view class="ml1">靠谱 {{userInfo.thumed/1}}</view>
+                    </view>
+                    <button bindtap="goSend" class="share-btn disib middle">
+                        <image class="icon70 ml25" src="../../../images/share.png"></image>
+                    </button>
+                </view>
+            </view>
+            <view class="pdlr3 center ovh btn-list">
+                <block wx:if="{{userInfo.userPhone}}">
+                    <button catchtap="goEdit" class="btn btn2 disib left">编辑名片</button>
+                    <button bindtap="onShareAppMessage" class="btn disib right" openType="share">发名片</button>
+                </block>
+                <button catchtap="goEdit" class="btn disib" wx:else>创建我的名片</button>
+            </view>
+        </block>
+    </view>
+    <navigator appId="{{appId}}" class="line90 bgf pdl2 ovh bdb mb2" openType="navigate" path="pages/card/list/list?userId={{userInfo.userId}}&teamId={{teamId}}" target="miniProgram" url="">
+        <image class="icon40 middle" src="../../../images/ic_card.png"></image>
+        <text class="font32 ml2">我的名片夹</text>
+        <view class="right col9">
+      共{{userInfo.cardCount}}张名片
+      <image class="icon icon40 mr2" src="../../../images/ic_right_grey.png"></image>
+        </view>
+    </navigator>
+    <view bindtap="myPhone" class="line90 bgf pdl2 ovh bdb" data-id="1">
+        <image class="icon40 middle" src="../../../images/ic_hezuo.png"></image>
+        <text class="font32 ml2">我要合作</text>
+        <view class="right">
+            <image class="icon icon40 mr2" src="../../../images/ic_right_grey.png"></image>
+        </view>
+    </view>
+    <view bindtap="callPhone" class="line90 bgf pdl2 ovh" data-id="2">
+        <image class="icon40 middle" src="../../../images/ic_phone.png"></image>
+        <text class="font32 ml2">我的客服</text>
+        <view class="right">
+            <image class="icon icon40 mr2" src="../../../images/ic_right_grey.png"></image>
+        </view>
+    </view>
+    <view class="height100"></view>
+    <view class="bgf" wx:if="{{showCardType}}">
+        <view class="mask"></view>
+        <view class="fixed-bottom bgf">
+            <view class="line80 font28 pdlr2 center">
+                <image class="icon icon30 mr1" src="../../../images/theme.png"></image>更换主题<text bindtap="switchCardBox" class="col9 right">取消</text>
+            </view>
+            <scroll-view class="pdlr3 scroll-view_H" scrollX="true" style="height:270rpx;">
+                <view bindtap="checkCardType" class="scroll-view-item_H {{cardType==1?'hover':''}}" data-type="1">
+                    <image class="card-img1" src="../../../images/card-img1.jpg"></image>
+                </view>
+                <view bindtap="checkCardType" class="scroll-view-item_H {{cardType==2?'hover':''}}" data-type="2">
+                    <image class="card-img2 scroll-view-item_H" src="../../../images/card-img2.jpg"></image>
+                </view>
+                <view bindtap="checkCardType" class="scroll-view-item_H {{cardType==3?'hover':''}}" data-type="3">
+                    <image class="card-img3 scroll-view-item_H" src="../../../images/card-img3.jpg"></image>
+                </view>
+                <view bindtap="checkCardType" class="scroll-view-item_H {{cardType==4?'hover':''}}" data-type="4">
+                    <image class="card-img4 scroll-view-item_H" src="../../../images/card-img4.jpg"></image>
+                </view>
+            </scroll-view>
+            <view class="mb2">
+                <button bindtap="saveType" class="btn">保存</button>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,103 @@
+<view class="container">
+    <scroll-view scrollY bindscrolltoupper="upperLoad" scrollTop="{{sTop}}" style="height:{{height}}">
+        <view class="leave-wrap pd2">
+            <block wx:for="{{list}}">
+                <view class="ovh mb4" wx:if="{{item.messageContent.type==1}}">
+                    <navigator openType="switchTab" url="/pages/my/index/index">
+                        <image class="icon120 br_half right" src="{{memHead}}"></image>
+                    </navigator>
+                    <view class="bgf pd3 right mess-box mr4">
+            {{item.messageContent.text}}
+            <view class="mt2 mb3">您还可以：</view>
+                        <navigator appId="{{appId}}" class="btn btn2 mb2 center" openType="navigate" path="pages/card/index/index?userId={{memId}}" target="miniProgram">
+                            <image class="icon40 middle mr1 mb1" src="../../../images/menu-card.png"></image> 查看我的名片</navigator>
+                        <navigator appId="{{appId}}" class="btn btn2 mb2 center" openType="navigate" path="pages/product/index/index?userId={{memId}}" target="miniProgram">
+                            <image class="icon40 middle mr1 mb1" src="../../../images/menu-product.png"></image>查看我的产品</navigator>
+                        <navigator appId="{{appId}}" class="btn btn2 mb2 center" openType="navigate" path="pages/network/index/index?userId={{memId}}" target="miniProgram">
+                            <image class="icon40 middle mr1 mb1" src="../../../images/menu-net.png"></image>查看我的官网</navigator>
+                    </view>
+                </view>
+                <view class="ovh mb4" wx:if="{{item.messageContent.type==2}}">
+                    <navigator openType="switchTab" url="/pages/my/index/index">
+                        <image class="icon120 br_half right" src="{{memHead}}"></image>
+                    </navigator>
+                    <view class="bgf pd3 right product-box mr4">
+                        <image class="icon100 br_half left mr2" src="{{imgHead+item.messageContent.productPic}}"></image>
+                        <view class="right product-tit">
+              {{item.messageContent.productName}}
+              <view class="red mt1 font24 fontb">￥{{item.messageContent.productPrice/100}}</view>
+                        </view>
+                    </view>
+                </view>
+                <block wx:if="{{item.messageContent.type==3}}">
+                    <block wx:if="{{userId==item.messageTo}}">
+                        <view class="center col9 line50" wx:if="{{item.createTime!=null}}">{{item.createTime}}</view>
+                        <view class="ovh pdb4 relative mb2">
+                            <navigator openType="switchTab" url="/pages/my/index/index">
+                                <image class="icon120 br_half right" src="{{memHead}}"></image>
+                            </navigator>
+                            <view class="bgf mt3 pd3 right mess-box mess-box2 mr4 font28">
+                  {{item.messageContent.text}}
+                </view>
+                            <view class="tright col9 msg-state">{{item.messageState==0?'未读':'已读'}}</view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="center col9 line50" wx:if="{{item.createTime!=null}}">{{item.createTime}}</view>
+                        <view class="ovh pdb4 relative mb2">
+                            <navigator appId="{{appId}}" openType="navigate" path="pages/card/index/index?userId={{userId}}" target="miniProgram">
+                                <image class="icon120 br_half left mr4" src="{{userHead}}"></image>
+                            </navigator>
+                            <view class="bgf pd3 left mess-box mess-box3  font28">
+                  {{item.messageContent.text}}
+                </view>
+                        </view>
+                    </block>
+                </block>
+            </block>
+        </view>
+    </scroll-view>
+    <view class="fixed-bottom bgf">
+        <view>
+            <view class="leav-btn pd2 bdb">
+                <button bindtap="callPhone">拨打电话</button>
+                <button bindtap="copyPhone">微信电话</button>
+                <button bindtap="hskEdit">话术库</button>
+            </view>
+            <view class="leav-btn pd2 bdb hs {{showOrHidden?'show':'hidden'}}">
+                <scroll-view>
+                    <view wx:for="{{hsMessages}}">
+                        <view class="hsMessage">
+                            <view class="messages">
+                                <view bindtap="sysMessage" class="message" data-text="{{item.message}}">{{item.message}}
+                  </view>
+                            </view>
+                            <view class="imgs">
+                                <image bindtap="editHS" data-id="{{item.id}}" data-text="{{item.message}}" src="../../../images/edit.png"></image>
+                                <image bindtap="delHS" data-id="{{item.id}}" src="../../../images/del_icon.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+                <view bindtap="addHS" class="addHS">新增话术</view>
+            </view>
+            <view bindtap="hideModal" catchtouchmove="preventTouchMove" class="modal-mask" wx:if="{{showModal}}"></view>
+            <view class="modal-dialog" wx:if="{{showModal}}">
+                <view class="modal-title">添加话术</view>
+                <view class="modal-content">
+                    <view class="modal-input">
+                        <textarea bindinput="hsMsgBlur" maxlength="500" value="{{hsMsg}}"></textarea>
+                    </view>
+                </view>
+                <view class="modal-footer">
+                    <view bindtap="onCancel" class="btn-cancel" data-status="cancel">取消</view>
+                    <view bindtap="onConfirm" class="btn-confirm" data-status="confirm">确定</view>
+                </view>
+            </view>
+            <form bindsubmit="formSubmit" reportSubmit="true">
+                <input bindinput="inputMessage" class="leav-iput left" name="messageInput" placeholder="可以直接留言和我对话哦" value="{{msg}}"></input>
+                <button class="btn right leav-send" formType="submit">发送</button>
+            </form>
+        </view>
+    </view>
+</view>

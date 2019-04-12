@@ -1,0 +1,92 @@
+<view class="container">
+    <view class="bgf">
+        <view class="pd2 bdb">
+            <text class="col9 font24">当前团队共{{myTeam.length}}人</text>
+            <block wx:if="{{isOwner}}">
+                <view bindtap="switchManager" class="right" wx:if="{{!isEdit}}">管理</view>
+                <view bindtap="endManger" class="right  colr" wx:else>完成</view>
+            </block>
+            <view bindtap="editTeam" class="right" wx:else>...</view>
+        </view>
+        <view class="bgf">
+            <view bindtap="goMemberInfo" class="ovh pd2 bdb" data-index="{{index}}" wx:for="{{myTeam}}">
+                <image class="icon50 left mr2 mt2" src="../../../images/no-manager.png" wx:if="{{index==0}}"></image>
+                <image class="icon50 left mr2 mt2" src="../../../images/no1.png" wx:elif="{{index==1}}"></image>
+                <image class="icon50 left mr2 mt2" src="../../../images/no2.png" wx:elif="{{index==2}}"></image>
+                <image class="icon50 left mr2 mt2" src="../../../images/no3.png" wx:elif="{{index==3}}"></image>
+                <view class="col8 font24 icon50 left mr2 mt2 center" wx:else>{{index+1}}</view>
+                <image class="user-head left mr1" src="{{item.userHeadImg}}"></image>
+                <view class="left ovh ovhEll" style="width:25%">
+                    <text class="fontb font36">{{item.userName}}</text>
+                    <view class="mt1">{{item.userPosition?item.userPosition:'无职位'}}</view>
+                </view>
+                <view class="right mt2" wx:if="{{isEdit}}">
+                    <image catchtap="delMember" class="small-icon mr5" data-id="{{item.userId}}" data-index="{{index}}" src="../../../images/ic_del.png" wx:if="{{isOwner&&index!=0}}"></image>
+                    <image catchtap="editMember" class="small-icon mr2" data-id="{{item.userId}}" data-index="{{index}}" src="../../../images/ic_edit2.png"></image>
+                </view>
+                <view class="flex-wrp center mt1" wx:else>
+                    <view class="flex-item col9">
+                        <text class="font30 fontb">
+                            <block wx:if="{{item.limitRelation!=null}}">{{item.limitRelation/1}}/</block>{{item.relationCount/1}}</text>
+                        <view>独占数</view>
+                    </view>
+                    <view class="flex-item col9">
+                        <text class="font30 fontb">{{item.userAim2}}</text>
+                        <view>月目标</view>
+                    </view>
+                    <view class="flex-item">
+                        <text class="font30 fontb">{{item.per}}%</text>
+                        <view class="col9">完成率</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="height100"></view>
+    <block wx:if="{{isOwner}}">
+        <block wx:if="{{!isEdit}}">
+            <button bindtap="onShareAppMessage" class="fixed-bottom btn line90 font32 fontb center bgf" openType="share" wx:if="{{hasAuth}}">邀请团队成员加入</button>
+            <button bindtap="noAuthClick" class="fixed-bottom btn line90 font32 fontb center bgf" wx:else>邀请团队成员加入</button>
+        </block>
+        <button bindtap="dissolutionTeam" class="fixed-bottom btn line90 font32 center bgf col9" wx:else>解散当前团队</button>
+    </block>
+    <view hidden="{{isExit}}">
+        <view bindtap="hideExit" class="mask"></view>
+        <view class="pop bgf pd2">
+            <view class="line70 center font32 mb2">温馨提示</view>
+            <view class="colr mb2">退出团队后独占客户将会转为团队共享并不可恢复</view>
+            <input bindinput="inputExitName" class="bd br10 pd" placeholder="请输入完整的团队名称"></input>
+            <view class="font36 flex-wrp center">
+                <view bindtap="hideExit" class="col9 left flex-item bdr">取消</view>
+                <view bindtap="doExit" class="col right flex-item" data-id="1">确定</view>
+            </view>
+        </view>
+    </view>
+    <view hidden="{{isDissolution}}">
+        <view bindtap="hideDiss" class="mask"></view>
+        <view class="pop bgf pd2">
+            <view class="line70 center font32 mb2">温馨提示</view>
+            <view class="colr mb2">解散后系统将删除所有团队数据并不可恢复</view>
+            <input bindinput="inputExitName" class="bd br10 pd" placeholder="请输入完整的团队名称"></input>
+            <view class="font36 flex-wrp center">
+                <view bindtap="hideDiss" class="col9 left flex-item bdr">取消</view>
+                <view bindtap="doExit" class="col right flex-item" data-id="2">确定</view>
+            </view>
+        </view>
+    </view>
+    <view hidden="{{isEditMoney}}">
+        <view bindtap="hideEdit" class="mask"></view>
+        <view class="pop bgf pd2">
+            <view class="line70 center font32 mb2">本月目标</view>
+            <view class="col9 center mb2">成功就是设定并达成目标</view>
+            <input bindinput="inputTarget" class="bd br10 pd" placeholder="单位/元" type="digit" value="{{moneyTarget}}"></input>
+            <input bindinput="inputMaxMonopoly" class="bd br10 pd" placeholder="最大客户独占数" type="digit" value="{{maxMonopoly}}"></input>
+            <form bindsubmit="doSaveTarget" reportSubmit="true">
+                <view class="font36 flex-wrp center">
+                    <view bindtap="hideEdit" class="col9 left flex-item bdr">取消</view>
+                    <button class="col right flex-item save-btn" data-id="2" formType="submit">保存</button>
+                </view>
+            </form>
+        </view>
+    </view>
+</view>

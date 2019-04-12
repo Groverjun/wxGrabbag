@@ -1,0 +1,110 @@
+<import src="../../../components/login/login.wxml"></import>
+<template is="loginPannel" data="{{...__lgpanel__}}" wx:if="{{!isLogin}}"></template>
+<view class="container">
+    <view class="relative">
+        <image class="product-head" src="../../../images/product.png"></image>
+        <button bindtap="onShareAppMessage" class="absolute share-icon {{userInfo.userType!=0?'':'share-icon2'}}" openType="share">
+            <image class="icon70" src="../../../images/share.png"></image>
+        </button>
+        <view class="mask mask2"></view>
+    </view>
+    <view class="bgf relative mg2 bds pd3 br10 head-box ovh {{userInfo.userType!=0?'':'box1'}}">
+        <image class="br_half middle icon100 user-head left" src="{{userInfo.teamIcon!=''?userInfo.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+        <view class="left col35 ml1 mt2 ml4" wx:if="{{userInfo.userType!=0}}">
+            <view class="col35 font28 mb1">{{userInfo.teamName?userInfo.teamName:'暂未创建企业团队'}}</view>
+            <view class="green">
+                <image class="icon left middle icon30 mr1 mb" src="../../../images/enterprise.png"></image>
+                <text class="font24">企业认证</text>
+            </view>
+        </view>
+        <view class="left col35" wx:else>
+            <view class="col35 font28 mb1 ml4">{{userInfo.teamName?userInfo.teamName:'暂未创建企业团队'}}</view>
+        </view>
+        <image src="../../../images/vip.png" style="width: 34px;height: 16px;" wx:if="{{userInfo.vipEndTime}}"></image>
+    </view>
+    <view class="ovh" style="margin-top:-40rpx">
+        <view class="pd1_2 bdb mb3" style="padding-bottom:60rpx" wx:for="{{goodsList}}">
+            <view class="ovh">
+                <image class="icon100 br_half left mr2" src="{{userInfo.teamIcon!=''?userInfo.teamIcon:'../../../images/ic_company_head.png'}}"></image>
+                <view class="left detail-box font30">
+                    <view class="blue3 mt2 mb2 font30">
+						{{userInfo.teamName}}
+						<button bindtap="onShareAppMessage" class="right font24 reset-btn blue3" data-index="{{index}}" openType="share">转发</button>
+                    </view>
+                    <form bindsubmit="goDetail" data-id="{{item.dynamicsId}}" reportSubmit="true" wx:if="{{item.dynamicsTitle}}">
+                        <button class="bgf font30 br10 reset-btn" formType="submit">
+                            <image class="width100 block" src="{{imgHead+item.dynamicsCover}}"></image>
+                            <view class="bg pd2">{{item.dynamicsTitle}}</view>
+                        </button>
+                    </form>
+                    <block wx:else>
+                        <view class="mb2">
+							{{item.dynamicsDetail}}
+						</view>
+                        <view class="mb2 ovh">
+                            <image bindtap="prewImg" class="icon170 left mr2 br4" data-iindex="{{idx}}" data-index="{{index}}" src="{{imgHead+item}}" wx:for="{{item.dynamicsCover}}" wx:for-index="idx"></image>
+                        </view>
+                    </block>
+                    <view class="mt2 mb3 relative">
+                        <text class="mr2 col8 font24">{{item.createTime}}</text>
+                        <text class="blue3"></text>
+                        <view bindtap="goShowComm" class="icon60 disib right tright" data-index="{{index}}">
+                            <image class="icon40 middle " src="../../../images/ic_message2.png"></image>
+                        </view>
+                        <view animation="{{animationData}}" class="comm-bg colf center br6 font24" wx:if="{{item.isShow}}">
+                            <form bindsubmit="goThumbUp" data-index="{{index}}" reportSubmit="true">
+                                <button class="disib reset-btn colf" formType="submit">
+                                    <image class="icon40 middle mr1" src="../../../images/ic_zan3.png"></image>
+                                    <text class="middle">{{item.thumb?'取消':'赞'}}</text>
+                                </button>
+                            </form>
+                            <form bindsubmit="addComment" data-index="{{index}}" reportSubmit="true">
+                                <button class="disib reset-btn colf" formType="submit">
+                                    <image class="icon40 middle ml5 mr1" src="../../../images/ic_message3.png"></image>评论</button>
+                            </form>
+                        </view>
+                    </view>
+                    <view class="bg br6" wx:if="{{item.nameList.length>0||item.comments.length>0}}">
+                        <view class="pd1_2 font30 blue3 ovh {{item.comments.length>0?'borderb':''}}" wx:if="{{item.nameList&&item.nameList.length>0}}">
+                            <view class="thumb-box disib {{item.isOpen?'':'beyond6'}}">
+                                <image class="icon40 mr1 middle" src="../../../images/ic_zan2.png"></image>
+                                <block wx:for="{{item.nameList}}" wx:for-index="idx" wx:for-item="obj">{{obj}}
+									<block wx:if="{{idx+1!=item.nameList.length&&item.nameList.length>1}}">，</block>
+                                </block>
+                            </view>
+                            <view bindtap="switchOpen" class="col3 mt1 line40" data-index="{{index}}" wx:if="{{item.nameList.length>8}}">
+                                <block wx:if="{{!item.isOpen}}">展开
+									<image class="icon20 middle ml1" src="../../../images/arr-btm.png"></image>
+                                </block>
+                                <block wx:else>收起
+									<image class="icon20 middle ml1" src="../../../images/arr-top2.png"></image>
+                                </block>
+                            </view>
+                        </view>
+                        <view class="ovh pd2" wx:if="{{item.comments.length>0}}">
+                            <view class="left">
+                                <view class="ovh">
+                                    <view class="{{idx+1==item.comments.length?'':'mb'}}" wx:for="{{item.comments}}" wx:for-index="idx" wx:for-item="obj">
+                                        <text class="blue3 mb1">{{obj.userName}}：</text>
+                                        <text class="font30">{{obj.commentDetail}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="font24 col9 center" wx:if="{{goodsList.length==0}}">
+            <image class="no-dynamic" src="../../../images/no-dynamic.png"></image>
+            <view>企业还未发布动态哦</view>
+        </view>
+    </view>
+    <view class="height50"></view>
+    <view class="fixed-bottom bgf" hidden="{{hideInput}}">
+        <form bindsubmit="formSubmit" reportSubmit="true">
+            <input bindinput="inputMessage" class="leav-iput left" cursorSpacing="0" focus="{{!hideInput}}" name="messageInput" placeholder="评论" value="{{msg}}"></input>
+            <button class="btn right leav-send" formType="submit">发送</button>
+        </form>
+    </view>
+</view>

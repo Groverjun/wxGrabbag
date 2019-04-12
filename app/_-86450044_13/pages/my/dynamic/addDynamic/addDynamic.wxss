@@ -1,0 +1,17 @@
+textarea {
+    height: 110rpx;
+    width: 98%;
+}
+
+.img-box {
+    float: left;
+    border: 1px solid rgba(233,233,233,1);
+    padding: 56rpx 0;
+    margin-right: 10rpx;
+    width: 31%;
+    margin-bottom: 10rpx;
+}
+
+.img-box:nth-child(3n+3) {
+    margin-right: 0;
+}

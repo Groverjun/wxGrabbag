@@ -1,0 +1,64 @@
+{
+    "pages": [
+        "pages/card/list/list",
+        "pages/product/index/index",
+        "pages/card/index/index",
+        "pages/dynamic/index/index",
+        "pages/product/details/details",
+        "pages/product/carts/carts",
+        "pages/product/orderDetail/orderDetail",
+        "pages/product/personal/personal",
+        "pages/product/orderlist/orderlist",
+        "pages/product/addresslist/addresslist",
+        "pages/product/address/address",
+        "pages/product/settlement/settlement",
+        "pages/card/sendCard/index",
+        "pages/index/leavMess/index",
+        "pages/dynamic/articleDetail/articleDetail",
+        "pages/network/index/index",
+        "pages/product/text/text"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "配配通人工智能名片",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+    },
+    "tabBar": {
+        "color": "#999",
+        "selectedColor": "#de5d48",
+        "backgroundColor": "#fff",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/card/index/index",
+                "text": "名片",
+                "iconPath": "images/menu-card-n.png",
+                "selectedIconPath": "images/menu-card.png"
+            },
+            {
+                "pagePath": "pages/product/index/index",
+                "text": "产品",
+                "iconPath": "images/menu-product-n.png",
+                "selectedIconPath": "images/menu-product.png"
+            },
+            {
+                "pagePath": "pages/dynamic/index/index",
+                "text": "动态",
+                "iconPath": "images/menu-dynamic-n.png",
+                "selectedIconPath": "images/menu-dynamic.png"
+            },
+            {
+                "pagePath": "pages/network/index/index",
+                "text": "官网",
+                "iconPath": "images/menu-net-n.png",
+                "selectedIconPath": "images/menu-net.png"
+            }
+        ],
+        "position": "bottom"
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wx5c78c97ee68dd920"
+    ]
+}

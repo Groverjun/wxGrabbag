@@ -1,0 +1,14 @@
+<template name="loginPannel">
+    <view hidden="{{isHide}}">
+        <view class="mask"></view>
+        <view class="pop bgf col font36 login-pop">
+            <view class="center line80 mt1">授权提示</view>
+            <view class="pd2 col8">
+        登录小程序，需获取你的部分信息
+      </view>
+            <view class="auth-btn mt2">
+                <button bindgetuserinfo="getAuth" class="right green" openType="getUserInfo" size="20">允许</button>
+            </view>
+        </view>
+    </view>
+</template>

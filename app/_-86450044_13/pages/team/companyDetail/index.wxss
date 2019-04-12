@@ -1,0 +1,7 @@
+.box {
+    height: 250rpx;
+}
+
+.add-img {
+    margin-top: 100rpx;
+}

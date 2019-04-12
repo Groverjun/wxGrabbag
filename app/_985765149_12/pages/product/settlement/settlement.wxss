@@ -1,0 +1,67 @@
+.arr-icon {
+    right: 30rpx;
+    bottom: 80rpx;
+}
+
+.diy-radio {
+    width: 34rpx;
+    height: 34rpx;
+    border: 1px solid #F9B069;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.btn-pay {
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.sett-head {
+    padding: 55rpx 30rpx;
+}
+
+.diy-radio.checked {
+    background: url(http://imgd.mfoyou.com/wechat/start/choice.png);
+    background-size: 100%;
+}
+
+.vipBtn {
+    background: #252424;
+    border: none;
+    font-size: 34rpx;
+    color: #F9B069;
+}
+
+.buy-way {
+    border-radius: 30rpx;
+    background: #d33553;
+}
+
+.buy-way .hover {
+    background: #fff;
+    border-radius: 30rpx;
+    color: #EB3B5C;
+    font-weight: bold;
+    font-size: 34rpx;
+}
+
+.placeholder {
+    color: #fff;
+}
+
+.set-ht {
+    height: 140rpx;
+}
+
+.mb60 {
+    margin-bottom: 60rpx;
+}
+
+.address-width {
+    width: 90%;
+}
+
+.add-width {
+    width: 80%;
+}

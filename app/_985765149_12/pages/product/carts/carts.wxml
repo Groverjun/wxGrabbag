@@ -1,0 +1,49 @@
+<view class="container">
+    <view class="center cart-bgf" wx:if="{{cartlength==0}}">
+        <image class="empty-img" src="../../../images/cart_empty.png"></image>
+        <view class="center col9 line100">客官，购物车还是空的哦！快去囤点货吧！</view>
+    </view>
+    <view bindtap="manageGoods" class="tright col35 pdlr3 font30 bgf cart-bdt" style="height:44rpx;line-height: 44rpx;padding-bottom:12rpx;" wx:else>
+        <view wx:if="{{ispay}}">
+            <view class="right col35 font30">管理</view>
+            <image class="icon right mr1 icon30 mt1 ml1 middle" src="../../../images/orderedit.png"></image>
+        </view>
+        <view wx:else>
+            <text class="col51 fontb">完成</text>
+        </view>
+    </view>
+    <view class="pd2 ovh bgf cart-bdt" wx:for="{{classlist}}">
+        <view class="middle left mt4 mr2">
+            <image bindtap="checkGoods" class="icon icon40 mr1 bdr6" data-index="{{index}}" data-type="1" src="../../../images/ordercheck.png" wx:if="{{item.itemSelect}}"></image>
+            <image bindtap="checkGoods" class="icon icon40 mr1" data-index="{{index}}" data-type="1" src="../../../images/uncheck.png" wx:else></image>
+        </view>
+        <image class="icon140 left mr3 br6" src="{{imgHead+item.kekeProduct.productPic[0]}}"></image>
+        <view class="flex">
+            <text class="font30 fontb">{{item.kekeProduct.productName}}</text>
+            <view class="mt4 tright">
+                <text class="left font30 colr">¥{{item.kekeProduct.productPrice/100}}</text>
+                <text bindtap="editNum" class="icon50 disib font12 fontb colg add-car" data-goodsindex="{{index}}" data-id="{{item.cartItmeId}}" data-type="-1">——</text>
+                <text class="add-sum">{{item.itemNumber}}</text>
+                <text bindtap="editNum" class="icon50 disib font40 colg sub-car" data-goodsindex="{{index}}" data-id="{{item.cartItmeId}}" data-type="1">+</text>
+            </view>
+        </view>
+    </view>
+    <view class="fixed-bottom bgf ">
+        <view class="pdlr2">
+            <view class="left mt3" style="line-height:40rpx;height: 40rpx;">
+                <image bindtap="checkGoods" class="icon mr1 left middle icon40 mb" data-type="all" src="../../../images/ordercheck.png" wx:if="{{allChecked&&classlist.length>0}}"></image>
+                <image bindtap="checkGoods" class="icon mr1 left middle icon40 mb" data-type="all" src="../../../images/uncheck.png" wx:else></image>
+                <view class="col35 left font30">全选</view>
+            </view>
+            <view class="right font30" wx:if="{{ispay||cartlength==0}}">
+                <view class="disib left mt3 mr3"> 合计：
+					<text class="colr">¥{{totalMoney?totalMoney:0}}</text>
+                </view>
+                <button bindtap="amountCalc" class="btn" style="width:240rpx;margin:12rpx 0">结算</button>
+            </view>
+            <view class="right font30" wx:else>
+                <button bindtap="deltgoods" class="btn hollow-btn" style="width:240rpx;margin:10rpx 0">删除</button>
+            </view>
+        </view>
+    </view>
+</view>

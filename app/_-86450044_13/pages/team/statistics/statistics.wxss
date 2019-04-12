@@ -1,0 +1,20 @@
+page {
+    background: #fff;
+}
+
+.data-switch {
+    background: rgba(248,248,248,1);
+}
+
+.data-switch .hover {
+    background: #fff;
+    color: #383838;
+}
+
+.data-switch:first-child .hover {
+    border-top-right-radius: 10rpx;
+}
+
+.data-switch:nth-child(1) .hover {
+    border-top-left-radius: 10rpx;
+}

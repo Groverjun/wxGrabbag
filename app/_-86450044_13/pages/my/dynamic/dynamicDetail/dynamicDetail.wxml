@@ -1,0 +1,45 @@
+<view class="container addgoods-container">
+    <view class="pd2">
+        <view class="ovh">
+            <image class="icon100 br_half left mr2" src="{{imgHead+info.teamIcon}}"></image>
+            <view class="left detail-box">
+                <view class="blue3 font30 mt2 mb">
+          {{info.teamName}}
+        </view>
+                <view class="mb2">
+          {{info.dynamicsDetail}}
+        </view>
+                <view>
+                    <image class="icon170 left mr2 br4" src="{{imgHead+item}}" wx:for="{{info.dynamicsCover}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="mt2 mb3 font22">
+            <text class="mr2 col8">{{info.createTime}}</text>
+            <text bindtap="goDelete" class=" blue3">删除</text>
+        </view>
+        <view class="bg br4" wx:if="{{info.nameList.length>0||info.comments.length>0}}">
+            <view class="pd2 font30 blue3 bdb" wx:if="{{info.nameList&&info.nameList.length>0}}">
+                <image class="icon35 mr1 middle mb1" src="../../../../images/ic_zan2.png"></image>
+                <block wx:for="{{info.nameList}}" wx:for-index="idx" wx:for-item="obj">{{obj}}<block wx:if="{{idx+1!=info.nameList.length&&info.nameList.length>1}}">，</block>
+                </block>
+            </view>
+            <view class="ovh pd4_2" wx:if="{{info.comments.length>0}}">
+                <view class="left">
+                    <view class="ovh mb3" wx:for="{{info.comments}}" wx:for-item="obj">
+                        <image class="icon70 mr2 middle mb1 left" src="{{obj.headImg}}"></image>
+                        <view class="left font24 comment-box">
+                            <view class="ovh mb">
+                                <text class="blue3 disib beyond wd280">{{obj.userName}}</text>
+                                <text class="right col8">{{obj.createTime}}</text>
+                            </view>
+                            <view class="font30">
+                {{obj.commentDetail}}
+              </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

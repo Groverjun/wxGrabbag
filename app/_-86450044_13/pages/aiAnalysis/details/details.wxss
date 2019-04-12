@@ -1,0 +1,91 @@
+.dot {
+    width: 25rpx;
+    height: 25rpx;
+    text-align: center;
+    line-height: 25rpx;
+    display: inline-block;
+    background: #D6D6D6;
+    border-radius: 50%;
+    margin-top: 10rpx;
+}
+
+.dot.current {
+    background: #E51C23;
+}
+
+.add-btn {
+    background: #E51C23;
+    color: #fff;
+}
+
+.line {
+    border-left: 1rpx solid #D6D6D6;
+    position: absolute;
+    height: 122%;
+    top: 35rpx;
+    left: 170rpx;
+    display: inline-block;
+}
+
+.time-box {
+    display: inline-block;
+    width: 150rpx;
+    margin-right: 8rpx;
+}
+
+.content {
+    padding-left: 200rpx;
+    min-height: 60rpx;
+}
+
+.detail-btn {
+    width: 100%;
+    border-radius: 0;
+}
+
+.detail-text {
+    width: 400rpx;
+}
+
+.canvas-wrap {
+    top: -20px;
+    position: absolute;
+    right: 0rpx;
+}
+
+.canvas2 {
+    position: absolute;
+    left: -5%;
+}
+
+.consultation-btn {
+    width: 56%;
+    border-radius: 0;
+    height: 115rpx;
+    line-height: 115rpx;
+    margin: 0;
+}
+
+.consultation-btn2 {
+    width: 70%;
+}
+
+.consult-btn,.add-btn {
+    width: 45%;
+    margin: 12rpx 0;
+    border-radius: 0;
+    padding: 0 30rpx;
+    font-weight: bold;
+    line-height: 90rpx;
+    float: right;
+}
+
+.add-btn {
+    background: linear-gradient(135deg,rgba(255,167,69,1),rgba(255,134,0,1));
+    border-radius: 39px 0px 0px 39px;
+}
+
+.consult-btn {
+    border-radius: 0 39px 39px 0;
+    margin-right: 40rpx;
+}

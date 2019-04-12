@@ -1,0 +1,88 @@
+<view class="container dis-container pdb10">
+    <form bindsubmit="saveDetails" class="mb100">
+        <view class="detail-list relative" wx:for="{{list}}">
+            <view id="details">
+                <textarea bindinput="inputText" class="bgf pd2" data-id="{{index}}" placeholder="请输入文字描述" placeholderClass="placeholder" style="font-size: 11px;" value="{{item.value}}" wx:if="{{item.type==1}}"></textarea>
+                <image bindtap="chooseImg" class="pd2 detail-img" data-id="{{index}}" mode="widthFix" src="{{item.value}}" wx:if="{{item.type==2}}"></image>
+                <video controls enableDanmu binderror="videoErrorCallback" danmuList="{{danmuList}}" data-id="{{index}}" id="myVideo" src="{{item.value}}" wx:if="{{item.type==5}}"></video>
+                <block wx:if="{{item.type==6}}">
+                    <text wx:if="{{!item.value}}">视频链接</text>
+                    <textarea bindinput="inputLink" class="bgf pd2" data-id="{{index}}" placeholder="请输入视频超链接" placeholderClass="placeholder" style="font-size: 11px;" value="{{item.value}}" wx:if="{{!item.value}}"></textarea>
+                    <video controls enableDanmu binderror="videoErrorCallback" danmuList="{{danmuList}}" data-id="{{index}}" id="myVideo" src="{{item.value}}" wx:if="{{item.value}}"></video>
+                </block>
+                <view class="mlr2 mt3 detail-line" wx:if="{{item.type==3}}"></view>
+                <block wx:if="{{item.type==4}}">
+                    <view class="center colc bgf slide-image add-head" style="height:{{screenheight}}px" wx:if="{{item.value.length<=0}}">
+                        <image bindtap="chooseLogo" class="icon120 mt5" data-id="{{index}}" src="../../../images/camera.png"></image>
+                        <view class="mt2">点击添加商品图片</view>
+                    </view>
+                    <view class="relative" wx:else>
+                        <swiper class="swiper" current="{{swiperIndex}}" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true">
+                            <swiper-item wx:for="{{item.value}}" wx:for-index="idx">
+                                <view class="img-wrap relative">
+                                    <image class="slide-image" src="{{item}}" style="width:100%"></image>
+                                    <image bindtap="delLogo" class="absolute icon del-icon" data-i="{{idx}}" data-id="{{index}}" src="../../../images/ic_delete.png"></image>
+                                </view>
+                            </swiper-item>
+                        </swiper>
+                    </view>
+                </block>
+            </view>
+            <view class="bg font20 absolute detail-fun">
+                <button bindtap="getPath" class="left details-btn" data-id="{{index}}" wx:if="{{item.type==6}}">确定</button>
+                <button bindtap="smallFontSize" class="left details-btn" data-id="{{index}}" wx:if="{{item.type==1}}">小</button>
+                <button bindtap="inFontSize" class="left details-btn" data-id="{{index}}" wx:if="{{item.type==1}}">中</button>
+                <button bindtap="bigFontSize" class="left details-btn" data-id="{{index}}" wx:if="{{item.type==1}}">大</button>
+                <button bindtap="chooseLogo" class="left details-btn" data-id="{{index}}" wx:if="{{item.type==4&&item.value.length>0}}">
+          添加
+        </button>
+                <button bindtap="delModel" class="left details-btn" data-id="{{index}}">
+          删除
+        </button>
+                <button bindtap="moveModel" class="left details-btn" data-id="{{index}}" wx:if="{{index!=0}}">
+          上移
+        </button>
+            </view>
+        </view>
+        <button class="btn fixed-bottom" formType="submit" style="line-height:80rpx">保存</button>
+    </form>
+    <button bindtap="showAdd" class="font30 red line60 addrange-btn ">
+        <text class="font36 fontb">+</text>
+    添加内容
+  </button>
+    <view class="btm"></view>
+    <view hidden="{{hideAdd}}">
+        <view bindtap="hideAdd" class="mask"></view>
+        <view class="bgf col9 fixed-bottom">
+            <scroll-view>
+                <view class="flex-wrp mt3">
+                    <view bindtap="addModel" class="pd2 center flex-item" data-type="1">
+                        <image class="mb2 fun-img" src="../../../images/addtext.png"></image>
+                        <view>添加文本</view>
+                    </view>
+                    <view bindtap="addModel" class="pd2 center flex-item" data-type="2">
+                        <image class="mb2 fun-img" src="../../../images/addimg.png"></image>
+                        <view>添加图片</view>
+                    </view>
+                    <view bindtap="addModel" class="pd2 center flex-item" data-type="5">
+                        <image class="mb2 fun-img" src="../../../images/shipin.png"></image>
+                        <view>添加视频</view>
+                    </view>
+                    <view bindtap="addModel" class="pd2 center flex-item" data-type="6">
+                        <image class="mb2 fun-img" src="../../../images/shipin.png"></image>
+                        <view>添加视频</view>
+                    </view>
+                    <view bindtap="addModel" class="pd2 center flex-item" data-type="4">
+                        <image class="mb2 fun-img" src="../../../images/addbanner.png"></image>
+                        <view>添加banner</view>
+                    </view>
+                    <view bindtap="addModel" class="pd2 center flex-item" data-type="3">
+                        <image class="mb2 fun-img" src="../../../images/addline.png"></image>
+                        <view>添加分割线</view>
+                    </view>
+                </view>
+            </scroll-view>
+            <view bindtap="hideAdd" class="line95 center bg font30">取消</view>
+        </view>
+    </view>
+</view>

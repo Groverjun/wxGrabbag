@@ -1,0 +1,108 @@
+.add-head {
+    padding: 50rpx 0 45rpx;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+textarea {
+    width: 95%;
+    height: 85rpx;
+}
+
+.section,.section2 {
+    width: 590rpx;
+    padding-bottom: 20rpx;
+    margin: 15rpx 0 0 45rpx;
+}
+
+.section2 {
+    width: 485rpx;
+}
+
+.add-input {
+    width: 300rpx;
+}
+
+.del-icon {
+    width: 50rpx;
+    height: 50rpx;
+    top: 20rpx;
+    right: 30rpx;
+}
+
+.add-logo {
+    width: 88rpx;
+    height: 88rpx;
+    bottom: 20rpx;
+    right: 30rpx;
+}
+
+.addbtn button {
+    width: 48%;
+    height: 100rpx;
+}
+
+.addgoods {
+    z-index: 5;
+    width: 100%;
+}
+
+label {
+    display: block;
+}
+
+swiper {
+    min-height: 320rpx;
+}
+
+.img-wrap img {
+    height: 100%;
+}
+
+.addmask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+}
+
+.addclass {
+    position: fixed;
+    width: 560rpx;
+    height: 313rpx;
+    margin: -125% 12%;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+
+.radioList {
+    max-height: 400rpx;
+    overflow-y: auto;
+}
+
+checkbox .wx-checkbox-input {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+    border-color: transparent;
+    background: #E51C23;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #fff;
+    background: transparent;
+    transform: translate(-50%,-50%) scale(1);
+}

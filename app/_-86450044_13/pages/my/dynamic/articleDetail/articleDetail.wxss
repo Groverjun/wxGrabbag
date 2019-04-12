@@ -1,0 +1,11 @@
+page {
+    background: #fff;
+}
+
+.comment-box {
+    width: 540rpx;
+}
+
+.bdb {
+    border-bottom: 1rpx solid #e9e9e9;
+}

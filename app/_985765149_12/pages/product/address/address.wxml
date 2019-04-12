@@ -1,0 +1,36 @@
+<view class="container addr-container">
+    <form bindsubmit="saveAddr">
+        <view class="bgf">
+            <view class="pdlr3 font30 ovh addr-bt">
+                <view class="mt1 addr-ht bdb">
+                    <view bindtap="clickit" class="left line50">联系人</view>
+                    <input class="right addr-input col8" name="inputName" placeholder="联系人" value="{{addressName}}"></input>
+                </view>
+                <view class="mt1 addr-ht bdb">
+                    <view class="left line50">手机号码</view>
+                    <input class="right addr-input col8" name="inputPhone" placeholder="手机号码" type="number" value="{{addressPhone}}"></input>
+                </view>
+                <view class="mt1 addr-ht bdb relative">
+                    <view class="left line50 mr3">选择地区</view>
+                    <picker bindchange="bindRegionChange" class="left col8" mode="region" value="{{region}}">
+                        <view class="picker mt1 col8">
+                            <block wx:if="{{region.length>0}}"> {{region[0]}} {{region[1]}} {{region[2]}}</block>
+                            <text class="col8" wx:else>省市区/县信息</text>
+                        </view>
+                        <image class="absolute pos-addr icon icon40" src="../../../images/markaddr.png"></image>
+                    </picker>
+                </view>
+                <view class="mt1 addr-ht bdb">
+                    <view class="left line50">详细地址</view>
+                    <input bindtap="click" class="right mb2 addr-input col8" name="inputDetail" placeholder="详细地址(楼层/门牌号)" value="{{addressDetailed}}"></input>
+                </view>
+            </view>
+        </view>
+        <view class="center">
+            <button class="btn addr-btn" formType="submit" style="border-radius:10rpx;margin-top: 40rpx;">保存</button>
+        </view>
+        <view class="center mt7" wx:if="{{addressId}}">
+            <image bindtap="delAddr" class="icon120" src="../../../images/delete.png"></image>
+        </view>
+    </form>
+</view>

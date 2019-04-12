@@ -1,0 +1,45 @@
+<template name="leavMess">
+    <button bindgetphonenumber="getNumberToLev" class="leav-mess relative" openType="getPhoneNumber" wx:if="{{!hasTrueNum}}">
+        <image class="icon35 mt2" src="../../../images/message-black.png"></image>
+        <view class="colf font20">留言</view>
+        <text class="leav-num" wx:if="{{nums}}">{{nums}}</text>
+    </button>
+    <navigator class="leav-mess relative" url="/pages/index/leavMess/index" wx:else>
+        <image class="icon35 mt2" src="../../../images/message-black.png"></image>
+        <view class="colf font20">留言</view>
+        <text class="leav-num" wx:if="{{nums}}">{{nums}}</text>
+    </navigator>
+</template>
+<template name="indexComm">
+    <view class="pdlr5 bgf ovh mt3">
+        <view class="left line30 beyond mt1" style="width:125px">
+            <image class="icon40 mr1 br6" src="{{item.user_head_img}}" wx:for="{{watchList}}"></image>
+            <view class="col9 font22">已有{{userInfo.userWatched/1}}人浏览</view>
+        </view>
+        <view class="right font22 col8">
+            <view class="center left mr3">
+                <image class="icon40" src="../../../images/ic_save.png"></image>
+                <view class="ml1">保存 {{userInfo.userSaved/1}}</view>
+            </view>
+            <view class="center left mr3">
+                <image class="icon40" src="../../../images/ic_zan.png"></image>
+                <view class="ml1">靠谱 {{userInfo.thumed/1}}</view>
+            </view>
+            <button bindtap="onShareAppMessage" class="reset-btn disib mt1" openType="share">
+                <image class="icon70" src="../../../images/share.png"></image>
+            </button>
+        </view>
+    </view>
+    <view class="pd2 bgf center ovh" style="padding-top:0;{{cardType==4?'padding-bottom:20rpx;':''}}">
+        <block wx:if="{{isMyself}}">
+            <button bindtap="onShareAppMessage" class="btn btn right" openType="share">分享我的名片</button>
+            <navigator appId="{{appId}}" class="btn btn2 mr2 middle left" openType="navigate" path="pages/my/editCard/index" target="miniProgram" wx:if="{{userInfo.userPhone!=null}}">编辑我的名片</navigator>
+            <navigator appId="{{appId}}" class="btn btn2 mr2 middle left" openType="navigate" path="pages/my/editCard/index" target="miniProgram" wx:if="{{userInfo.userPhone==null}}">创建我的名片</navigator>
+        </block>
+        <block wx:else>
+            <navigator appId="{{appId}}" class="btn btn2 mr2 middle left" openType="navigate" path="pages/my/index/index" target="miniProgram" wx:if="{{userInfo.userPhone!=null}}">我的名片</navigator>
+            <navigator appId="{{appId}}" class="btn btn2 mr2 middle left" openType="navigate" path="pages/my/editCard/index" target="miniProgram" wx:if="{{userInfo.userPhone==null}}">创建我的名片</navigator>
+            <navigator appId="{{appId}}" class="btn mr2 middle right" data-index="{{userInfo.userName}} {{userInfo.userPhone}} {{myTeamId}}" openType="navigate" path="pages/customer/add/add?name={{userInfo.userName}}&phone={{userInfo.userPhone}}&teamId={{myTeamId}}" target="miniProgram">保存为客户</navigator>
+        </block>
+    </view>
+</template>

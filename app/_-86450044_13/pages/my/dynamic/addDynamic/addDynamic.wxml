@@ -1,0 +1,14 @@
+<view class="container">
+    <textarea bindinput="inputGoodsName" class="mt2 bgf pd2 line40 mb2" name="dyContent" placeholder="请输入动态内容" placeholderClass="placeholder" value="{{dyContent}}"></textarea>
+    <view class="col9 pdlr2 font20 ovh">
+        <view class="img-box center" style="padding:0" wx:for="{{images}}">
+            <image bindlongpress="deleteImage" class="width100 block" data-index="{{index}}" mode="aspectFill" src="{{item}}" style="height:{{iheight}}px;"></image>
+        </view>
+        <view bindtap="chooseLogo" class="img-box center" wx:if="{{images.length<9}}">
+            <image class="icon80" src="../../../../images/ic-add.png"></image>
+            <view class="mt1">点击添加图片</view>
+        </view>
+    </view>
+    <view class="col9 font20 pdlr2">注:长按图片即可删除</view>
+    <button bindtap="saveDynamic" class="btn fixed-bottom">发布</button>
+</view>

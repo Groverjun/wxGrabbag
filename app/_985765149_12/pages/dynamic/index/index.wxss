@@ -1,0 +1,135 @@
+page {
+    background: #fff;
+}
+
+.product-head {
+    width: 100%;
+    height: 250rpx;
+    display: block;
+}
+
+.enter-icon {
+    width: 257rpx;
+    height: 47rpx;
+    top: -44rpx;
+    z-index: 99;
+    left: 50%;
+    margin-left: -128rpx;
+}
+
+.team-wrap {
+    padding: 20rpx 0;
+}
+
+.share-icon {
+    top: 10px;
+    z-index: 5;
+}
+
+.head-box {
+    top: -118rpx;
+    z-index: 3;
+    background: #fff;
+    width: 655rpx;
+}
+
+.user-head {
+    border: 2rpx solid #fff;
+    box-shadow: 0px 2px 24px rgba(9,1,3,0.1);
+}
+
+.detail-box {
+    width: 580rpx;
+}
+
+.comment-box {
+    width: 440rpx;
+}
+
+.com-box {
+    width: 540rpx;
+}
+
+.borderb {
+    border-bottom: 1rpx solid #e9e9e9;
+}
+
+.comm-bg {
+    background: #383838;
+    width: 327rpx;
+    height: 55rpx;
+    padding-top: 18rpx;
+    position: absolute;
+    right: 70rpx;
+    top: -20rpx;
+}
+
+.comm-bg::after {
+    content: '';
+    position: absolute;
+    right: -35rpx;
+    top: 15rpx;
+    width: 0;
+    height: 0;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #383838;
+}
+
+.leav-btn button {
+    padding: 0 10px;
+    background: #fff;
+    color: #BCBBBC;
+    display: inline-block;
+    font-size: 24rpx;
+    margin-right: 30rpx;
+    border-radius: 30rpx;
+    border: 1px solid #ccc;
+    line-height: 50rpx;
+}
+
+.leav-iput {
+    background: #F9F9F9;
+    padding: 10rpx 30rpx;
+    border-radius: 30rpx;
+    width: 65%;
+    margin: 20rpx;
+}
+
+.leav-send {
+    width: 160rpx;
+    color: #fff;
+    border-radius: 0;
+    height: 110rpx;
+    line-height: 110rpx;
+    margin: 0;
+}
+
+.leave-wrap {
+    padding-bottom: 220rpx;
+}
+
+.no-dynamic {
+    width: 360rpx;
+    height: 360rpx;
+}
+
+.mask {
+    z-index: 4;
+}
+
+.mask2 {
+    height: 250rpx;
+    background-color: rgba(0,0,0,.1);
+    position: absolute;
+    z-index: 1;
+}
+
+.thumb-box {
+    width: 540rpx;
+}
+
+.box1 {
+    height: 104rpx;
+    line-height: 104rpx;
+}

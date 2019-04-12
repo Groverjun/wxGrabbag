@@ -1,0 +1,23 @@
+<view class="container ovh">
+    <view class="bgf">
+        <view class="bgf pd3" style="padding-bottom:0">
+            <block wx:for="{{list}}">
+                <text class="dot left" style="background:{{item.lebelColor}}"></text>
+                <view bindtap="goEditPage" class="font32 mb2" data-index="{{index}}">
+            {{item.lebelName}}
+            <image class="right icon middle mt" src="../../../images/ic_right_grey.png"></image>
+                </view>
+                <view class="flex-list ovh bdb center {{index+1==list.length?'':'mb2'}}">
+                    <view class="list-item" wx:for="{{item.lebelContent}}" wx:for-index="idx" wx:for-item="obj">
+                        <text bindtap="choiceCustomLabel" class="tips2" data-i="{{index}}" data-index="{{idx}}" style="background:{{item.lebelColor}};color:#fff">{{obj}}</text>
+                        <view class="colr" wx:if="{{obj=='成交'&&turnover>0}}">￥{{turnover}}</view>
+                    </view>
+                </view>
+            </block>
+            <view bindtap="goEdit" class="pd2 bgf center col9 font32">
+                <view class="icon icon40 mr1 mb1 add-icon}}"></view>
+                <text class="colr">添加标签组</text>
+            </view>
+        </view>
+    </view>
+</view>

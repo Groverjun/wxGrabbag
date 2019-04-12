@@ -1,0 +1,46 @@
+<view class="container">
+    <navigator class="pd4_2 bdb bgf ovh relative" url="/pages/aiAnalysis/index/index">
+        <image class="icon120 left br_half" src="../../../images/logo.png"></image>
+        <text class="mes-num icon40 br_half colf" wx:if="{{topInfo.count>0}}">{{topInfo.count}}</text>
+        <view class="left ml2 mes-box">
+            <view class="font34 mb1 mt1 fontb">配配通CRM智能助手<text class="right col8 font24 mt1 fontn">{{topInfo.create_time}}</text>
+            </view>
+            <view class="col9 font28 beyond width100" wx:if="{{topInfo.user_name}}">{{topInfo.user_name}}正在{{topInfo.log_type==5?'向你':'浏览你的'}}<block wx:if="{{topInfo.log_type==1||topInfo.log_type==2||topInfo.log_type==3}}">{{topInfo.log_type==1?'名片':'产品'}}</block>
+                <block wx:elif="{{topInfo.log_type==4}}">官网</block>
+                <block wx:else>留言</block>
+        ，快去联系他吧</view>
+            <view class="col8" wx:else>暂时没有相关访问记录哦</view>
+        </view>
+    </navigator>
+    <view class="v-canvas">
+        <canvas canvasId="canvas_wi" class="myCanvas" style="{{canvas_style}}"></canvas>
+    </view>
+    <form bindsubmit="updateFromId" class="pd2 mb2 bgf col8 block" reportSubmit="true" style="height:40rpx">
+        <text class="left mr2">消息推送剩余数量</text>
+        <view class="left colf relative">
+            <image class="icon-electric disib" src="../../../images/electric.png"></image>
+            <text class="absolute mes-count fontb font28">
+                <block wx:if="{{topInfo.formIdCount>99}}">99+</block>
+                <block wx:else>{{topInfo.formIdCount/1}}</block>
+            </text>
+        </view>
+        <button class="reset-btn right tright" formType="submit" hoverClass="icon-green" style="width:100rpx;height:50rpx;">
+            <image class="icon icon40 right" src="../../../images/add-green.png"></image>
+        </button>
+    </form>
+    <navigator class="pd2 bdb bgf ovh relative" url="/pages/message/leavMess/index?userId={{item.userId}}&userHead={{item.userHeadImg}}" wx:for="{{list}}">
+        <image class="icon120 left br_half" src="{{item.userHeadImg}}"></image>
+        <text class="mes-num icon40 br_half colf" wx:if="{{item.message_count>0}}">{{item.message_count}}</text>
+        <view class="left ml2 mes-box">
+            <view class="font36 mt1 mb1">
+                <text class="beyond wd400 disib">{{item.userName}}</text>
+                <text class="right col8 font24 mt1">{{item.createTime}}</text>
+            </view>
+            <view class="col9 font28 beyond width100">{{item.content.text}}</view>
+        </view>
+    </navigator>
+    <view class="center col9" wx:if="{{list.length==0}}">
+        <image class="empty-img mt7" src="../../../images/no-message.png"></image>
+        <view>暂无消息哦</view>
+    </view>
+</view>

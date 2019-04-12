@@ -1,0 +1,103 @@
+<view class="container details-container" style="margin-bottom: 100rpx;">
+    <view class="bgf mb2 mt2">
+        <view class="bdb col8 ovh relative">
+            <image src="../../../images/bg-gift.png" style="width: 100%;height: 170rpx;"></image>
+            <view class="left col35 ml1 ab-order giftpd" wx:if="{{info.orderState==1}}">
+                <view class="fontb font34 colf mb1">等待付款</view>
+                <view class="font24 colf">
+					请在12小时内进行支付，超时后订单将自动取消
+				</view>
+            </view>
+            <view class="left col35 ml1 ab-order giftpd" wx:if="{{info.orderState==60}}">
+                <view class="fontb font34 colf mb1">待发货</view>
+                <view class="font24 colf">
+					商家已接单，正在为您准备发货
+				</view>
+            </view>
+            <view class="left col35 ml1 ab-order giftpd" wx:if="{{info.orderState==80}}">
+                <view class="fontb font34 colf mb1">待收货</view>
+                <view class="font24 colf">
+					商家已发货，请注意收货
+				</view>
+            </view>
+            <view class="left col35 ml1 ab-order giftpd" wx:if="{{info.orderState==600}}">
+                <view class="fontb font34 colf mb1">已完成</view>
+                <view class="font24 colf">
+					订单已交易完成
+				</view>
+            </view>
+            <view class="left col35 ml1 ab-order giftpd" wx:if="{{info.orderState==850}}">
+                <view class="fontb font34 colf mb1">退款中</view>
+                <view class="font24 colf">
+					申请退款中，等待商家确认
+				</view>
+            </view>
+            <view class="left col35 ml1 ab-order giftpd" wx:if="{{info.orderState==900}}">
+                <view class="fontb font34 colf mb1">已退款</view>
+                <view class="font24 colf">
+					退款成功，款项已原路返回，请注意查收
+				</view>
+            </view>
+        </view>
+        <view class="pd2 bdb col8 ovh">
+            <image class="mt left icon icon40" src="../../../images/markaddr.png"></image>
+            <view class="left col35 ml1">
+                <view class="col35 font34 mb1">{{info.orderUserName}} {{info.orderUserPhone}}</view>
+                <view class="font24 colb2">{{info.orderUserAddress}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="font30 bgf mt2 mb2">
+        <view class="bgf pd2 bdb line50" style="height: 42rpx;line-height: 42rpx;">
+            <image class="icon left mr1 icon40 br_half ml1 middle" src="{{imgHead+info.storeIcon}}"></image>
+            <view class="left col35 font30">{{info.storeName}}</view>
+        </view>
+        <view class="pdlr2 bdb" wx:if="{{info.itmes}}">
+            <view class="flex-wrp pdtb2" wx:for="{{info.itmes}}">
+                <image class="icon140 left mr3 br6" src="{{imgHead+item.goodsPic}}"></image>
+                <view class="flex-item set-ht">
+                    <view class="font30 mb60 fontb">{{item.goodsName}}</view>
+                    <view class="col9">
+                        <text class="tline colr mr4">￥{{item.goodsPrice/100}}x{{item.itemNumber}}</text>
+                        <view class="col0 right">
+                            <text class="col8">￥{{item.goodsPrice*item.itemNumber/100}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="pd2 bdb col35 font30">
+			商品金额
+			<text class="col8 font28 right">¥{{info.itmes[0].goodsPrice*info.itmes[0].itemNumber/100}}</text>
+        </view>
+        <view class="pd2 bdb col35 font30" wx:if="{{info.orderFreightAmount}}">
+			运费
+			<text class="col8 font28 right">¥{{info.itmes[0].frightFee/100}}</text>
+        </view>
+    </view>
+    <view class="pd2 bdb bgf line50 col38 ovh">
+        <view class="font34 right">
+            <text class="mr2">共{{info.itmes[0].itemNumber}}件商品</text>实付：
+				<text class="colr fontb">¥{{(info.itmes[0].goodsPrice*info.itmes[0].itemNumber+info.itmes[0].frightFee)/100}}</text>
+        </view>
+    </view>
+    <view class="font30 bgf line50 col9 mt2 mb4">
+        <view class="pd2 bdb col35" style="height: 42rpx;line-height: 42rpx;">
+            <image class="icon left middle icon40 ml1 mr1" src="../../../images/orderinfo.png"></image>
+            <view class="left col35 font30">订单信息</view>
+        </view>
+        <view class="pd2 bdb col8" wx:if="{{info.orderState!=1}}">
+			订单号码
+			<text class="col38 font28 right">{{info.orderNumber}}</text>
+        </view>
+        <view class="pd2 bdb col8">
+			下单时间
+			<text class="col38 font28 right">{{info.orderGct}}</text>
+        </view>
+        <view class="pd2 bdb col8">
+			商务经理
+			<text class="col38 font28 right">{{info.sellerName}}</text>
+        </view>
+        <button bindtap="cancelOrder" class="order-btn order-btn1 mr1 btn mr1 btn2 middle right btn-longwidth" data-id="{{info.orderId}}" wx:if="{{info.orderState>1&&info.orderState<=80}}">申请退款</button>
+    </view>
+</view>

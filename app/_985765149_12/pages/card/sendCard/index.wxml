@@ -1,0 +1,16 @@
+<view class="container">
+    <view class="bgf mg2 bds" style="width:90%;margin:20rpx auto">
+        <swiper bindchange="switchSwiper" class="swiper-img" indicatorActiveColor="rgba(229, 28, 35, 1)" indicatorDots="true">
+            <swiper-item>
+                <image class="swiper-img" src="{{imgUrl1}}"></image>
+            </swiper-item>
+            <swiper-item>
+                <image class="swiper-img" src="{{imgUrl2}}"></image>
+            </swiper-item>
+            <swiper-item>
+                <image class="swiper-img" src="{{imgUrl3}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <button bindtap="downImg" class="btn" style="margin-bottom:40rpx">保存到手机</button>
+</view>

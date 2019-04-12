@@ -1,0 +1,48 @@
+<view class="container addgoods-container">
+    <view class="pd2">
+        <view class="ovh">
+            <view class="mb3 font38">{{info.dynamicsTitle}}</view>
+            <view class="font24 mb5">
+                <text class="blue3 mr3">{{info.teamName}}</text>
+                <text class="col8">{{info.createTime}}</text>
+                <text bindtap="goDelete" class="font22 blue3 right">删除</text>
+            </view>
+            <view wx:for="{{info.dynamicsDetail}}">
+                <view class="bgf pd2" data-id="{{index}}" wx:if="{{item.type==1}}">{{item.value}}</view>
+                <image bindtap="chooseImg" class="detail-img" data-id="{{index}}" mode="widthFix" src="{{imgHead+item.value}}" wx:if="{{item.type==2}}"></image>
+                <view class="mlr2 mb5 mt5 detail-line" wx:if="{{item.type==3}}"></view>
+                <swiper class="swiper" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true" style="height:{{screenheight}}px" wx:if="{{item.type==4}}">
+                    <swiper-item wx:for="{{item.value}}" wx:for-index="idx">
+                        <view class="img-wrap">
+                            <image class="slide-image" src="{{imgHead+item}}" style="height:{{screenheight}}px"></image>
+                        </view>
+                    </swiper-item>
+                </swiper>
+            </view>
+        </view>
+        <view class="bg br4" wx:if="{{info.nameList.length>0||info.comments.length>0}}">
+            <view class="pd2 font30 blue3 bdb" wx:if="{{info.nameList&&info.nameList.length>0}}">
+                <image class="icon35 mr1 middle mb1" src="../../../../images/ic_zan2.png"></image>
+                <block wx:for="{{info.nameList}}" wx:for-index="idx" wx:for-item="obj">{{obj}}<block wx:if="{{idx+1!=info.nameList.length&&info.nameList.length>1}}">，</block>
+                </block>
+            </view>
+            <view class="ovh pd4_2" wx:if="{{info.comments.length>0}}">
+                <image class="icon35 mr1 middle  left mt1" src="../../../../images/ic_message.png"></image>
+                <view class="left">
+                    <view class="ovh mb3" wx:for="{{info.comments}}" wx:for-item="obj">
+                        <image class="icon70 mr2 middle mb1 left" src="../../../../images/ic_menu.png"></image>
+                        <view class="left font24 comment-box">
+                            <view class="ovh mb">
+                                <text class="blue3 disib beyond wd400">{{obj.userName}}</text>
+                                <text class="right col8">{{obj.createTime}}</text>
+                            </view>
+                            <view class="font30">
+                {{obj.commentDetail}}
+              </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

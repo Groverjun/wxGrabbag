@@ -1,0 +1,90 @@
+<view class="container addgoods-container">
+    <view class="center colc add-head" wx:if="{{imgUrls.length<=0}}">
+        <image bindtap="chooseLogo" class="icon120" src="../../../images/camera.png"></image>
+        <view class="mt2">点击添加商品图片</view>
+    </view>
+    <view class="relative" wx:else>
+        <swiper bindchange="swiperChange" class="swiper" current="{{swiperIndex}}" indicatorActiveColor="#fff" indicatorColor="#848486" indicatorDots="true" style="height:{{screenheight}}px">
+            <swiper-item wx:for="{{imgUrls}}">
+                <view class="img-wrap">
+                    <image class="slide-image" src="{{item}}" style="height:{{screenheight}}px"></image>
+                </view>
+            </swiper-item>
+        </swiper>
+        <image bindtap="delLogo" class="absolute icon del-icon" src="../../../images/ic_delete.png"></image>
+        <image bindtap="chooseLogo" class="absolute add-logo" src="../../../images/camera.png"></image>
+    </view>
+    <form bindsubmit="formSubmit">
+        <textarea bindinput="inputGoodsName" class="bgf pd2 line40 mb2" maxlength="52" name="productName" placeholder="请输入商品名称" placeholderClass="placeholder" value="{{productName}}" wx:if="{{isHideClass&&isHideAdd}}"></textarea>
+        <view class="bgf mb2 line80 font30">
+            <view class="pdlr3 ovh">
+                <text class="left">价格</text>
+                <view class="left bdb section2">
+                    <input bindinput="changePrice" class="add-input mt" name="productPrice" placeholder="请填写商品价格" placeholderClass="placeholder" type="digit" value="{{productPrice}}"></input>
+                </view>
+            </view>
+            <view class="pdlr3 ovh">
+                <text class="left">库存</text>
+                <view class="left bdb section2">
+                    <input bindinput="changeCount" class="left add-input mt" name="productCount" placeholder="默认不限库存" placeholderClass="placeholder" type="digit" value="{{productCount}}"></input>
+                </view>
+            </view>
+            <view class="pdlr3 ovh" wx:if="{{supportBuy==1}}">
+                <text class="left">运费</text>
+                <view class="left section2">
+                    <input bindinput="changeAmount" class="left add-input mt" name="transportAmount" placeholder="默认免运费" placeholderClass="placeholder" type="digit" value="{{transportAmount}}"></input>
+                </view>
+            </view>
+        </view>
+        <view bindtap="switchClass" class="bgf pdlr3 line80 font30 bdb" data-type="0">
+            <text class="font30">商品分类</text>
+            <image class="right icon middle mt3" src="../../../images/ic_right_grey.png"></image>
+            <text class="right mr1">{{typeName}}</text>
+        </view>
+        <view bindtap="goDetailsPage" class="bgf pdlr3 line80 font30 bdb">
+            <text class="font30">商品详情</text>
+            <image class="right icon middle mt3 ml1" src="../../../images/ic_right_grey.png"></image>
+            <text class="right {{details?'':'col9'}}">{{details?'已':'未'}}编辑</text>
+        </view>
+        <view class="bgf pdlr3 line95 font30" wx:if="{{supportBuy==1}}">
+            <text class="font30">商品设置</text>
+            <checkbox-group bindchange="changeSupportBuy" class="disib ml4 middle">
+                <label class="checkbox">
+                    <checkbox checked="{{canBuy}}" color="#E51C23"></checkbox>
+                    <text class="middle mb1">支持购买</text>
+                </label>
+            </checkbox-group>
+        </view>
+        <view class="height100"></view>
+        <button class="btn fixed-bottom" formType="submit">保存</button>
+    </form>
+    <view bindtap="hideBox" class="mask" hidden="{{isHideClass}}"></view>
+    <view class="fixed-bottom addgoods" hidden="{{isHideClass}}">
+        <view class="font30 mt3 pdtb3 bg col9 pdl2">分类至<text class="font20 ml2">(按分类展示商品，方便买家筛选)</text>
+        </view>
+        <view class="bgf radioList">
+            <radio-group bindchange="radioChange" class="radio-group">
+                <label class="line80 pdlr3 bdb radio" wx:for="{{items}}" wx:key="items">
+                    <radio checked="{{item.checked}}" color="#E51C23" value="{{item.id}}#{{item.value}}"></radio>{{item.value}}
+        </label>
+            </radio-group>
+        </view>
+        <view bindtap="switchBox" class="bgf line110 center bdb addclassify">
+            <image class="icon30 middle mb mr1" src="../../../images/plus.png"></image>
+            <view class="font30 center disib">新建分类</view>
+        </view>
+        <view class="bgf addbtn pd2 ovh">
+            <button bindtap="switchClass" class="bg left col6" data-type="1">取消</button>
+            <button bindtap="switchClass" class="bgred left ml2 colf" data-type="1">确定</button>
+        </view>
+    </view>
+    <view bindtap="hideBox" class="addmask" hidden="{{isHideAdd}}"></view>
+    <view class="input-box" hidden="{{isHideAdd}}" style="top:30%">
+        <view class="font36 center mt3">新建分类</view>
+        <input bindinput="inputName" class="bg classifyinput" placeholder="请输入2~6字的分类名称" type="text" value="{{className}}"></input>
+        <view class="flex-wrp font36 center bdt">
+            <view bindtap="switchAdd" class="flex-item bdr2 pdtb3">取消</view>
+            <view bindtap="addClassify" class="flex-item red pdtb3">保存</view>
+        </view>
+    </view>
+</view>

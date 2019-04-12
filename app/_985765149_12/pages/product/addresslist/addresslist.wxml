@@ -1,0 +1,25 @@
+<view class="container myaddr-container">
+    <view class="center col9 mt2" wx:if="{{addrList.length==0}}">暂时没有地址哦</view>
+    <view class="addr-list pdb15 mb120">
+        <view bindtap="confirmAddr" class="bgf pd3 mb2" data-index="{{index}}" wx:for="{{addrList}}">
+            <view class="font30 mb2">{{item.addressName}} {{item.addressPhone}}</view>
+            <view class="col6 mb2 pdb2 bdb">
+				{{item.addressDetailed}}
+				<block wx:if="{{item.addressCity||item.addressCounty}}">（{{item.addressProvince?item.addressProvince:''}}{{item.addressCity?item.addressCity:''}}{{item.addressCounty?item.addressCounty:''}}）</block>
+            </view>
+            <view class="col9 ovh font26 line30">
+                <view class="left" wx:if="{{item.addressDefalut==1}}">
+                    <image class="icon mr1 left icon30 middle " src="../../../images/ordercheck.png"></image>
+                    <view class="col8 font28 left">默认地址</view>
+                </view>
+                <view catchtap="setDefault" class="left" data-id="{{item.addressId}}" wx:else>
+                    <image class="icon mr1 left middle icon30 " src="../../../images/uncheck.png"></image>
+                    <view class="col8 font28 left">设为默认</view>
+                </view>
+                <view catchtap="goAddr" class="right col8 font28 middle" data-id="{{item.addressId}}">编辑</view>
+                <image class="icon right icon30 mr1 ml1 middle" src="../../../images/edit.png"></image>
+            </view>
+        </view>
+    </view>
+    <button bindtap="goAddr" class="font30 btn fixed-bottom line80">新增</button>
+</view>
