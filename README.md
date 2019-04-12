@@ -33,3 +33,6 @@ node .\wuWxapkg.js .\app\_-86450044_13.wxapkg
 '_-86450044_13.wxapkg'为包名
 ```
 
+### 本项目来自qwerty472123大神 
+
+地址：[https://github.com/qwerty472123/wxappUnpacker](https://github.com/qwerty472123/wxappUnpacker)
